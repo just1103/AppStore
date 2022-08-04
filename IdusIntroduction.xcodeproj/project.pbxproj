@@ -13,6 +13,8 @@
 		361A98F7289B6A6700C16D00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 361A98F6289B6A6700C16D00 /* Assets.xcassets */; };
 		361A98FA289B6A6700C16D00 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 361A98F8289B6A6700C16D00 /* LaunchScreen.storyboard */; };
 		361A9905289B6A6700C16D00 /* IdusIntroductionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A9904289B6A6700C16D00 /* IdusIntroductionTests.swift */; };
+		361A992B289B6F2200C16D00 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A992A289B6F2200C16D00 /* AppCoordinator.swift */; };
+		361A992E289B6F3A00C16D00 /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A992D289B6F3A00C16D00 /* CoordinatorProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +37,8 @@
 		361A98FB289B6A6700C16D00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		361A9900289B6A6700C16D00 /* IdusIntroductionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IdusIntroductionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		361A9904289B6A6700C16D00 /* IdusIntroductionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdusIntroductionTests.swift; sourceTree = "<group>"; };
+		361A992A289B6F2200C16D00 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		361A992D289B6F3A00C16D00 /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,11 +80,10 @@
 		361A98EC289B6A6600C16D00 /* IdusIntroduction */ = {
 			isa = PBXGroup;
 			children = (
-				361A98ED289B6A6600C16D00 /* AppDelegate.swift */,
-				361A98EF289B6A6600C16D00 /* SceneDelegate.swift */,
-				361A98F1289B6A6600C16D00 /* ViewController.swift */,
-				361A98F6289B6A6700C16D00 /* Assets.xcassets */,
-				361A98F8289B6A6700C16D00 /* LaunchScreen.storyboard */,
+				361A9927289B6EE700C16D00 /* App */,
+				361A9928289B6EF200C16D00 /* Presentation */,
+				361A992C289B6F2500C16D00 /* Protocols */,
+				361A9929289B6F0000C16D00 /* Resources */,
 				361A98FB289B6A6700C16D00 /* Info.plist */,
 			);
 			path = IdusIntroduction;
@@ -92,6 +95,41 @@
 				361A9904289B6A6700C16D00 /* IdusIntroductionTests.swift */,
 			);
 			path = IdusIntroductionTests;
+			sourceTree = "<group>";
+		};
+		361A9927289B6EE700C16D00 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				361A98ED289B6A6600C16D00 /* AppDelegate.swift */,
+				361A98EF289B6A6600C16D00 /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		361A9928289B6EF200C16D00 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				361A98F1289B6A6600C16D00 /* ViewController.swift */,
+				361A992A289B6F2200C16D00 /* AppCoordinator.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		361A9929289B6F0000C16D00 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				361A98F8289B6A6700C16D00 /* LaunchScreen.storyboard */,
+				361A98F6289B6A6700C16D00 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		361A992C289B6F2500C16D00 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				361A992D289B6F3A00C16D00 /* CoordinatorProtocol.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,7 +232,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				361A992B289B6F2200C16D00 /* AppCoordinator.swift in Sources */,
 				361A98F2289B6A6600C16D00 /* ViewController.swift in Sources */,
+				361A992E289B6F3A00C16D00 /* CoordinatorProtocol.swift in Sources */,
 				361A98EE289B6A6600C16D00 /* AppDelegate.swift in Sources */,
 				361A98F0289B6A6600C16D00 /* SceneDelegate.swift in Sources */,
 			);
