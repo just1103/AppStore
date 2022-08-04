@@ -12,11 +12,14 @@
 		361A98F2289B6A6600C16D00 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A98F1289B6A6600C16D00 /* ViewController.swift */; };
 		361A98F7289B6A6700C16D00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 361A98F6289B6A6700C16D00 /* Assets.xcassets */; };
 		361A98FA289B6A6700C16D00 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 361A98F8289B6A6700C16D00 /* LaunchScreen.storyboard */; };
-		361A9905289B6A6700C16D00 /* IdusIntroductionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A9904289B6A6700C16D00 /* IdusIntroductionTests.swift */; };
+		361A9905289B6A6700C16D00 /* JSONParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A9904289B6A6700C16D00 /* JSONParserTests.swift */; };
 		361A992B289B6F2200C16D00 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A992A289B6F2200C16D00 /* AppCoordinator.swift */; };
 		361A992E289B6F3A00C16D00 /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A992D289B6F3A00C16D00 /* CoordinatorProtocol.swift */; };
 		361A9931289B722100C16D00 /* MockIdusSearchResult.json in Resources */ = {isa = PBXBuildFile; fileRef = 361A9930289B722100C16D00 /* MockIdusSearchResult.json */; };
 		361A9934289B726100C16D00 /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A9933289B726100C16D00 /* JSONParser.swift */; };
+		361A993A289B73B800C16D00 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A9939289B73B800C16D00 /* SearchResult.swift */; };
+		361A993D289B74CF00C16D00 /* AppItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A993C289B74CF00C16D00 /* AppItem.swift */; };
+		361A9941289B762200C16D00 /* MockIdusAppItem.json in Resources */ = {isa = PBXBuildFile; fileRef = 361A9940289B762200C16D00 /* MockIdusAppItem.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,11 +41,14 @@
 		361A98F9289B6A6700C16D00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		361A98FB289B6A6700C16D00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		361A9900289B6A6700C16D00 /* IdusIntroductionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IdusIntroductionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		361A9904289B6A6700C16D00 /* IdusIntroductionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdusIntroductionTests.swift; sourceTree = "<group>"; };
+		361A9904289B6A6700C16D00 /* JSONParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParserTests.swift; sourceTree = "<group>"; };
 		361A992A289B6F2200C16D00 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		361A992D289B6F3A00C16D00 /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
 		361A9930289B722100C16D00 /* MockIdusSearchResult.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockIdusSearchResult.json; sourceTree = "<group>"; };
 		361A9933289B726100C16D00 /* JSONParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
+		361A9939289B73B800C16D00 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		361A993C289B74CF00C16D00 /* AppItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppItem.swift; sourceTree = "<group>"; };
+		361A9940289B762200C16D00 /* MockIdusAppItem.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockIdusAppItem.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +92,7 @@
 			children = (
 				361A9927289B6EE700C16D00 /* App */,
 				361A9928289B6EF200C16D00 /* Presentation */,
+				361A9935289B737800C16D00 /* Model */,
 				361A992C289B6F2500C16D00 /* Protocols */,
 				361A9932289B724A00C16D00 /* Utilities */,
 				361A9929289B6F0000C16D00 /* Resources */,
@@ -98,7 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				361A992F289B71EB00C16D00 /* Mock */,
-				361A9904289B6A6700C16D00 /* IdusIntroductionTests.swift */,
+				361A9904289B6A6700C16D00 /* JSONParserTests.swift */,
 			);
 			path = IdusIntroductionTests;
 			sourceTree = "<group>";
@@ -142,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				361A9930289B722100C16D00 /* MockIdusSearchResult.json */,
+				361A9940289B762200C16D00 /* MockIdusAppItem.json */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -152,6 +160,15 @@
 				361A9933289B726100C16D00 /* JSONParser.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		361A9935289B737800C16D00 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				361A9939289B73B800C16D00 /* SearchResult.swift */,
+				361A993C289B74CF00C16D00 /* AppItem.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -244,6 +261,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				361A9941289B762200C16D00 /* MockIdusAppItem.json in Resources */,
 				361A9931289B722100C16D00 /* MockIdusSearchResult.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -255,12 +273,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				361A993D289B74CF00C16D00 /* AppItem.swift in Sources */,
 				361A992B289B6F2200C16D00 /* AppCoordinator.swift in Sources */,
 				361A98F2289B6A6600C16D00 /* ViewController.swift in Sources */,
 				361A9934289B726100C16D00 /* JSONParser.swift in Sources */,
 				361A992E289B6F3A00C16D00 /* CoordinatorProtocol.swift in Sources */,
 				361A98EE289B6A6600C16D00 /* AppDelegate.swift in Sources */,
 				361A98F0289B6A6600C16D00 /* SceneDelegate.swift in Sources */,
+				361A993A289B73B800C16D00 /* SearchResult.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,7 +288,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				361A9905289B6A6700C16D00 /* IdusIntroductionTests.swift in Sources */,
+				361A9905289B6A6700C16D00 /* JSONParserTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
