@@ -17,7 +17,7 @@ class JSONParserTests: XCTestCase {
         }
         
         let data = jsonString.data(using: .utf8)
-        guard let result = try? JSONParser<SearchResult>().decode(from: data).get() else {
+        guard let result = JSONParser<SearchResult>().decode(from: data) else {
             XCTFail()
             return
         }
@@ -33,7 +33,7 @@ class JSONParserTests: XCTestCase {
         }
         
         let data = jsonString.data(using: .utf8)
-        guard let result = try? JSONParser<AppItem>().decode(from: data).get() else {
+        guard let result = JSONParser<AppItem>().decode(from: data) else {
             XCTFail()
             return
         }
