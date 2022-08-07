@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum JSONParserError: Error, LocalizedError {
+enum JSONParserError: Error, LocalizedError {  // TODO: 삭제
     case decodingFail
     
     var errorDescription: String? {

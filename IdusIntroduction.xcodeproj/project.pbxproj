@@ -25,6 +25,7 @@
 		36EBE0DA289FF32300B92BB4 /* APIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0D9289FF32300B92BB4 /* APIProtocol.swift */; };
 		36EBE0DC289FF4EF00B92BB4 /* NetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0DB289FF4EF00B92BB4 /* NetworkProvider.swift */; };
 		36EBE0DF289FF52600B92BB4 /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0DE289FF52600B92BB4 /* URLSessionProtocol.swift */; };
+		36EBE0E2289FF6D500B92BB4 /* URLRequest+Initializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0E1289FF6D500B92BB4 /* URLRequest+Initializer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		36EBE0D9289FF32300B92BB4 /* APIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIProtocol.swift; sourceTree = "<group>"; };
 		36EBE0DB289FF4EF00B92BB4 /* NetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProvider.swift; sourceTree = "<group>"; };
 		36EBE0DE289FF52600B92BB4 /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
+		36EBE0E1289FF6D500B92BB4 /* URLRequest+Initializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Initializer.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				361A9946289BC60E00C16D00 /* Model */,
 				361A9942289BC5B500C16D00 /* Network */,
 				361A992C289B6F2500C16D00 /* Protocols */,
+				36EBE0E0289FF6C100B92BB4 /* Extensions */,
 				361A9932289B724A00C16D00 /* Utilities */,
 				361A9929289B6F0000C16D00 /* Resources */,
 				361A98FB289B6A6700C16D00 /* Info.plist */,
@@ -178,9 +181,9 @@
 		361A9942289BC5B500C16D00 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				36EBE0DB289FF4EF00B92BB4 /* NetworkProvider.swift */,
 				36EBE0D7289FF2BE00B92BB4 /* IdusIntroductionURL.swift */,
 				361A9943289BC5C100C16D00 /* response */,
-				36EBE0DB289FF4EF00B92BB4 /* NetworkProvider.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -200,6 +203,14 @@
 				361A9947289BC61A00C16D00 /* AppItem.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		36EBE0E0289FF6C100B92BB4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				36EBE0E1289FF6D500B92BB4 /* URLRequest+Initializer.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -316,6 +327,7 @@
 				361A98EE289B6A6600C16D00 /* AppDelegate.swift in Sources */,
 				361A98F0289B6A6600C16D00 /* SceneDelegate.swift in Sources */,
 				36EBE0D8289FF2BE00B92BB4 /* IdusIntroductionURL.swift in Sources */,
+				36EBE0E2289FF6D500B92BB4 /* URLRequest+Initializer.swift in Sources */,
 				361A993A289B73B800C16D00 /* SearchResultDTO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
