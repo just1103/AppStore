@@ -21,7 +21,7 @@ struct NetworkProvider {
     func fetchData<T: Decodable>(
         api: Gettable,
         decodingType: T.Type
-    ) -> AnyPublisher<SearchResultDTO, NetworkError> {
+    ) -> AnyPublisher<T, NetworkError> {
         guard let urlRequest = URLRequest(api: api) else {  // TODO: url로 대체 가능한지 확인 (httpmethod 필요 없는지)
             return Fail(error: NetworkError.urlIsNil).eraseToAnyPublisher()
         }
@@ -39,7 +39,7 @@ struct NetworkProvider {
                 
                 return data
             }
-            .decode(type: SearchResultDTO.self, decoder: JSONDecoder())
+            .decode(type: decodingType, decoder: JSONDecoder())
             .mapError { error -> NetworkError in
                 if let error = error as? NetworkError {
                     return error
