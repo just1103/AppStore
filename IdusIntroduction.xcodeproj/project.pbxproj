@@ -27,6 +27,7 @@
 		36EBE0DF289FF52600B92BB4 /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0DE289FF52600B92BB4 /* URLSessionProtocol.swift */; };
 		36EBE0E2289FF6D500B92BB4 /* URLRequest+Initializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0E1289FF6D500B92BB4 /* URLRequest+Initializer.swift */; };
 		36EBE0E428A0014300B92BB4 /* NetworkProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0E328A0014300B92BB4 /* NetworkProviderTests.swift */; };
+		36EBE0E728A0073800B92BB4 /* IdusDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0E628A0073800B92BB4 /* IdusDetailCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		36EBE0DE289FF52600B92BB4 /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
 		36EBE0E1289FF6D500B92BB4 /* URLRequest+Initializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Initializer.swift"; sourceTree = "<group>"; };
 		36EBE0E328A0014300B92BB4 /* NetworkProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProviderTests.swift; sourceTree = "<group>"; };
+		36EBE0E628A0073800B92BB4 /* IdusDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdusDetailCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,8 +141,8 @@
 		361A9928289B6EF200C16D00 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				361A98F1289B6A6600C16D00 /* ViewController.swift */,
 				361A992A289B6F2200C16D00 /* AppCoordinator.swift */,
+				36EBE0E528A0072100B92BB4 /* DetailScene */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -214,6 +216,15 @@
 				36EBE0E1289FF6D500B92BB4 /* URLRequest+Initializer.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		36EBE0E528A0072100B92BB4 /* DetailScene */ = {
+			isa = PBXGroup;
+			children = (
+				36EBE0E628A0073800B92BB4 /* IdusDetailCoordinator.swift */,
+				361A98F1289B6A6600C16D00 /* ViewController.swift */,
+			);
+			path = DetailScene;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -318,6 +329,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36EBE0E728A0073800B92BB4 /* IdusDetailCoordinator.swift in Sources */,
 				361A993D289B74CF00C16D00 /* AppItemDTO.swift in Sources */,
 				361A992B289B6F2200C16D00 /* AppCoordinator.swift in Sources */,
 				36EBE0DA289FF32300B92BB4 /* APIProtocol.swift in Sources */,

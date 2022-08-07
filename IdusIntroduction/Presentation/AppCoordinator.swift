@@ -33,11 +33,10 @@ final class AppCoordinator: CoordinatorProtocol {
         return true
     }
         
-    
     private func showIdusDetailPage() {
         guard let navigationController = navigationController else { return }
-//        let idusDetailCoordinator = IdusDetailCoordinator(navigationController: navigationController)
-//        childCoordinators.append(idusDetailCoordinator)
-//        idusDetailCoordinator.start()
+        let idusDetailCoordinator = IdusDetailCoordinator(navigationController: navigationController)
+        childCoordinators.append(idusDetailCoordinator)
+        idusDetailCoordinator.start()
     }
 }
