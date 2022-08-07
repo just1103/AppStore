@@ -10,10 +10,10 @@ import Combine
 
 struct NetworkProvider {
     // MARK: - Properties
-    private let session: URLSession
+    private let session: URLSessionProtocol
     
     // MARK: - Initializers
-    init(session: URLSession = URLSession.shared) {
+    init(session: URLSessionProtocol = URLSession.shared) {
         self.session = session
     }
     
