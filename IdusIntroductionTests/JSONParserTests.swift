@@ -9,7 +9,7 @@ import XCTest
 @testable import IdusIntroduction
 
 class JSONParserTests: XCTestCase {
-    func test_SearchResult타입_decode했을때_Parsing되는지_테스트() {
+    func test_SearchResultDTO타입_decode했을때_Parsing되는지_테스트() {
         guard let path = Bundle(for: type(of: self)).path(forResource: "MockIdusSearchResult", ofType: "json"),
               let jsonString = try? String(contentsOfFile: path) else {
             XCTFail()
@@ -17,7 +17,7 @@ class JSONParserTests: XCTestCase {
         }
         
         let data = jsonString.data(using: .utf8)
-        guard let result = JSONParser<SearchResult>().decode(from: data) else {
+        guard let result = JSONParser<SearchResultDTO>().decode(from: data) else {
             XCTFail()
             return
         }
@@ -25,7 +25,7 @@ class JSONParserTests: XCTestCase {
         XCTAssertEqual(result.resultCount, 1)
     }
     
-    func test_AppItem타입_decode했을때_Parsing되는지_테스트() {
+    func test_AppItemDTO타입_decode했을때_Parsing되는지_테스트() {
         guard let path = Bundle(for: type(of: self)).path(forResource: "MockIdusAppItem", ofType: "json"),
               let jsonString = try? String(contentsOfFile: path) else {
             XCTFail()
@@ -33,7 +33,7 @@ class JSONParserTests: XCTestCase {
         }
         
         let data = jsonString.data(using: .utf8)
-        guard let result = JSONParser<AppItem>().decode(from: data) else {
+        guard let result = JSONParser<AppItemDTO>().decode(from: data) else {
             XCTFail()
             return
         }
