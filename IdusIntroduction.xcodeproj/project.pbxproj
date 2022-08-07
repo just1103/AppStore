@@ -21,6 +21,8 @@
 		361A993D289B74CF00C16D00 /* AppItemDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A993C289B74CF00C16D00 /* AppItemDTO.swift */; };
 		361A9941289B762200C16D00 /* MockIdusAppItem.json in Resources */ = {isa = PBXBuildFile; fileRef = 361A9940289B762200C16D00 /* MockIdusAppItem.json */; };
 		361A9948289BC61A00C16D00 /* AppItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A9947289BC61A00C16D00 /* AppItem.swift */; };
+		36EBE0D8289FF2BE00B92BB4 /* IdusIntroductionURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0D7289FF2BE00B92BB4 /* IdusIntroductionURL.swift */; };
+		36EBE0DA289FF32300B92BB4 /* APIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0D9289FF32300B92BB4 /* APIProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		361A993C289B74CF00C16D00 /* AppItemDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppItemDTO.swift; sourceTree = "<group>"; };
 		361A9940289B762200C16D00 /* MockIdusAppItem.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockIdusAppItem.json; sourceTree = "<group>"; };
 		361A9947289BC61A00C16D00 /* AppItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppItem.swift; sourceTree = "<group>"; };
+		36EBE0D7289FF2BE00B92BB4 /* IdusIntroductionURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdusIntroductionURL.swift; sourceTree = "<group>"; };
+		36EBE0D9289FF32300B92BB4 /* APIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				361A992D289B6F3A00C16D00 /* CoordinatorProtocol.swift */,
+				36EBE0D9289FF32300B92BB4 /* APIProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -168,6 +173,7 @@
 		361A9942289BC5B500C16D00 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				36EBE0D7289FF2BE00B92BB4 /* IdusIntroductionURL.swift */,
 				361A9943289BC5C100C16D00 /* response */,
 			);
 			path = Network;
@@ -294,12 +300,14 @@
 			files = (
 				361A993D289B74CF00C16D00 /* AppItemDTO.swift in Sources */,
 				361A992B289B6F2200C16D00 /* AppCoordinator.swift in Sources */,
+				36EBE0DA289FF32300B92BB4 /* APIProtocol.swift in Sources */,
 				361A98F2289B6A6600C16D00 /* ViewController.swift in Sources */,
 				361A9948289BC61A00C16D00 /* AppItem.swift in Sources */,
 				361A9934289B726100C16D00 /* JSONParser.swift in Sources */,
 				361A992E289B6F3A00C16D00 /* CoordinatorProtocol.swift in Sources */,
 				361A98EE289B6A6600C16D00 /* AppDelegate.swift in Sources */,
 				361A98F0289B6A6600C16D00 /* SceneDelegate.swift in Sources */,
+				36EBE0D8289FF2BE00B92BB4 /* IdusIntroductionURL.swift in Sources */,
 				361A993A289B73B800C16D00 /* SearchResultDTO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
