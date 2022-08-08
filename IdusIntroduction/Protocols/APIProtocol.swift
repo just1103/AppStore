@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 protocol APIProtocol {
     var url: URL? { get }
@@ -15,6 +16,7 @@ protocol APIProtocol {
 }
 
 protocol Gettable: APIProtocol {
+    func fetchData() -> AnyPublisher<SearchResultDTO, NetworkError>
 }
 
 enum HttpMethod {
