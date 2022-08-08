@@ -10,13 +10,15 @@ import Combine
 
 struct ItunesAPI {
     static let baseURL: String = "http://itunes.apple.com/"
-    
+}
+
+extension ItunesAPI {
     struct AppLookup: Gettable {
         let session: URLSessionProtocol
         let url: URL?
         let method: HttpMethod = .get
-        var headers: [String : String] = [:]
-        var body: Data? = nil
+//        var headers: [String : String] = [:]
+//        var body: Data? = nil
         let appID: String
         
         init(
@@ -47,7 +49,6 @@ struct ItunesAPI {
 enum NetworkError: Error, LocalizedError {
     case urlIsNil
     case statusCodeError
-    case decodingFail
     case unknownError(message: String)
     
     var errorDescription: String? {
@@ -56,8 +57,6 @@ enum NetworkError: Error, LocalizedError {
             return "정상적인 URL이 아닙니다."
         case .statusCodeError:
             return "정상적인 StatusCode가 아닙니다."
-        case .decodingFail:
-            return "Decoding에 실패했습니다."
         case .unknownError:
             return "알수 없는 에러가 발생했습니다."
         }

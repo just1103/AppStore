@@ -11,8 +11,8 @@ import Combine
 protocol APIProtocol {
     var url: URL? { get }
     var method: HttpMethod { get }
-    var headers: [String: String] { get }
-    var body: Data? { get }  // TODO: 자체적으로 mappingType을 갖고 있도록 개선하여 fetchData 메서드 활용도 높이기
+//    var headers: [String: String] { get }
+//    var body: Data? { get }  // TODO: 자체적으로 mappingType을 갖고 있도록 개선하여 fetchData 메서드 활용도 높이기
 }
 
 protocol Gettable: APIProtocol {

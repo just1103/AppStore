@@ -9,7 +9,7 @@ import UIKit
 
 enum CoordinatorType {
     case app
-    case detail   
+    case lookup, detail   
 }
 
 protocol CoordinatorProtocol: AnyObject {

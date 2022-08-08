@@ -9,7 +9,7 @@ import XCTest
 import Combine
 @testable import IdusIntroduction
 
-class ItunesAPITests: XCTestCase {
+class AppLookupAPITests: XCTestCase {
     var sut: ItunesAPI.AppLookup!
     var cancellableBag: Set<AnyCancellable>!
 

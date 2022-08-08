@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class IdusDetailCoordinator: CoordinatorProtocol {
+final class DetailCoordinator: CoordinatorProtocol {
     // MARK: - Properties
     var navigationController: UINavigationController?
     var childCoordinators = [CoordinatorProtocol]()
@@ -20,14 +20,14 @@ final class IdusDetailCoordinator: CoordinatorProtocol {
     
     // MARK: - Methods
     func start() {
-        showIdusDetailPage()
+        showDetailPage()
     }
     
-    private func showIdusDetailPage() {
+    private func showDetailPage() {
         guard let navigationController = navigationController else { return }
-//        let idusDetailViewModel = IdusDetailViewModel(coordinator: self)
-//        let idusDetailViewController = IdusDetailViewController(viewModel: searchListViewModel)
+//        let detailViewModel = DetailViewModel(coordinator: self)
+//        let detailViewController = DetailViewController(viewModel: detailViewModel)
 //        
-//        navigationController.pushViewController(idusDetailViewController, animated: false)
+//        navigationController.pushViewController(detailViewController, animated: false)
     }
 }
