@@ -26,7 +26,11 @@ final class LookupCoordinator: CoordinatorProtocol {
     }
     
     private func showLookupPage() {
-
+        guard let navigationController = navigationController else { return }
+        let lookupViewModel = LookupViewModel(coordinator: self)
+        let lookupViewController = LookupViewController(viewModel: lookupViewModel)
+  
+        navigationController.pushViewController(lookupViewController, animated: false)
     }
         
     func showDetailPage(with appItem: AppItem) {
