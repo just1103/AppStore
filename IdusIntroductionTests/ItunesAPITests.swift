@@ -10,12 +10,13 @@ import Combine
 @testable import IdusIntroduction
 
 class ItunesAPITests: XCTestCase {
-    var sut: ItunesAPI.IdusAppLookup!
+    var sut: ItunesAPI.AppLookup!
     var cancellableBag: Set<AnyCancellable>!
 
     override func setUpWithError() throws {
         try super.setUpWithError()
-        sut = ItunesAPI.IdusAppLookup()
+        let idusAppID: String = "872469884"
+        sut = ItunesAPI.AppLookup(appID: idusAppID)
         cancellableBag = Set<AnyCancellable>()
     }
 
@@ -25,7 +26,7 @@ class ItunesAPITests: XCTestCase {
         cancellableBag = nil
     }
     
-    func test_IdusAppLookupAPI가_정상작동_하는지() {
+    func test_Idus_AppID로_AppLookupAPI가_정상작동_하는지() {
         let expectation = XCTestExpectation(description: "IdusAppLookupAPI 비동기 테스트")
 
         let publisher = sut.fetchData()
@@ -50,29 +51,30 @@ class ItunesAPITests: XCTestCase {
         wait(for: [expectation], timeout: 10.0)
     }
     
-//    func test_AppLookupAPI가_정상작동_하는지() {
-//        let expectation = XCTestExpectation(description: "AppLookupAPI 비동기 테스트")
-//
-//        let kakaoTalkAppID = "362057947"
-//        let publisher = sut.fetchData()
-//
-//        publisher.sink(receiveCompletion: { completion in
-//            if case .failure(_) = completion {
-//                XCTFail()
-//            }
-//        }, receiveValue: { searchResultDTO in
-//            XCTAssertNotNil(searchResultDTO)
-//            XCTAssertEqual(searchResultDTO.resultCount, 1)
-//
-//            let appItemDTO = searchResultDTO.results.first!
-//            let appItem = AppItem.convert(appItemDTO: appItemDTO)
-//            XCTAssertEqual(appItem.trackName, "KakaoTalk")
-//            XCTAssertEqual(appItem.artistName, "Kakao Corp.")
-//
-//            expectation.fulfill()
-//        })
-//        .store(in: &cancellableBag)
-//
-//        wait(for: [expectation], timeout: 10.0)
-//    }
+    func test_KakaoTalk_AppID로_AppLookupAPI가_정상작동_하는지() {
+        let expectation = XCTestExpectation(description: "AppLookupAPI 비동기 테스트")
+
+        let kakaoTalkAppID = "362057947"
+        sut = ItunesAPI.AppLookup(appID: kakaoTalkAppID)
+        let publisher = sut.fetchData()
+
+        publisher.sink(receiveCompletion: { completion in
+            if case .failure(_) = completion {
+                XCTFail()
+            }
+        }, receiveValue: { searchResultDTO in
+            XCTAssertNotNil(searchResultDTO)
+            XCTAssertEqual(searchResultDTO.resultCount, 1)
+
+            let appItemDTO = searchResultDTO.results.first!
+            let appItem = AppItem.convert(appItemDTO: appItemDTO)
+            XCTAssertEqual(appItem.trackName, "KakaoTalk")
+            XCTAssertEqual(appItem.artistName, "Kakao Corp.")
+
+            expectation.fulfill()
+        })
+        .store(in: &cancellableBag)
+
+        wait(for: [expectation], timeout: 10.0)
+    }
 }

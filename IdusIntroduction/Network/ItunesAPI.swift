@@ -11,18 +11,20 @@ import Combine
 struct ItunesAPI {
     static let baseURL: String = "http://itunes.apple.com/"
     
-    struct IdusAppLookup: Gettable {
+    struct AppLookup: Gettable {
         let session: URLSessionProtocol
         let url: URL?
         let method: HttpMethod = .get
         var headers: [String : String] = [:]
         var body: Data? = nil
-        let appID: String = "872469884"  // TODO: AppID를 열거형으로 분리하여 AppLookup 기능 추상화
+        let appID: String
         
         init(
+            appID: String,
             session: URLSessionProtocol = URLSession.shared,
             baseURL: String = baseURL
         ) {
+            self.appID = appID
             self.session = session
             
             var urlComponents = URLComponents(string: "\(baseURL)lookup?")

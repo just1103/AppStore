@@ -26,7 +26,8 @@ class MockURLSessionTests: XCTestCase {
     }
 
     func test_request성공시_fetchData가_정상작동_하는지() {
-        let publisher = ItunesAPI.IdusAppLookup(session: sut).fetchData()
+        let idusAppID: String = "872469884"
+        let publisher = ItunesAPI.AppLookup(appID: idusAppID, session: sut).fetchData()
         
         publisher.sink(receiveCompletion: { completion in
             if case .failure(_) = completion {
@@ -46,7 +47,8 @@ class MockURLSessionTests: XCTestCase {
     
     func test_request실패시_fetchData가_정상작동_하는지() {
         sut = MockURLSession(isRequestSuccess: false)
-        let publisher = ItunesAPI.IdusAppLookup(session: sut).fetchData()
+        let idusAppID: String = "872469884"
+        let publisher = ItunesAPI.AppLookup(appID: idusAppID, session: sut).fetchData()
         
         publisher.sink(receiveCompletion: { completion in
             if case .failure(let error) = completion {
