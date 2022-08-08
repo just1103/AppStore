@@ -13,7 +13,9 @@ struct IdusIntroductionURL {
     struct IdusAppLookupAPI: Gettable {
         let url: URL?
         let method: HttpMethod = .get
-        let appID: String = "872469884"
+        var headers: [String : String] = [:]
+        var body: Data? = nil
+        let appID: String = "872469884"  
         
         init(baseURL: String = baseURL) {
             var urlComponents = URLComponents(string: "\(baseURL)lookup?")
@@ -27,12 +29,14 @@ struct IdusIntroductionURL {
     struct AppLookupAPI: Gettable {
         let url: URL?
         let method: HttpMethod = .get
-        
+        var headers: [String : String] = [:]
+        var body: Data? = nil
+
         init(appID: String, baseURL: String = baseURL) {
             var urlComponents = URLComponents(string: "\(baseURL)lookup?")
             let appIDQuery = URLQueryItem(name: "id", value: "\(appID)")
             urlComponents?.queryItems?.append(appIDQuery)
-            
+
             self.url = urlComponents?.url
         }
     }

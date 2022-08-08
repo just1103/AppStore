@@ -8,7 +8,7 @@
 import XCTest
 @testable import IdusIntroduction
 
-class JSONParserTests: XCTestCase {
+class JSONDecodingTests: XCTestCase {
     func test_SearchResultDTO타입_decode했을때_Parsing되는지_테스트() {
         guard let path = Bundle(for: type(of: self)).path(forResource: "MockIdusSearchResult", ofType: "json"),
               let jsonString = try? String(contentsOfFile: path) else {
@@ -16,8 +16,10 @@ class JSONParserTests: XCTestCase {
             return
         }
         
-        let data = jsonString.data(using: .utf8)
-        guard let result = JSONParser<SearchResultDTO>().decode(from: data) else {
+        guard
+            let data = jsonString.data(using: .utf8),
+            let result = try? JSONDecoder().decode(SearchResultDTO.self, from: data)
+        else {
             XCTFail()
             return
         }
@@ -32,8 +34,10 @@ class JSONParserTests: XCTestCase {
             return
         }
         
-        let data = jsonString.data(using: .utf8)
-        guard let result = JSONParser<AppItemDTO>().decode(from: data) else {
+        guard
+            let data = jsonString.data(using: .utf8),
+            let result = try? JSONDecoder().decode(AppItemDTO.self, from: data)
+        else {
             XCTFail()
             return
         }

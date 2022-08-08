@@ -22,7 +22,7 @@ struct NetworkProvider {
         api: Gettable,
         decodingType: T.Type
     ) -> AnyPublisher<T, NetworkError> {
-        guard let urlRequest = URLRequest(api: api) else {  // TODO: url로 대체 가능한지 확인 (httpmethod 필요 없는지)
+        guard let urlRequest = URLRequest(api: api) else {  // TODO: url로 대체 가능
             return Fail(error: NetworkError.urlIsNil).eraseToAnyPublisher()
         }
         
