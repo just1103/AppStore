@@ -12,9 +12,22 @@
 		361A98F2289B6A6600C16D00 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A98F1289B6A6600C16D00 /* ViewController.swift */; };
 		361A98F7289B6A6700C16D00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 361A98F6289B6A6700C16D00 /* Assets.xcassets */; };
 		361A98FA289B6A6700C16D00 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 361A98F8289B6A6700C16D00 /* LaunchScreen.storyboard */; };
-		361A9905289B6A6700C16D00 /* IdusIntroductionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A9904289B6A6700C16D00 /* IdusIntroductionTests.swift */; };
+		361A9905289B6A6700C16D00 /* JSONDecodingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A9904289B6A6700C16D00 /* JSONDecodingTests.swift */; };
 		361A992B289B6F2200C16D00 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A992A289B6F2200C16D00 /* AppCoordinator.swift */; };
 		361A992E289B6F3A00C16D00 /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A992D289B6F3A00C16D00 /* CoordinatorProtocol.swift */; };
+		361A9931289B722100C16D00 /* MockIdusSearchResult.json in Resources */ = {isa = PBXBuildFile; fileRef = 361A9930289B722100C16D00 /* MockIdusSearchResult.json */; };
+		361A993A289B73B800C16D00 /* SearchResultDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A9939289B73B800C16D00 /* SearchResultDTO.swift */; };
+		361A993D289B74CF00C16D00 /* AppItemDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A993C289B74CF00C16D00 /* AppItemDTO.swift */; };
+		361A9941289B762200C16D00 /* MockIdusAppItem.json in Resources */ = {isa = PBXBuildFile; fileRef = 361A9940289B762200C16D00 /* MockIdusAppItem.json */; };
+		361A9948289BC61A00C16D00 /* AppItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A9947289BC61A00C16D00 /* AppItem.swift */; };
+		36EBE0D8289FF2BE00B92BB4 /* ItunesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0D7289FF2BE00B92BB4 /* ItunesAPI.swift */; };
+		36EBE0DA289FF32300B92BB4 /* APIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0D9289FF32300B92BB4 /* APIProtocol.swift */; };
+		36EBE0DF289FF52600B92BB4 /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0DE289FF52600B92BB4 /* URLSessionProtocol.swift */; };
+		36EBE0E2289FF6D500B92BB4 /* URLRequest+Initializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0E1289FF6D500B92BB4 /* URLRequest+Initializer.swift */; };
+		36EBE0E428A0014300B92BB4 /* ItunesAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0E328A0014300B92BB4 /* ItunesAPITests.swift */; };
+		36EBE0E728A0073800B92BB4 /* IdusDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0E628A0073800B92BB4 /* IdusDetailCoordinator.swift */; };
+		36EBE0E928A00A5300B92BB4 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0E828A00A5300B92BB4 /* MockURLSession.swift */; };
+		36EBE0EB28A00CE700B92BB4 /* MockURLSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0EA28A00CE700B92BB4 /* MockURLSessionTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,9 +49,22 @@
 		361A98F9289B6A6700C16D00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		361A98FB289B6A6700C16D00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		361A9900289B6A6700C16D00 /* IdusIntroductionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IdusIntroductionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		361A9904289B6A6700C16D00 /* IdusIntroductionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdusIntroductionTests.swift; sourceTree = "<group>"; };
+		361A9904289B6A6700C16D00 /* JSONDecodingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecodingTests.swift; sourceTree = "<group>"; };
 		361A992A289B6F2200C16D00 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		361A992D289B6F3A00C16D00 /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
+		361A9930289B722100C16D00 /* MockIdusSearchResult.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockIdusSearchResult.json; sourceTree = "<group>"; };
+		361A9939289B73B800C16D00 /* SearchResultDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultDTO.swift; sourceTree = "<group>"; };
+		361A993C289B74CF00C16D00 /* AppItemDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppItemDTO.swift; sourceTree = "<group>"; };
+		361A9940289B762200C16D00 /* MockIdusAppItem.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockIdusAppItem.json; sourceTree = "<group>"; };
+		361A9947289BC61A00C16D00 /* AppItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppItem.swift; sourceTree = "<group>"; };
+		36EBE0D7289FF2BE00B92BB4 /* ItunesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesAPI.swift; sourceTree = "<group>"; };
+		36EBE0D9289FF32300B92BB4 /* APIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIProtocol.swift; sourceTree = "<group>"; };
+		36EBE0DE289FF52600B92BB4 /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
+		36EBE0E1289FF6D500B92BB4 /* URLRequest+Initializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Initializer.swift"; sourceTree = "<group>"; };
+		36EBE0E328A0014300B92BB4 /* ItunesAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesAPITests.swift; sourceTree = "<group>"; };
+		36EBE0E628A0073800B92BB4 /* IdusDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdusDetailCoordinator.swift; sourceTree = "<group>"; };
+		36EBE0E828A00A5300B92BB4 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
+		36EBE0EA28A00CE700B92BB4 /* MockURLSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSessionTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,7 +108,10 @@
 			children = (
 				361A9927289B6EE700C16D00 /* App */,
 				361A9928289B6EF200C16D00 /* Presentation */,
+				361A9946289BC60E00C16D00 /* Model */,
+				361A9942289BC5B500C16D00 /* Network */,
 				361A992C289B6F2500C16D00 /* Protocols */,
+				36EBE0E0289FF6C100B92BB4 /* Extensions */,
 				361A9929289B6F0000C16D00 /* Resources */,
 				361A98FB289B6A6700C16D00 /* Info.plist */,
 			);
@@ -92,7 +121,10 @@
 		361A9903289B6A6700C16D00 /* IdusIntroductionTests */ = {
 			isa = PBXGroup;
 			children = (
-				361A9904289B6A6700C16D00 /* IdusIntroductionTests.swift */,
+				361A992F289B71EB00C16D00 /* Mock */,
+				361A9904289B6A6700C16D00 /* JSONDecodingTests.swift */,
+				36EBE0E328A0014300B92BB4 /* ItunesAPITests.swift */,
+				36EBE0EA28A00CE700B92BB4 /* MockURLSessionTests.swift */,
 			);
 			path = IdusIntroductionTests;
 			sourceTree = "<group>";
@@ -109,8 +141,8 @@
 		361A9928289B6EF200C16D00 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				361A98F1289B6A6600C16D00 /* ViewController.swift */,
 				361A992A289B6F2200C16D00 /* AppCoordinator.swift */,
+				36EBE0E528A0072100B92BB4 /* DetailScene */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -128,8 +160,63 @@
 			isa = PBXGroup;
 			children = (
 				361A992D289B6F3A00C16D00 /* CoordinatorProtocol.swift */,
+				36EBE0D9289FF32300B92BB4 /* APIProtocol.swift */,
+				36EBE0DE289FF52600B92BB4 /* URLSessionProtocol.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		361A992F289B71EB00C16D00 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				361A9930289B722100C16D00 /* MockIdusSearchResult.json */,
+				361A9940289B762200C16D00 /* MockIdusAppItem.json */,
+				36EBE0E828A00A5300B92BB4 /* MockURLSession.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
+		361A9942289BC5B500C16D00 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				36EBE0D7289FF2BE00B92BB4 /* ItunesAPI.swift */,
+				361A9943289BC5C100C16D00 /* response */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		361A9943289BC5C100C16D00 /* response */ = {
+			isa = PBXGroup;
+			children = (
+				361A9939289B73B800C16D00 /* SearchResultDTO.swift */,
+				361A993C289B74CF00C16D00 /* AppItemDTO.swift */,
+			);
+			path = response;
+			sourceTree = "<group>";
+		};
+		361A9946289BC60E00C16D00 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				361A9947289BC61A00C16D00 /* AppItem.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		36EBE0E0289FF6C100B92BB4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				36EBE0E1289FF6D500B92BB4 /* URLRequest+Initializer.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		36EBE0E528A0072100B92BB4 /* DetailScene */ = {
+			isa = PBXGroup;
+			children = (
+				36EBE0E628A0073800B92BB4 /* IdusDetailCoordinator.swift */,
+				361A98F1289B6A6600C16D00 /* ViewController.swift */,
+			);
+			path = DetailScene;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -222,6 +309,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				361A9941289B762200C16D00 /* MockIdusAppItem.json in Resources */,
+				361A9931289B722100C16D00 /* MockIdusSearchResult.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,11 +321,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36EBE0E728A0073800B92BB4 /* IdusDetailCoordinator.swift in Sources */,
+				361A993D289B74CF00C16D00 /* AppItemDTO.swift in Sources */,
 				361A992B289B6F2200C16D00 /* AppCoordinator.swift in Sources */,
+				36EBE0DA289FF32300B92BB4 /* APIProtocol.swift in Sources */,
 				361A98F2289B6A6600C16D00 /* ViewController.swift in Sources */,
+				361A9948289BC61A00C16D00 /* AppItem.swift in Sources */,
 				361A992E289B6F3A00C16D00 /* CoordinatorProtocol.swift in Sources */,
+				36EBE0DF289FF52600B92BB4 /* URLSessionProtocol.swift in Sources */,
 				361A98EE289B6A6600C16D00 /* AppDelegate.swift in Sources */,
 				361A98F0289B6A6600C16D00 /* SceneDelegate.swift in Sources */,
+				36EBE0D8289FF2BE00B92BB4 /* ItunesAPI.swift in Sources */,
+				36EBE0E2289FF6D500B92BB4 /* URLRequest+Initializer.swift in Sources */,
+				361A993A289B73B800C16D00 /* SearchResultDTO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,7 +341,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				361A9905289B6A6700C16D00 /* IdusIntroductionTests.swift in Sources */,
+				36EBE0E928A00A5300B92BB4 /* MockURLSession.swift in Sources */,
+				361A9905289B6A6700C16D00 /* JSONDecodingTests.swift in Sources */,
+				36EBE0E428A0014300B92BB4 /* ItunesAPITests.swift in Sources */,
+				36EBE0EB28A00CE700B92BB4 /* MockURLSessionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
