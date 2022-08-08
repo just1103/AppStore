@@ -25,12 +25,14 @@
 		36EBE0DF289FF52600B92BB4 /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0DE289FF52600B92BB4 /* URLSessionProtocol.swift */; };
 		36EBE0E2289FF6D500B92BB4 /* URLRequest+Initializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0E1289FF6D500B92BB4 /* URLRequest+Initializer.swift */; };
 		36EBE0E428A0014300B92BB4 /* AppLookupAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0E328A0014300B92BB4 /* AppLookupAPITests.swift */; };
-		36EBE0E728A0073800B92BB4 /* IdusDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0E628A0073800B92BB4 /* IdusDetailCoordinator.swift */; };
+		36EBE0E728A0073800B92BB4 /* DetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0E628A0073800B92BB4 /* DetailCoordinator.swift */; };
 		36EBE0E928A00A5300B92BB4 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0E828A00A5300B92BB4 /* MockURLSession.swift */; };
 		36EBE0EB28A00CE700B92BB4 /* MockURLSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0EA28A00CE700B92BB4 /* MockURLSessionTests.swift */; };
 		36EBE0F028A1195000B92BB4 /* LookupCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0EF28A1195000B92BB4 /* LookupCoordinator.swift */; };
 		36EBE0F428A11A7600B92BB4 /* LookupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0F328A11A7600B92BB4 /* LookupViewModel.swift */; };
 		36EBE0F628A11A9A00B92BB4 /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0F528A11A9A00B92BB4 /* ViewModelProtocol.swift */; };
+		36EBE0FA28A154DA00B92BB4 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0F928A154DA00B92BB4 /* DetailViewModel.swift */; };
+		36EBE0FC28A154E400B92BB4 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0FB28A154E400B92BB4 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,12 +67,14 @@
 		36EBE0DE289FF52600B92BB4 /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
 		36EBE0E1289FF6D500B92BB4 /* URLRequest+Initializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Initializer.swift"; sourceTree = "<group>"; };
 		36EBE0E328A0014300B92BB4 /* AppLookupAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLookupAPITests.swift; sourceTree = "<group>"; };
-		36EBE0E628A0073800B92BB4 /* IdusDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdusDetailCoordinator.swift; sourceTree = "<group>"; };
+		36EBE0E628A0073800B92BB4 /* DetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCoordinator.swift; sourceTree = "<group>"; };
 		36EBE0E828A00A5300B92BB4 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
 		36EBE0EA28A00CE700B92BB4 /* MockURLSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSessionTests.swift; sourceTree = "<group>"; };
 		36EBE0EF28A1195000B92BB4 /* LookupCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookupCoordinator.swift; sourceTree = "<group>"; };
 		36EBE0F328A11A7600B92BB4 /* LookupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LookupViewModel.swift; sourceTree = "<group>"; };
 		36EBE0F528A11A9A00B92BB4 /* ViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
+		36EBE0F928A154DA00B92BB4 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		36EBE0FB28A154E400B92BB4 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,7 +225,9 @@
 		36EBE0E528A0072100B92BB4 /* DetailScene */ = {
 			isa = PBXGroup;
 			children = (
-				36EBE0E628A0073800B92BB4 /* IdusDetailCoordinator.swift */,
+				36EBE0E628A0073800B92BB4 /* DetailCoordinator.swift */,
+				36EBE0F828A154C500B92BB4 /* ViewModel */,
+				36EBE0F728A154C000B92BB4 /* View */,
 			);
 			path = DetailScene;
 			sourceTree = "<group>";
@@ -248,6 +254,22 @@
 			isa = PBXGroup;
 			children = (
 				36EBE0F328A11A7600B92BB4 /* LookupViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		36EBE0F728A154C000B92BB4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				36EBE0FB28A154E400B92BB4 /* DetailViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		36EBE0F828A154C500B92BB4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				36EBE0F928A154DA00B92BB4 /* DetailViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -354,14 +376,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36EBE0FA28A154DA00B92BB4 /* DetailViewModel.swift in Sources */,
 				36EBE0F628A11A9A00B92BB4 /* ViewModelProtocol.swift in Sources */,
-				36EBE0E728A0073800B92BB4 /* IdusDetailCoordinator.swift in Sources */,
+				36EBE0E728A0073800B92BB4 /* DetailCoordinator.swift in Sources */,
 				361A993D289B74CF00C16D00 /* AppItemDTO.swift in Sources */,
 				361A992B289B6F2200C16D00 /* AppCoordinator.swift in Sources */,
 				36EBE0DA289FF32300B92BB4 /* APIProtocol.swift in Sources */,
 				361A98F2289B6A6600C16D00 /* LookupViewController.swift in Sources */,
 				361A9948289BC61A00C16D00 /* AppItem.swift in Sources */,
 				361A992E289B6F3A00C16D00 /* CoordinatorProtocol.swift in Sources */,
+				36EBE0FC28A154E400B92BB4 /* DetailViewController.swift in Sources */,
 				36EBE0DF289FF52600B92BB4 /* URLSessionProtocol.swift in Sources */,
 				361A98EE289B6A6600C16D00 /* AppDelegate.swift in Sources */,
 				36EBE0F428A11A7600B92BB4 /* LookupViewModel.swift in Sources */,

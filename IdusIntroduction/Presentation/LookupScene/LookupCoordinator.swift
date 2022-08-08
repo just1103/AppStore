@@ -5,8 +5,6 @@
 //  Created by Hyoju Son on 2022/08/08.
 //
 
-import Foundation
-
 import UIKit
 
 final class LookupCoordinator: CoordinatorProtocol {
@@ -35,8 +33,17 @@ final class LookupCoordinator: CoordinatorProtocol {
         
     func showDetailPage(with appItem: AppItem) {
         guard let navigationController = navigationController else { return }
-//        let detailCoordinator = DetailCoordinator(navigationController: navigationController)
-//        childCoordinators.append(detailCoordinator)
-//        detailCoordinator.start()
+        let detailCoordinator = DetailCoordinator(navigationController: navigationController)
+        childCoordinators.append(detailCoordinator)
+        detailCoordinator.delegate = self
+        detailCoordinator.start(with: appItem)
+    }
+}
+
+// MARK: - DetailCoordinatorDelegete
+extension LookupCoordinator: DetailCoordinatorDelegete {
+    func removeFromChildCoordinators(coordinator: CoordinatorProtocol) {
+        let updatedChildCoordinators = childCoordinators.filter { $0 !== coordinator }
+        childCoordinators = updatedChildCoordinators
     }
 }

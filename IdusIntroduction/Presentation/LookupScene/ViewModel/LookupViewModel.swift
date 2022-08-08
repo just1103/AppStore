@@ -31,7 +31,7 @@ final class LookupViewModel: ViewModelProtocol {
     func transform(_ input: Input) -> Output {
         let isAPIResponseValid = configureSearchTextDidReturnObserver(by: input.searchTextDidReturn)
         
-        let output = Output(searchResultCount: isAPIResponseValid)
+        let output = Output(isAPIResponseValid: isAPIResponseValid)
         
         return output
     }
@@ -47,18 +47,18 @@ final class LookupViewModel: ViewModelProtocol {
                 // FIXME: 반환타입 꼬이는 문제
                 return self.fetchData(with: searchText)
                     .map { searchResultDTO -> AnyPublisher<Bool, Never> in
-                    guard
-                        searchResultDTO.resultCount == 1,
-                        let appItemDTO = searchResultDTO.results.first
-                    else {
-                        return false
-                    }
-
-                    let appItem = AppItem.convert(appItemDTO: appItemDTO)
-                    self.coordinator.showDetailPage(with: appItem)
+                        guard
+                            searchResultDTO.resultCount == 1,
+                            let appItemDTO = searchResultDTO.results.first
+                        else {
+                            return false
+                        }
+                        
+                        let appItem = AppItem.convert(appItemDTO: appItemDTO)
+                        self.coordinator.showDetailPage(with: appItem)
                         return true
-                }
-
+                    }
+                
             }
             .eraseToAnyPublisher()
     }
