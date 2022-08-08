@@ -24,10 +24,10 @@
 		36EBE0DA289FF32300B92BB4 /* APIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0D9289FF32300B92BB4 /* APIProtocol.swift */; };
 		36EBE0DF289FF52600B92BB4 /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0DE289FF52600B92BB4 /* URLSessionProtocol.swift */; };
 		36EBE0E2289FF6D500B92BB4 /* URLRequest+Initializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0E1289FF6D500B92BB4 /* URLRequest+Initializer.swift */; };
-		36EBE0E428A0014300B92BB4 /* NetworkProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0E328A0014300B92BB4 /* NetworkProviderTests.swift */; };
+		36EBE0E428A0014300B92BB4 /* ItunesAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0E328A0014300B92BB4 /* ItunesAPITests.swift */; };
 		36EBE0E728A0073800B92BB4 /* IdusDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0E628A0073800B92BB4 /* IdusDetailCoordinator.swift */; };
-		36EBE0E928A00A5300B92BB4 /* MockNetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0E828A00A5300B92BB4 /* MockNetworkProvider.swift */; };
-		36EBE0EB28A00CE700B92BB4 /* MockNetworkProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0EA28A00CE700B92BB4 /* MockNetworkProviderTests.swift */; };
+		36EBE0E928A00A5300B92BB4 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0E828A00A5300B92BB4 /* MockURLSession.swift */; };
+		36EBE0EB28A00CE700B92BB4 /* MockURLSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0EA28A00CE700B92BB4 /* MockURLSessionTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,10 +61,10 @@
 		36EBE0D9289FF32300B92BB4 /* APIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIProtocol.swift; sourceTree = "<group>"; };
 		36EBE0DE289FF52600B92BB4 /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
 		36EBE0E1289FF6D500B92BB4 /* URLRequest+Initializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Initializer.swift"; sourceTree = "<group>"; };
-		36EBE0E328A0014300B92BB4 /* NetworkProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProviderTests.swift; sourceTree = "<group>"; };
+		36EBE0E328A0014300B92BB4 /* ItunesAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesAPITests.swift; sourceTree = "<group>"; };
 		36EBE0E628A0073800B92BB4 /* IdusDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdusDetailCoordinator.swift; sourceTree = "<group>"; };
-		36EBE0E828A00A5300B92BB4 /* MockNetworkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkProvider.swift; sourceTree = "<group>"; };
-		36EBE0EA28A00CE700B92BB4 /* MockNetworkProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkProviderTests.swift; sourceTree = "<group>"; };
+		36EBE0E828A00A5300B92BB4 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
+		36EBE0EA28A00CE700B92BB4 /* MockURLSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSessionTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,8 +123,8 @@
 			children = (
 				361A992F289B71EB00C16D00 /* Mock */,
 				361A9904289B6A6700C16D00 /* JSONDecodingTests.swift */,
-				36EBE0E328A0014300B92BB4 /* NetworkProviderTests.swift */,
-				36EBE0EA28A00CE700B92BB4 /* MockNetworkProviderTests.swift */,
+				36EBE0E328A0014300B92BB4 /* ItunesAPITests.swift */,
+				36EBE0EA28A00CE700B92BB4 /* MockURLSessionTests.swift */,
 			);
 			path = IdusIntroductionTests;
 			sourceTree = "<group>";
@@ -171,7 +171,7 @@
 			children = (
 				361A9930289B722100C16D00 /* MockIdusSearchResult.json */,
 				361A9940289B762200C16D00 /* MockIdusAppItem.json */,
-				36EBE0E828A00A5300B92BB4 /* MockNetworkProvider.swift */,
+				36EBE0E828A00A5300B92BB4 /* MockURLSession.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -341,10 +341,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				36EBE0E928A00A5300B92BB4 /* MockNetworkProvider.swift in Sources */,
+				36EBE0E928A00A5300B92BB4 /* MockURLSession.swift in Sources */,
 				361A9905289B6A6700C16D00 /* JSONDecodingTests.swift in Sources */,
-				36EBE0E428A0014300B92BB4 /* NetworkProviderTests.swift in Sources */,
-				36EBE0EB28A00CE700B92BB4 /* MockNetworkProviderTests.swift in Sources */,
+				36EBE0E428A0014300B92BB4 /* ItunesAPITests.swift in Sources */,
+				36EBE0EB28A00CE700B92BB4 /* MockURLSessionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
