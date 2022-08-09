@@ -29,6 +29,25 @@ final class DetailViewController: UIViewController {
         }
     }
     
+    enum InfoComponents: CaseIterable {
+        case provider, fileSize, language, advisoryRating, price
+        
+        var title: String {
+            switch self {
+            case .provider:
+                return "제공자"
+            case .fileSize:
+                return "크기"
+            case .language:
+                return "언어"
+            case .advisoryRating:
+                return "연령 등급"
+            case .price:
+                return "가격"
+            }
+        }
+    }
+    
     // MARK: - Properties
     private let containerScrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -44,9 +63,9 @@ final class DetailViewController: UIViewController {
         stackView.spacing = Design.scrollContentStackViewSpacing
         stackView.directionalLayoutMargins = NSDirectionalEdgeInsets(
             top: Design.scrollContentStackViewVerticalInset,
-            leading: Design.scrollContentStackViewHorizontalInset,  // TODO: Leading Constraints 없애기 (실제 AppStore UI처럼)
+            leading: Design.scrollContentStackViewHorizontalInset,
             bottom: Design.scrollContentStackViewVerticalInset,
-            trailing: 0
+            trailing: Design.scrollContentStackViewHorizontalInset  // TODO: trailing Constraints 없애기 (실제 AppStore UI처럼)
         )
         stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
@@ -97,6 +116,9 @@ final class DetailViewController: UIViewController {
         button.setTitle("펼치기", for: .normal)
         button.titleLabel?.font = .preferredFont(forTextStyle: .body)
         button.setTitleColor(.systemBlue, for: .normal)
+        button.backgroundColor = .systemGray3
+        button.layer.cornerRadius = 8
+        button.clipsToBounds = true
         return button
     }()
     private let infoUpperlineView: UIView = {
@@ -105,7 +127,7 @@ final class DetailViewController: UIViewController {
         view.backgroundColor = Design.upperlineViewBackgroundColor
         return view
     }()
-    private let infoLabel: UILabel = {  // FIXME: trailingAnchor 재조정
+    private let infoDescriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
@@ -114,9 +136,17 @@ final class DetailViewController: UIViewController {
         label.text = Text.infoDescriptionLabelText
         return label
     }()
+    private let infoTableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .plain)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.isScrollEnabled = false
+        tableView.isUserInteractionEnabled = false
+        return tableView
+    }()
     
     private var viewModel: DetailViewModel!
     private var screenshotURLs = [String]()
+    private var infoContents = [String]()
     private let leftBarButtonDidTap = PassthroughSubject<Void, Never>()
     private let screenshotCellDidTap = PassthroughSubject<IndexPath, Never>()
     private let unfoldButtonDidTap = PassthroughSubject<Void, Never>()
@@ -142,6 +172,7 @@ final class DetailViewController: UIViewController {
         configureButtons()
         configureHierarchy()
         configureCollectionView()
+        configureTableView()
     }
     
     private func configureNavigationBar() {
@@ -169,6 +200,9 @@ final class DetailViewController: UIViewController {
         scrollContentStackView.addArrangedSubview(descriptionUpperlineView)
         scrollContentStackView.addArrangedSubview(descriptionLabel)
         view.addSubview(unfoldButton)
+        scrollContentStackView.addArrangedSubview(infoUpperlineView)
+        scrollContentStackView.addArrangedSubview(infoDescriptionLabel)
+        scrollContentStackView.addArrangedSubview(infoTableView)
         
         NSLayoutConstraint.activate([
             containerScrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -183,14 +217,19 @@ final class DetailViewController: UIViewController {
             scrollContentStackView.bottomAnchor.constraint(equalTo: containerScrollView.bottomAnchor),
             
             screenshotUpperlineView.heightAnchor.constraint(equalToConstant: 0.5),
-
             screenshotCollectionView.heightAnchor.constraint(
                 equalTo: screenshotCollectionView.widthAnchor,
                 multiplier: 1
             ),
             
-            unfoldButton.bottomAnchor.constraint(equalTo: descriptionLabel.bottomAnchor),
+            descriptionUpperlineView.heightAnchor.constraint(equalToConstant: 0.5),
             unfoldButton.trailingAnchor.constraint(equalTo: descriptionLabel.trailingAnchor),
+            unfoldButton.bottomAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 7),
+            unfoldButton.heightAnchor.constraint(equalToConstant: unfoldButton.intrinsicContentSize.height - 3),
+            unfoldButton.widthAnchor.constraint(equalToConstant: unfoldButton.intrinsicContentSize.width + 12),
+            
+            infoUpperlineView.heightAnchor.constraint(equalToConstant: 0.5),
+            infoTableView.heightAnchor.constraint(equalTo: infoTableView.widthAnchor, multiplier: 0.7)
         ])
     }
     
@@ -231,6 +270,10 @@ final class DetailViewController: UIViewController {
         return layout
     }
 
+    private func configureTableView() {
+        infoTableView.register(cellType: InfoCell.self)
+        infoTableView.dataSource = self
+    }
 }
 
 // MARK: - Combine Binding Methods
@@ -280,6 +323,15 @@ extension DetailViewController {
         screenshotCollectionView.reloadData()  // TODO: Combine binding 사용하여 개선
         
         descriptionLabel.text = appItem.appDescription
+        
+        let fileSizeMegaBytes = (Double(appItem.fileSizeBytes) ?? 0) / Double(1024 * 1024)
+        let fileSizeText = String(format: "%.1f", fileSizeMegaBytes) + "MB"
+        let languageDescription = appItem.languageCodesISO2A.joined(separator: " & ")
+        let appItemInfoContents = [
+            appItem.artistName, fileSizeText, languageDescription, appItem.contentAdvisoryRating, appItem.formattedPrice
+        ]
+        infoContents.append(contentsOf: appItemInfoContents)
+        infoTableView.reloadData()  // TODO: Combine binding 사용하여 개선
     }
     
     // TODO: Binding 메서드 매개변수 통일
@@ -289,7 +341,6 @@ extension DetailViewController {
                 if isDescriptionLabelUnfolded {
                     self?.unfoldButton.setTitle("접기", for: .normal)
                     self?.descriptionLabel.numberOfLines = 0
-                    self?.descriptionLabel.invalidateIntrinsicContentSize()
                 } else {
                     self?.unfoldButton.setTitle("펼치기", for: .normal)
                     self?.descriptionLabel.numberOfLines = 2
@@ -299,6 +350,7 @@ extension DetailViewController {
     }
 }
 
+// MARK: - CollectionView DataSource
 extension DetailViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return screenshotURLs.count // setupUI 보다 나중에 불림
@@ -311,9 +363,31 @@ extension DetailViewController: UICollectionViewDataSource {
         return cell
     }
 }
+
+// MARK: - CollectionView Delegate
 extension DetailViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         screenshotCellDidTap.send(indexPath)
+    }
+}
+
+// MARK: - CollectionView DataSource
+extension DetailViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return InfoComponents.allCases.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withClass: InfoCell.self, for: indexPath)
+        let category = InfoComponents.allCases[indexPath.row].title
+        guard let content = infoContents[safe: indexPath.row] else { return InfoCell() }
+        
+        cell.apply(
+            category: category,
+            content: content
+        )
+        
+        return cell
     }
 }
 
@@ -327,7 +401,7 @@ extension DetailViewController {
     private enum Design {
         static let scrollContentStackViewHorizontalInset: CGFloat = 12
         static let scrollContentStackViewVerticalInset: CGFloat = 12
-        static let scrollContentStackViewSpacing: CGFloat = 12
+        static let scrollContentStackViewSpacing: CGFloat = 16
         static let upperlineViewBackgroundColor: UIColor = .systemGray3
     }
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ScreenshotCell: UICollectionViewCell {
+final class ScreenshotCell: UICollectionViewCell {
     // MARK: - Properties
     private let imageView: UIImageView = {
         let imageView = UIImageView()
