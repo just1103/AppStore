@@ -11,7 +11,49 @@ import UIKit
 import Combine
 
 final class DetailViewController: UIViewController {
+    // MARK: - Nested Types
+    enum SectionKind {
+        case main, summary, screenshot, description, detail
+        
+        var title: String? {
+            switch self {
+            case .main:
+                return nil
+            case .summary:
+                return nil
+            case .screenshot:
+                return "미리보기"
+            case .description:
+                return nil
+            case .detail:
+                return "정보"
+            }
+        }
+    }
+    
     // MARK: - Properties
+    private let containerScrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+    private let mainStackView = MainStackView()
+    private let summaryScrollView = SummaryScrollView()  // TODO: Horizontal CollectionView로 구현 (고민 필요)
+    private let screenshotDescriptionLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .left
+        label.font = .preferredFont(forTextStyle: .title2)
+        label.textColor = .label
+        label.text = SectionKind.description.title ?? ""  // TODO: lazy 안붙여도 되는지 확인
+        return label
+    }()
+    private let screenshotCollectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        return collectionView
+    }()
+    
     private let descriptionLabel: UILabel = {  // TODO: Alert로 대체 가능
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -50,12 +92,21 @@ final class DetailViewController: UIViewController {
     }
     
     private func configureHierarchy() {
-        view.addSubview(descriptionLabel)
+        view.addSubview(containerScrollView)
+        containerScrollView.addSubview(mainStackView)
+//        containerScrollView.addSubview(summaryScrollView)
+        containerScrollView.addSubview(screenshotCollectionView)
         
         NSLayoutConstraint.activate([
-            descriptionLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 12),
-            descriptionLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 12),
-            descriptionLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -12),
+            containerScrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            containerScrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            containerScrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            containerScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            containerScrollView.contentLayoutGuide.widthAnchor.constraint(equalTo: containerScrollView.widthAnchor),
+            
+            mainStackView.topAnchor.constraint(equalTo: containerScrollView.topAnchor),
+            mainStackView.leadingAnchor.constraint(equalTo: containerScrollView.leadingAnchor),
+            mainStackView.trailingAnchor.constraint(equalTo: containerScrollView.trailingAnchor),
         ])
     }
 }
@@ -81,7 +132,11 @@ extension DetailViewController {
     
     // UI 셋업
     private func setupUI(_ appItem: AppItem) {
-        
+        mainStackView.apply(
+            thumbnailURL: appItem.artworkURL100,
+            title: appItem.trackName,
+            genre: appItem.primaryGenreName
+        )
     }
 }
 
