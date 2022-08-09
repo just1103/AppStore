@@ -87,6 +87,7 @@ final class DetailViewController: UIViewController {
     private var viewModel: DetailViewModel!
     private var screenshotURLs = [String]()
     private let leftBarButtonDidTap = PassthroughSubject<Void, Never>()
+    private let screenshotCellDidTap = PassthroughSubject<IndexPath, Never>()
     private var cancellableBag = Set<AnyCancellable>()
     
     // MARK: - Initializers
@@ -141,7 +142,7 @@ final class DetailViewController: UIViewController {
             ),
             upperlineView.trailingAnchor.constraint(equalTo: scrollContentStackView.trailingAnchor),
 
-            screenshotCollectionView.heightAnchor.constraint(equalTo: screenshotCollectionView.widthAnchor, multiplier: 1.15),
+            screenshotCollectionView.heightAnchor.constraint(equalTo: screenshotCollectionView.widthAnchor, multiplier: 1.2),
             
         ])
     }
@@ -256,7 +257,10 @@ extension DetailViewController: UICollectionViewDataSource {
     }
 }
 extension DetailViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        guard let selectedCell = collectionView.cellForItem(at: indexPath) as? ScreenshotCell else { return }
+        screenshotCellDidTap.send(indexPath)
+    }
 }
 
 // MARK: - NameSpaces
