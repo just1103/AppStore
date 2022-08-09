@@ -51,7 +51,7 @@ final class DetailViewController: UIViewController {
         stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
     }()
-    private let upperlineView: UIView = {
+    private let screenshotUpperlineView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = Design.upperlineViewBackgroundColor
@@ -65,21 +65,53 @@ final class DetailViewController: UIViewController {
         label.textAlignment = .left
         label.font = .preferredFont(forTextStyle: .title2)
         label.textColor = .label
-        label.text = "미리보기" // SectionKind.description.title ?? ""  // TODO: lazy 안붙여도 되는지 확인
+        label.text = Text.screenshotDescriptionLabelText // SectionKind.description.title ?? ""  // TODO: lazy 안붙여도 되는지 확인
         return label
     }()
     private let screenshotCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.isScrollEnabled = false
         return collectionView
     }()
-    
-    private let descriptionLabel: UILabel = { 
+    private let descriptionUpperlineView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = Design.upperlineViewBackgroundColor
+        return view
+    }()
+    private let descriptionLabel: UILabel = {  // FIXME: trailingAnchor 재조정
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
-        label.font = .preferredFont(forTextStyle: .title3)
         label.textColor = .label
+        label.font = .preferredFont(forTextStyle: .body)
+        label.numberOfLines = 2
+        label.lineBreakMode = .byWordWrapping
+//        label.lineBreakMode = .byTruncatingTail
+        return label
+    }()
+    private let unfoldButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("펼치기", for: .normal)
+        button.titleLabel?.font = .preferredFont(forTextStyle: .body)
+        button.setTitleColor(.systemBlue, for: .normal)
+        return button
+    }()
+    private let infoUpperlineView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = Design.upperlineViewBackgroundColor
+        return view
+    }()
+    private let infoLabel: UILabel = {  // FIXME: trailingAnchor 재조정
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .left
+        label.font = .preferredFont(forTextStyle: .title2)
+        label.textColor = .label
+        label.text = Text.infoDescriptionLabelText
         return label
     }()
     
@@ -87,6 +119,8 @@ final class DetailViewController: UIViewController {
     private var screenshotURLs = [String]()
     private let leftBarButtonDidTap = PassthroughSubject<Void, Never>()
     private let screenshotCellDidTap = PassthroughSubject<IndexPath, Never>()
+    private let unfoldButtonDidTap = PassthroughSubject<Void, Never>()
+    
     private var cancellableBag = Set<AnyCancellable>()
     
     // MARK: - Initializers
@@ -105,6 +139,7 @@ final class DetailViewController: UIViewController {
     // MARK: - Methods
     private func configureUI() {
         configureNavigationBar()
+        configureButtons()
         configureHierarchy()
         configureCollectionView()
     }
@@ -114,14 +149,26 @@ final class DetailViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = false
     }
     
+    private func configureButtons() {
+        unfoldButton.addTarget(self, action: #selector(touchUpUnfoldButton), for: .touchUpInside)
+    }
+    
+    @objc
+    private func touchUpUnfoldButton() {
+        unfoldButtonDidTap.send(())
+    }
+    
     private func configureHierarchy() {
         view.addSubview(containerScrollView)
         containerScrollView.addSubview(scrollContentStackView)
         scrollContentStackView.addArrangedSubview(mainStackView)
 //        containerStackView.addArrangedSubview(summaryScrollView)
-        scrollContentStackView.addArrangedSubview(upperlineView)
+        scrollContentStackView.addArrangedSubview(screenshotUpperlineView)
         scrollContentStackView.addArrangedSubview(screenshotDescriptionLabel)
         scrollContentStackView.addArrangedSubview(screenshotCollectionView)
+        scrollContentStackView.addArrangedSubview(descriptionUpperlineView)
+        scrollContentStackView.addArrangedSubview(descriptionLabel)
+        view.addSubview(unfoldButton)
         
         NSLayoutConstraint.activate([
             containerScrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -135,13 +182,15 @@ final class DetailViewController: UIViewController {
             scrollContentStackView.trailingAnchor.constraint(equalTo: containerScrollView.trailingAnchor),
             scrollContentStackView.bottomAnchor.constraint(equalTo: containerScrollView.bottomAnchor),
             
-            upperlineView.heightAnchor.constraint(equalToConstant: 0.5),
+            screenshotUpperlineView.heightAnchor.constraint(equalToConstant: 0.5),
 
             screenshotCollectionView.heightAnchor.constraint(
                 equalTo: screenshotCollectionView.widthAnchor,
                 multiplier: 1
             ),
             
+            unfoldButton.bottomAnchor.constraint(equalTo: descriptionLabel.bottomAnchor),
+            unfoldButton.trailingAnchor.constraint(equalTo: descriptionLabel.trailingAnchor),
         ])
     }
     
@@ -188,14 +237,16 @@ final class DetailViewController: UIViewController {
 extension DetailViewController {
     private func bind() {
         let input = DetailViewModel.Input(
-            leftBarButtonDidTap: leftBarButtonDidTap.eraseToAnyPublisher()
+            leftBarButtonDidTap: leftBarButtonDidTap.eraseToAnyPublisher(),
+            unfoldButtonDidTap: unfoldButtonDidTap.eraseToAnyPublisher()
 //            screenshotCellDidTap: <#AnyPublisher<IndexPath, Never>#>
         )
 
         guard let output = viewModel?.transform(input) else { return }
-        
+
         configureUIContents(with: output.appItem)
 //        configureCollectionView(with: output.appItem)
+        toggleDescriptionLabelHeight(with: output.isDescriptionLabelUnfolded)
     }
     
 //    private func configureCollectionView(with appItem: AnyPublisher<AppItem, Never>) {
@@ -227,6 +278,24 @@ extension DetailViewController {
         
         screenshotURLs = appItem.screenshotURLs
         screenshotCollectionView.reloadData()  // TODO: Combine binding 사용하여 개선
+        
+        descriptionLabel.text = appItem.appDescription
+    }
+    
+    // TODO: Binding 메서드 매개변수 통일
+    private func toggleDescriptionLabelHeight(with isDescriptionLabelUnfolded: AnyPublisher<Bool, Never>) {
+        isDescriptionLabelUnfolded
+            .sink { [weak self] isDescriptionLabelUnfolded in
+                if isDescriptionLabelUnfolded {
+                    self?.unfoldButton.setTitle("접기", for: .normal)
+                    self?.descriptionLabel.numberOfLines = 0
+                    self?.descriptionLabel.invalidateIntrinsicContentSize()
+                } else {
+                    self?.unfoldButton.setTitle("펼치기", for: .normal)
+                    self?.descriptionLabel.numberOfLines = 2
+                }
+            }
+            .store(in: &cancellableBag)
     }
 }
 
@@ -251,7 +320,7 @@ extension DetailViewController: UICollectionViewDelegate {
 // MARK: - NameSpaces
 extension DetailViewController {
     private enum Text {
-        static let screenshootDescriptionLabelText: String = "미리보기"
+        static let screenshotDescriptionLabelText: String = "미리보기"
         static let infoDescriptionLabelText: String = "정보"
     }
     

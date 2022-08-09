@@ -13,15 +13,18 @@ final class DetailViewModel: ViewModelProtocol {
     struct Input {
         let leftBarButtonDidTap: AnyPublisher<Void, Never>
 //        let screenshotCellDidTap: AnyPublisher<IndexPath, Never>
+        let unfoldButtonDidTap: AnyPublisher<Void, Never>
     }
     
     struct Output {
         let appItem: AnyPublisher<AppItem, Never>
+        let isDescriptionLabelUnfolded: AnyPublisher<Bool, Never>
     }
     
     // MARK: - Properties
     private weak var coordinator: DetailCoordinator!
     private let appItem: AppItem!
+    private var isCurrentDescriptionLabelUnfolded = false
     private var cancellableBag = Set<AnyCancellable>()
     
     // MARK: - Initializers
@@ -38,8 +41,12 @@ final class DetailViewModel: ViewModelProtocol {
     func transform(_ input: Input) -> Output {
         let appItem = configureBookItem()
         configureLeftBarButtonDidTapObserver(by: input.leftBarButtonDidTap)
+        let isDescriptionLabelUnfolded = configureUnfoldButtonDidTapObserver(by: input.unfoldButtonDidTap)
         
-        let output = Output(appItem: appItem)
+        let output = Output(
+            appItem: appItem,
+            isDescriptionLabelUnfolded: isDescriptionLabelUnfolded
+        )
         
         return output
     }
@@ -54,5 +61,15 @@ final class DetailViewModel: ViewModelProtocol {
                 self?.coordinator.popCurrentPage()
             })
             .store(in: &cancellableBag)
+    }
+    
+    private func configureUnfoldButtonDidTapObserver(by inputObservable: AnyPublisher<Void, Never>) -> AnyPublisher<Bool, Never> {
+        inputObservable
+            .map { [weak self] _ -> Bool in
+                guard let self = self else { return false }
+                self.isCurrentDescriptionLabelUnfolded.toggle()
+                return self.isCurrentDescriptionLabelUnfolded
+            }
+            .eraseToAnyPublisher()
     }
 }
