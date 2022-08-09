@@ -35,7 +35,7 @@ final class DetailViewController: UIViewController {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
-    private let ScrollContentStackView: UIStackView = {
+    private let scrollContentStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
@@ -44,9 +44,9 @@ final class DetailViewController: UIViewController {
         stackView.spacing = Design.scrollContentStackViewSpacing
         stackView.directionalLayoutMargins = NSDirectionalEdgeInsets(
             top: Design.scrollContentStackViewVerticalInset,
-            leading: Design.scrollContentStackViewHorizontalInset,
+            leading: Design.scrollContentStackViewLeadingInset,
             bottom: Design.scrollContentStackViewVerticalInset,
-            trailing: Design.scrollContentStackViewHorizontalInset
+            trailing: 0
         )
         stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
@@ -54,12 +54,11 @@ final class DetailViewController: UIViewController {
     private let upperlineView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-//        view.setContentHuggingPriority(.required, for: .vertical)
         view.backgroundColor = Design.upperlineViewBackgroundColor
         return view
     }()
     private let mainStackView = MainStackView()
-    private let summaryScrollView = SummaryScrollView()  // TODO: Horizontal CollectionView로 구현 (고민 필요)
+    private let summaryScrollView = SummaryScrollView()
     private let screenshotDescriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -117,29 +116,30 @@ final class DetailViewController: UIViewController {
     
     private func configureHierarchy() {
         view.addSubview(containerScrollView)
-        containerScrollView.addSubview(ScrollContentStackView)
-        ScrollContentStackView.addArrangedSubview(mainStackView)
+        containerScrollView.addSubview(scrollContentStackView)
+        scrollContentStackView.addArrangedSubview(mainStackView)
 //        containerStackView.addArrangedSubview(summaryScrollView)
-        ScrollContentStackView.addArrangedSubview(upperlineView)
-        ScrollContentStackView.addArrangedSubview(screenshotDescriptionLabel)
-        ScrollContentStackView.addArrangedSubview(screenshotCollectionView)
+        scrollContentStackView.addArrangedSubview(upperlineView)
+        scrollContentStackView.addArrangedSubview(screenshotDescriptionLabel)
+        scrollContentStackView.addArrangedSubview(screenshotCollectionView)
         
         NSLayoutConstraint.activate([
             containerScrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             containerScrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             containerScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             containerScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-//            containerScrollView.contentLayoutGuide.widthAnchor.constraint(equalTo: containerScrollView.widthAnchor),
+            containerScrollView.contentLayoutGuide.widthAnchor.constraint(equalTo: containerScrollView.widthAnchor),
             
-            ScrollContentStackView.topAnchor.constraint(equalTo: containerScrollView.topAnchor),
-            ScrollContentStackView.leadingAnchor.constraint(equalTo: containerScrollView.leadingAnchor),
-            ScrollContentStackView.trailingAnchor.constraint(equalTo: containerScrollView.trailingAnchor),
-            ScrollContentStackView.bottomAnchor.constraint(equalTo: containerScrollView.bottomAnchor),
+            scrollContentStackView.topAnchor.constraint(equalTo: containerScrollView.topAnchor),
+            scrollContentStackView.leadingAnchor.constraint(equalTo: containerScrollView.leadingAnchor),
+            scrollContentStackView.trailingAnchor.constraint(equalTo: containerScrollView.trailingAnchor),
+            scrollContentStackView.bottomAnchor.constraint(equalTo: containerScrollView.bottomAnchor),
             
-            separatorView.heightAnchor.constraint(equalToConstant: 0.5),
-            separatorView.widthAnchor.constraint(
-                equalToConstant: UIScreen.main.bounds.width - Design.containerStackViewHorizontalInset
+            upperlineView.heightAnchor.constraint(equalToConstant: 0.5),
+            upperlineView.widthAnchor.constraint(
+                equalToConstant: UIScreen.main.bounds.width - Design.scrollContentStackViewLeadingInset
             ),
+            upperlineView.trailingAnchor.constraint(equalTo: scrollContentStackView.trailingAnchor),
 
             screenshotCollectionView.heightAnchor.constraint(equalTo: screenshotCollectionView.widthAnchor, multiplier: 1.15),
             
@@ -265,7 +265,7 @@ extension DetailViewController {
     }
     
     private enum Design {
-        static let scrollContentStackViewHorizontalInset: CGFloat = 12
+        static let scrollContentStackViewLeadingInset: CGFloat = 12
         static let scrollContentStackViewVerticalInset: CGFloat = 12
         static let scrollContentStackViewSpacing: CGFloat = 12
         static let upperlineViewBackgroundColor: UIColor = .systemGray3
