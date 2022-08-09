@@ -12,6 +12,7 @@ final class DetailViewModel: ViewModelProtocol {
     // MARK: - Nested Types
     struct Input {
         let leftBarButtonDidTap: AnyPublisher<Void, Never>
+//        let screenshotCellDidTap: AnyPublisher<IndexPath, Never>
     }
     
     struct Output {

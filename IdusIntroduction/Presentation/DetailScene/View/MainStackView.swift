@@ -68,15 +68,6 @@ final class MainStackView: UIStackView {  // TODO: 공유 버튼 추가 및 Dele
         alignment = .fill
         distribution = .fill
         spacing = 8
-        let verticalInset: CGFloat = 12
-        let horizontalInset: CGFloat = 12
-        directionalLayoutMargins = NSDirectionalEdgeInsets(
-            top: verticalInset,
-            leading: horizontalInset,
-            bottom: verticalInset,
-            trailing: horizontalInset
-        )
-        isLayoutMarginsRelativeArrangement = true
     }
     
     private func configureHierarchy() {
@@ -97,7 +88,7 @@ final class MainStackView: UIStackView {  // TODO: 공유 버튼 추가 및 Dele
 extension MainStackView {
     private enum Design {
         static let thumbnailImageViewCornerRadius: CGFloat = 12
-        static let thumbnailImageViewBorderWidth: CGFloat = 2
+        static let thumbnailImageViewBorderWidth: CGFloat = 1
         static let thumbnailImageViewBorderColor: CGColor = UIColor.systemGray3.cgColor
     }
 }
