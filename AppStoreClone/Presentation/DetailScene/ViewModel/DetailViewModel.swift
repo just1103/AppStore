@@ -12,7 +12,7 @@ final class DetailViewModel: ViewModelProtocol {
     // MARK: - Nested Types
     struct Input {
         let leftBarButtonDidTap: AnyPublisher<Void, Never>
-//        let screenshotCellDidTap: AnyPublisher<IndexPath, Never>
+        let screenshotCellDidSelect: AnyPublisher<Int, Never>
         let unfoldButtonDidTap: AnyPublisher<Void, Never>
     }
     
@@ -41,6 +41,7 @@ final class DetailViewModel: ViewModelProtocol {
     func transform(_ input: Input) -> Output {
         let appItem = configureBookItem()
         configureLeftBarButtonDidTapObserver(by: input.leftBarButtonDidTap)
+        configureScreenshotCellDidSelectObserver(by: input.screenshotCellDidSelect)
         let isDescriptionLabelUnfolded = configureUnfoldButtonDidTapObserver(by: input.unfoldButtonDidTap)
         
         let output = Output(
@@ -59,6 +60,17 @@ final class DetailViewModel: ViewModelProtocol {
         inputObservable
             .sink(receiveValue: { [weak self] _ in
                 self?.coordinator.popCurrentPage()
+            })
+            .store(in: &cancellableBag)
+    }
+    
+    private func configureScreenshotCellDidSelectObserver(by inputObservable: AnyPublisher<Int, Never>) {
+        inputObservable
+            .sink(receiveValue: { [weak self] indexPath in
+                guard let self = self else { return }
+                DispatchQueue.main.async { 
+                    self.coordinator.showScreenshotPage(with: self.appItem.screenshotURLs, selectedIndex: indexPath)
+                }
             })
             .store(in: &cancellableBag)
     }

@@ -12,7 +12,7 @@ final class ScreenshotCell: UICollectionViewCell {
     private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = Design.imageViewCornerRadius
         imageView.layer.borderColor = Design.imageViewBorderColor
         imageView.layer.borderWidth = Design.imageViewBorderWidth
@@ -57,7 +57,7 @@ final class ScreenshotCell: UICollectionViewCell {
 // MARK: - Namespaces
 extension ScreenshotCell {
     private enum Design {
-        static let imageViewCornerRadius: CGFloat = 12
+        static let imageViewCornerRadius: CGFloat = 15
         static let imageViewBorderWidth: CGFloat = 1
         static let imageViewBorderColor = UIColor.systemGray4.cgColor
     }

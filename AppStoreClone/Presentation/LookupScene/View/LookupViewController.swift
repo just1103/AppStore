@@ -108,7 +108,7 @@ extension LookupViewController {
                     self?.descriptionLabel.text = Text.descriptionLabelTextIfRequestFail
                 }
             })
-            .store(in: &self.cancellableBag)
+            .store(in: &cancellableBag)
     }
 }
 

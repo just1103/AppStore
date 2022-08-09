@@ -91,6 +91,8 @@ final class DetailViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.isScrollEnabled = false
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
         return collectionView
     }()
     private let descriptionUpperlineView: UIView = {
@@ -148,9 +150,8 @@ final class DetailViewController: UIViewController {
     private var screenshotURLs = [String]()
     private var infoContents = [String]()
     private let leftBarButtonDidTap = PassthroughSubject<Void, Never>()
-    private let screenshotCellDidTap = PassthroughSubject<IndexPath, Never>()
+    private let screenshotCellDidSelect = PassthroughSubject<Int, Never>()
     private let unfoldButtonDidTap = PassthroughSubject<Void, Never>()
-    
     private var cancellableBag = Set<AnyCancellable>()
     
     // MARK: - Initializers
@@ -281,8 +282,8 @@ extension DetailViewController {
     private func bind() {
         let input = DetailViewModel.Input(
             leftBarButtonDidTap: leftBarButtonDidTap.eraseToAnyPublisher(),
+            screenshotCellDidSelect: screenshotCellDidSelect.eraseToAnyPublisher(),
             unfoldButtonDidTap: unfoldButtonDidTap.eraseToAnyPublisher()
-//            screenshotCellDidTap: <#AnyPublisher<IndexPath, Never>#>
         )
 
         guard let output = viewModel?.transform(input) else { return }
@@ -309,7 +310,7 @@ extension DetailViewController {
             .sink(receiveValue: { [weak self] appItem in
                 self?.setupUI(appItem)
             })
-            .store(in: &self.cancellableBag)
+            .store(in: &cancellableBag)
     }
 
     private func setupUI(_ appItem: AppItem) {
@@ -367,11 +368,11 @@ extension DetailViewController: UICollectionViewDataSource {
 // MARK: - CollectionView Delegate
 extension DetailViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        screenshotCellDidTap.send(indexPath)
+        screenshotCellDidSelect.send(indexPath.row)
     }
 }
 
-// MARK: - CollectionView DataSource
+// MARK: - TableView DataSource
 extension DetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return InfoComponents.allCases.count

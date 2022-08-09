@@ -28,6 +28,22 @@ final class DetailCoordinator: CoordinatorProtocol {
         showDetailPage(with: appItem)
     }
     
+    func finish() {
+        delegate.removeFromChildCoordinators(coordinator: self)
+    }
+    
+    func popCurrentPage() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    func showScreenshotPage(with screenshotURLs: [String], selectedIndex: Int) {
+        guard let navigationController = navigationController else { return }
+        let screenshotCoordinator = ScreenshotCoordinator(navigationController: navigationController)
+        childCoordinators.append(screenshotCoordinator)
+        screenshotCoordinator.delegate = self
+        screenshotCoordinator.start(with: screenshotURLs, selectedIndex: selectedIndex)
+    }
+    
     private func showDetailPage(with appItem: AppItem) {
         guard let navigationController = navigationController else { return }
         let detailViewModel = DetailViewModel(coordinator: self, appItem: appItem)
@@ -35,12 +51,12 @@ final class DetailCoordinator: CoordinatorProtocol {
         
         navigationController.pushViewController(detailViewController, animated: false)
     }
-    
-    func finish() {
-        delegate.removeFromChildCoordinators(coordinator: self)
-    }
-    
-    func popCurrentPage() {
-        navigationController?.popViewController(animated: true)
+}
+
+// MARK: - ScreenshotCoordinator Delegete
+extension DetailCoordinator: ScreenshotCoordinatorDelegete {
+    func removeFromChildCoordinators(coordinator: CoordinatorProtocol) {
+        let updatedChildCoordinators = childCoordinators.filter { $0 !== coordinator }
+        childCoordinators = updatedChildCoordinators
     }
 }

@@ -23,6 +23,9 @@
 		36DAE52028A25FB90073322E /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DAE51F28A25FB90073322E /* InfoCell.swift */; };
 		36DAE52428A27B0E0073322E /* UITableView+CellReuse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DAE52328A27B0E0073322E /* UITableView+CellReuse.swift */; };
 		36DAE52628A27B540073322E /* UITableViewCell+Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DAE52528A27B540073322E /* UITableViewCell+Identifier.swift */; };
+		36DAE52928A29E5B0073322E /* ScreenshotCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DAE52828A29E5B0073322E /* ScreenshotCoordinator.swift */; };
+		36DAE52D28A2A10E0073322E /* ScreenshotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DAE52C28A2A10E0073322E /* ScreenshotViewController.swift */; };
+		36DAE52F28A2A11A0073322E /* ScreenshotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DAE52E28A2A11A0073322E /* ScreenshotViewModel.swift */; };
 		36EBE0D8289FF2BE00B92BB4 /* ItunesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0D7289FF2BE00B92BB4 /* ItunesAPI.swift */; };
 		36EBE0DA289FF32300B92BB4 /* APIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0D9289FF32300B92BB4 /* APIProtocol.swift */; };
 		36EBE0DF289FF52600B92BB4 /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0DE289FF52600B92BB4 /* URLSessionProtocol.swift */; };
@@ -77,6 +80,9 @@
 		36DAE51F28A25FB90073322E /* InfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCell.swift; sourceTree = "<group>"; };
 		36DAE52328A27B0E0073322E /* UITableView+CellReuse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+CellReuse.swift"; sourceTree = "<group>"; };
 		36DAE52528A27B540073322E /* UITableViewCell+Identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Identifier.swift"; sourceTree = "<group>"; };
+		36DAE52828A29E5B0073322E /* ScreenshotCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotCoordinator.swift; sourceTree = "<group>"; };
+		36DAE52C28A2A10E0073322E /* ScreenshotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotViewController.swift; sourceTree = "<group>"; };
+		36DAE52E28A2A11A0073322E /* ScreenshotViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotViewModel.swift; sourceTree = "<group>"; };
 		36EBE0D7289FF2BE00B92BB4 /* ItunesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesAPI.swift; sourceTree = "<group>"; };
 		36EBE0D9289FF32300B92BB4 /* APIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIProtocol.swift; sourceTree = "<group>"; };
 		36EBE0DE289FF52600B92BB4 /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
@@ -179,6 +185,7 @@
 				361A992A289B6F2200C16D00 /* AppCoordinator.swift */,
 				36EBE0EE28A1191300B92BB4 /* LookupScene */,
 				36EBE0E528A0072100B92BB4 /* DetailScene */,
+				36DAE52728A29E090073322E /* ScreenshotScene */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -239,6 +246,32 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		36DAE52728A29E090073322E /* ScreenshotScene */ = {
+			isa = PBXGroup;
+			children = (
+				36DAE52828A29E5B0073322E /* ScreenshotCoordinator.swift */,
+				36DAE52B28A2A0EC0073322E /* ViewModel */,
+				36DAE52A28A2A0E60073322E /* View */,
+			);
+			path = ScreenshotScene;
+			sourceTree = "<group>";
+		};
+		36DAE52A28A2A0E60073322E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				36DAE52C28A2A10E0073322E /* ScreenshotViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		36DAE52B28A2A0EC0073322E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				36DAE52E28A2A11A0073322E /* ScreenshotViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		36EBE0E0289FF6C100B92BB4 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -294,8 +327,8 @@
 			children = (
 				36EBE0FB28A154E400B92BB4 /* DetailViewController.swift */,
 				36EBE0FF28A21C8200B92BB4 /* MainStackView.swift */,
-				36EBE10828A2253D00B92BB4 /* SummaryScrollView.swift */,
 				36EBE0FD28A219C400B92BB4 /* StarImageView.swift */,
+				36EBE10828A2253D00B92BB4 /* SummaryScrollView.swift */,
 				36EBE10A28A229AC00B92BB4 /* ScreenshotCell.swift */,
 				36DAE51F28A25FB90073322E /* InfoCell.swift */,
 			);
@@ -430,6 +463,7 @@
 				36EBE0E728A0073800B92BB4 /* DetailCoordinator.swift in Sources */,
 				36EBE10F28A23E2000B92BB4 /* UICollectionViewCell+Identifier.swift in Sources */,
 				361A993D289B74CF00C16D00 /* AppItemDTO.swift in Sources */,
+				36DAE52F28A2A11A0073322E /* ScreenshotViewModel.swift in Sources */,
 				36EBE0FE28A219C400B92BB4 /* StarImageView.swift in Sources */,
 				361A992B289B6F2200C16D00 /* AppCoordinator.swift in Sources */,
 				36EBE0DA289FF32300B92BB4 /* APIProtocol.swift in Sources */,
@@ -442,8 +476,10 @@
 				36DAE52628A27B540073322E /* UITableViewCell+Identifier.swift in Sources */,
 				36EBE0FC28A154E400B92BB4 /* DetailViewController.swift in Sources */,
 				36EBE0DF289FF52600B92BB4 /* URLSessionProtocol.swift in Sources */,
+				36DAE52D28A2A10E0073322E /* ScreenshotViewController.swift in Sources */,
 				361A98EE289B6A6600C16D00 /* AppDelegate.swift in Sources */,
 				36EBE0F428A11A7600B92BB4 /* LookupViewModel.swift in Sources */,
+				36DAE52928A29E5B0073322E /* ScreenshotCoordinator.swift in Sources */,
 				36DAE52428A27B0E0073322E /* UITableView+CellReuse.swift in Sources */,
 				361A98F0289B6A6600C16D00 /* SceneDelegate.swift in Sources */,
 				36EBE0F028A1195000B92BB4 /* LookupCoordinator.swift in Sources */,
