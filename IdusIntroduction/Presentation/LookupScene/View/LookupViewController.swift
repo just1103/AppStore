@@ -24,7 +24,7 @@ final class LookupViewController: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
         label.font = .preferredFont(forTextStyle: .title3)
-        label.textColor = .black
+        label.textColor = .systemRed
         return label
     }()
     
@@ -84,7 +84,7 @@ final class LookupViewController: UIViewController {
     }
     
     private func updateDescriptionLabel() {
-        descriptionLabel.text = ""
+        descriptionLabel.text = Text.emptyString
     }
 }
 
@@ -130,9 +130,10 @@ extension LookupViewController {
         static let navigationTitle = "App Lookup"
         static let searchTextFieldPlaceHolder = "앱 ID를 입력해주세요."
         static let descriptionLabelTextIfRequestFail = "앱 ID를 다시 확인해주세요."
+        static let emptyString = ""
     }
     
     private enum Design {
-        static let backButtonTitle = ""
+        static let backButtonTitle = "검색"
     }
 }

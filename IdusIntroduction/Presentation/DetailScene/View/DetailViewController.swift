@@ -35,6 +35,7 @@ final class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        bind()
     }
 
     // MARK: - Methods
@@ -45,7 +46,7 @@ final class DetailViewController: UIViewController {
     
     private func configureNavigationBar() {
         view.backgroundColor = .white
-//        navigationItem.backButtonTitle = Design.backButtonTitle
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     private func configureHierarchy() {
@@ -62,28 +63,20 @@ final class DetailViewController: UIViewController {
 // MARK: - Combine Binding Methods
 extension DetailViewController {
     private func bind() {
-        let input = DetailViewModel.Input(leftBarButtonDidTap: leftBarButtonDidTap)
+        let input = DetailViewModel.Input(leftBarButtonDidTap: leftBarButtonDidTap.eraseToAnyPublisher())
 
         guard let output = viewModel?.transform(input) else { return }
         
         configureUIContents(with: output.appItem)
     }
     
-    private func configureUIContents(
-        with appItem: Just<AppItem?>
-    ) {
+    private func configureUIContents(with appItem: AnyPublisher<AppItem, Never>) {
         appItem
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] appItem in
-                guard let appItem = appItem else { return }
-                self?.setNavigationTitle(appItem.trackName)
                 self?.setupUI(appItem)
             })
             .store(in: &self.cancellableBag)
-    }
-    
-    private func setNavigationTitle(_ title: String) {
-        navigationItem.title = title
     }
     
     // UI 셋업
@@ -98,6 +91,6 @@ extension DetailViewController {
     }
     
     private enum Design {
-        static let backButtonTitle = ""
+        
     }
 }

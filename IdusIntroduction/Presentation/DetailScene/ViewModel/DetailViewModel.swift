@@ -11,11 +11,11 @@ import Combine
 final class DetailViewModel: ViewModelProtocol {
     // MARK: - Nested Types
     struct Input {
-        let leftBarButtonDidTap: PassthroughSubject<Void, Never>
+        let leftBarButtonDidTap: AnyPublisher<Void, Never>
     }
     
     struct Output {
-        let appItem: Just<AppItem?>
+        let appItem: AnyPublisher<AppItem, Never>
     }
     
     // MARK: - Properties
@@ -43,11 +43,11 @@ final class DetailViewModel: ViewModelProtocol {
         return output
     }
                             
-    private func configureBookItem() -> Just<AppItem?> {
-        return Just(self.appItem)
+    private func configureBookItem() -> AnyPublisher<AppItem, Never> {
+        return Just(self.appItem).eraseToAnyPublisher()
     }
     
-    private func configureLeftBarButtonDidTapObserver(by inputObservable: PassthroughSubject<Void, Never>) {
+    private func configureLeftBarButtonDidTapObserver(by inputObservable: AnyPublisher<Void, Never>) {
         inputObservable
             .sink(receiveValue: { [weak self] _ in
                 self?.coordinator.popCurrentPage()

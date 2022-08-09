@@ -8,18 +8,6 @@
 import Foundation
 import Combine
 
-//extension Subscriber {
-//    func map<Input>(
-//        _ map: @escaping (Input) -> Self.Input
-//    ) -> AnySubscriber<Input, Failure> {
-//        .init(
-//            receiveSubscription: receive,
-//            receiveValue: { self.receive(map($0)) },
-//            receiveCompletion: receive
-//        )
-//    }
-//}
-
 final class LookupViewModel: ViewModelProtocol {
     // MARK: - Nested Types
     struct Input {

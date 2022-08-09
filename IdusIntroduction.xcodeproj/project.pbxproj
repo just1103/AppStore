@@ -33,6 +33,7 @@
 		36EBE0F628A11A9A00B92BB4 /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0F528A11A9A00B92BB4 /* ViewModelProtocol.swift */; };
 		36EBE0FA28A154DA00B92BB4 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0F928A154DA00B92BB4 /* DetailViewModel.swift */; };
 		36EBE0FC28A154E400B92BB4 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0FB28A154E400B92BB4 /* DetailViewController.swift */; };
+		36EBE0FE28A219C400B92BB4 /* StarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0FD28A219C400B92BB4 /* StarImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		36EBE0F528A11A9A00B92BB4 /* ViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
 		36EBE0F928A154DA00B92BB4 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		36EBE0FB28A154E400B92BB4 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		36EBE0FD28A219C400B92BB4 /* StarImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -262,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				36EBE0FB28A154E400B92BB4 /* DetailViewController.swift */,
+				36EBE0FD28A219C400B92BB4 /* StarImageView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 				36EBE0F628A11A9A00B92BB4 /* ViewModelProtocol.swift in Sources */,
 				36EBE0E728A0073800B92BB4 /* DetailCoordinator.swift in Sources */,
 				361A993D289B74CF00C16D00 /* AppItemDTO.swift in Sources */,
+				36EBE0FE28A219C400B92BB4 /* StarImageView.swift in Sources */,
 				361A992B289B6F2200C16D00 /* AppCoordinator.swift in Sources */,
 				36EBE0DA289FF32300B92BB4 /* APIProtocol.swift in Sources */,
 				361A98F2289B6A6600C16D00 /* LookupViewController.swift in Sources */,
