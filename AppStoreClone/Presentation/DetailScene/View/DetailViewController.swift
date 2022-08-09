@@ -70,14 +70,20 @@ final class DetailViewController: UIViewController {
         stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
     }()
+    private let mainStackView = MainStackView()
+    private let summaryUpperlineView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = Design.upperlineViewBackgroundColor
+        return view
+    }()
+    private let summaryScrollView = SummaryScrollView()
     private let screenshotUpperlineView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = Design.upperlineViewBackgroundColor
         return view
     }()
-    private let mainStackView = MainStackView()
-    private let summaryScrollView = SummaryScrollView()
     private let screenshotDescriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -194,7 +200,8 @@ final class DetailViewController: UIViewController {
         view.addSubview(containerScrollView)
         containerScrollView.addSubview(scrollContentStackView)
         scrollContentStackView.addArrangedSubview(mainStackView)
-//        containerStackView.addArrangedSubview(summaryScrollView)
+        scrollContentStackView.addArrangedSubview(summaryUpperlineView)
+        scrollContentStackView.addArrangedSubview(summaryScrollView)
         scrollContentStackView.addArrangedSubview(screenshotUpperlineView)
         scrollContentStackView.addArrangedSubview(screenshotDescriptionLabel)
         scrollContentStackView.addArrangedSubview(screenshotCollectionView)
@@ -216,6 +223,10 @@ final class DetailViewController: UIViewController {
             scrollContentStackView.leadingAnchor.constraint(equalTo: containerScrollView.leadingAnchor),
             scrollContentStackView.trailingAnchor.constraint(equalTo: containerScrollView.trailingAnchor),
             scrollContentStackView.bottomAnchor.constraint(equalTo: containerScrollView.bottomAnchor),
+            
+            summaryUpperlineView.heightAnchor.constraint(equalToConstant: 0.5),
+            summaryScrollView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.25),
+            summaryScrollView.contentLayoutGuide.heightAnchor.constraint(equalTo: summaryScrollView.heightAnchor),
             
             screenshotUpperlineView.heightAnchor.constraint(equalToConstant: 0.5),
             screenshotCollectionView.heightAnchor.constraint(
@@ -320,6 +331,8 @@ extension DetailViewController {
             genre: appItem.primaryGenreName
         )
         
+        summaryScrollView.apply(appItem)
+        
         screenshotURLs = appItem.screenshotURLs
         screenshotCollectionView.reloadData()  // TODO: Combine binding 사용하여 개선
         
@@ -340,10 +353,10 @@ extension DetailViewController {
         isDescriptionLabelUnfolded
             .sink { [weak self] isDescriptionLabelUnfolded in
                 if isDescriptionLabelUnfolded {
-                    self?.unfoldButton.setTitle("접기", for: .normal)
+                    self?.unfoldButton.setTitle(Text.unfoldButtonTitleForFolding, for: .normal)
                     self?.descriptionLabel.numberOfLines = 0
                 } else {
-                    self?.unfoldButton.setTitle("펼치기", for: .normal)
+                    self?.unfoldButton.setTitle(Text.unfoldButtonTitleForUnfolding, for: .normal)
                     self?.descriptionLabel.numberOfLines = 2
                 }
             }
@@ -397,6 +410,8 @@ extension DetailViewController {
     private enum Text {
         static let screenshotDescriptionLabelText: String = "미리보기"
         static let infoDescriptionLabelText: String = "정보"
+        static let unfoldButtonTitleForUnfolding: String = "펼치기"
+        static let unfoldButtonTitleForFolding: String = "접기"
     }
     
     private enum Design {

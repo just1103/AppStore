@@ -48,7 +48,12 @@ final class ScreenshotViewController: UIViewController {
         view.backgroundColor = .white
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationItem.hidesBackButton = true
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(confirmButtonDidTap))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: Text.rightBarButtonItemTitle,
+            style: .done,
+            target: self,
+            action: #selector(confirmButtonDidTap)
+        )
     }
     
     @objc
@@ -64,10 +69,6 @@ final class ScreenshotViewController: UIViewController {
             screenshotCollectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             screenshotCollectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             screenshotCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -12),
-//            screenshotCollectionView.heightAnchor.constraint(
-//                equalTo: screenshotCollectionView.widthAnchor,
-//                multiplier: 1.8
-//            ),
         ])
     }
     
@@ -146,5 +147,12 @@ extension ScreenshotViewController: UICollectionViewDataSource {
         cell.apply(screenshotURL: screenshotURLs[indexPath.row])
         
         return cell
+    }
+}
+
+// MARK: - NameSpaces
+extension ScreenshotViewController {
+    private enum Text {
+        static let rightBarButtonItemTitle: String = "완료"
     }
 }

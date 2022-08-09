@@ -23,7 +23,7 @@ final class LookupViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
-        label.font = .preferredFont(forTextStyle: .title3)
+        label.font = .preferredFont(forTextStyle: .headline)
         label.textColor = .systemRed
         return label
     }()
@@ -48,6 +48,7 @@ final class LookupViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateDescriptionLabel()
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
 
     // MARK: - Methods
