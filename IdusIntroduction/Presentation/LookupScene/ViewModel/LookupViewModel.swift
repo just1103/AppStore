@@ -8,10 +8,22 @@
 import Foundation
 import Combine
 
+//extension Subscriber {
+//    func map<Input>(
+//        _ map: @escaping (Input) -> Self.Input
+//    ) -> AnySubscriber<Input, Failure> {
+//        .init(
+//            receiveSubscription: receive,
+//            receiveValue: { self.receive(map($0)) },
+//            receiveCompletion: receive
+//        )
+//    }
+//}
+
 final class LookupViewModel: ViewModelProtocol {
     // MARK: - Nested Types
     struct Input {
-        let searchTextDidReturn: PassthroughSubject<String, Never> // TODO: AnyPublisher로 변경
+        let searchTextDidReturn: AnyPublisher<String, Never>
     }
     
     struct Output {
@@ -36,17 +48,15 @@ final class LookupViewModel: ViewModelProtocol {
         return output
     }
     
-    private func configureSearchTextDidReturnObserver(
-        by searchText: PassthroughSubject<String, Never>
-    ) -> AnyPublisher<Bool, Never> {
+    private func configureSearchTextDidReturnObserver(by searchText: AnyPublisher<String, Never>) -> AnyPublisher<Bool, Never> {
         return searchText
             .removeDuplicates()
-            .map { [weak self] searchText -> Bool in
-                guard let self = self else { return false }
+            .filter { $0.isEmpty == false }
+            .flatMap { [weak self] searchText -> AnyPublisher<Bool, Never> in
+                guard let self = self else { return Just(false).eraseToAnyPublisher() }
                 
-                // FIXME: 반환타입 꼬이는 문제
                 return self.fetchData(with: searchText)
-                    .map { searchResultDTO -> AnyPublisher<Bool, Never> in
+                    .map { searchResultDTO -> Bool in
                         guard
                             searchResultDTO.resultCount == 1,
                             let appItemDTO = searchResultDTO.results.first
@@ -55,10 +65,16 @@ final class LookupViewModel: ViewModelProtocol {
                         }
                         
                         let appItem = AppItem.convert(appItemDTO: appItemDTO)
-                        self.coordinator.showDetailPage(with: appItem)
+                        
+                        DispatchQueue.main.async { [weak self] in
+                            self?.coordinator.showDetailPage(with: appItem)
+                        }
+                        
                         return true
                     }
-                
+                    .replaceError(with: false)
+                    .eraseToAnyPublisher()
+
             }
             .eraseToAnyPublisher()
     }

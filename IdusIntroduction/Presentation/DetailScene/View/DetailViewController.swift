@@ -45,8 +45,7 @@ final class DetailViewController: UIViewController {
     
     private func configureNavigationBar() {
         view.backgroundColor = .white
-        navigationItem.title = Text.navigationTitle
-        navigationItem.backButtonTitle = Design.backButtonTitle
+//        navigationItem.backButtonTitle = Design.backButtonTitle
     }
     
     private func configureHierarchy() {
@@ -77,9 +76,14 @@ extension DetailViewController {
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] appItem in
                 guard let appItem = appItem else { return }
+                self?.setNavigationTitle(appItem.trackName)
                 self?.setupUI(appItem)
             })
             .store(in: &self.cancellableBag)
+    }
+    
+    private func setNavigationTitle(_ title: String) {
+        navigationItem.title = title
     }
     
     // UI 셋업
@@ -91,9 +95,6 @@ extension DetailViewController {
 // MARK: - NameSpaces
 extension DetailViewController {
     private enum Text {
-        static let navigationTitle = "App Lookup"
-        static let searchTextFieldPlaceHolder = "앱 ID를 입력해주세요."
-        static let descriptionLabelTextIfRequestFail = "앱 ID를 다시 확인해주세요."
     }
     
     private enum Design {

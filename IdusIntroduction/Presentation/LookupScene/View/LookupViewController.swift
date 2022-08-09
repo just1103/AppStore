@@ -42,6 +42,7 @@ final class LookupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        bind()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,6 +59,7 @@ final class LookupViewController: UIViewController {
     
     private func configureNavigationBar() {
         view.backgroundColor = .white
+        navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = Text.navigationTitle
         navigationItem.backButtonTitle = Design.backButtonTitle
     }
@@ -71,7 +73,7 @@ final class LookupViewController: UIViewController {
         view.addSubview(descriptionLabel)
         
         NSLayoutConstraint.activate([
-            searchTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
+            searchTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             searchTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 12),
             searchTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -12),
             
@@ -89,7 +91,7 @@ final class LookupViewController: UIViewController {
 // MARK: - Combine Binding Methods
 extension LookupViewController {
     private func bind() {
-        let input = LookupViewModel.Input(searchTextDidReturn: textFieldDidReturn)
+        let input = LookupViewModel.Input(searchTextDidReturn: textFieldDidReturn.eraseToAnyPublisher())
 
         guard let output = viewModel?.transform(input) else { return }
         
@@ -116,7 +118,6 @@ extension LookupViewController: UITextFieldDelegate {
         guard let searchText = textField.text else {
             return false
         }
-        
         textFieldDidReturn.send(searchText)
         
         return true

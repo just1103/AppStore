@@ -37,7 +37,8 @@ extension ItunesAPI {
         
         func fetchData() -> AnyPublisher<SearchResultDTO, NetworkError> {
             guard let urlRequest = URLRequest(api: self) else {
-                return Fail(error: NetworkError.urlIsNil).eraseToAnyPublisher()
+                return Fail(error: NetworkError.urlIsNil)
+                    .eraseToAnyPublisher()
             }
             
             return session.request(urlRequest: urlRequest)

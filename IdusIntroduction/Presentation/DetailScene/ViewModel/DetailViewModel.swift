@@ -11,7 +11,7 @@ import Combine
 final class DetailViewModel: ViewModelProtocol {
     // MARK: - Nested Types
     struct Input {
-        let leftBarButtonDidTap: PassthroughSubject<Void, Never>()
+        let leftBarButtonDidTap: PassthroughSubject<Void, Never>
     }
     
     struct Output {
