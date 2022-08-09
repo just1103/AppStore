@@ -11,9 +11,9 @@ import Combine
 final class DetailViewController: UIViewController {
     // MARK: - Nested Types
     enum SectionKind {
-        case main, summary, screenshot, description, detail
+        case main, summary, screenshot, description, info
         
-        var title: String? {
+        var title: String? { // TODO: 활용하도록 개선
             switch self {
             case .main:
                 return nil
@@ -23,7 +23,7 @@ final class DetailViewController: UIViewController {
                 return "미리보기"
             case .description:
                 return nil
-            case .detail:
+            case .info:
                 return "정보"
             }
         }
@@ -44,7 +44,7 @@ final class DetailViewController: UIViewController {
         stackView.spacing = Design.scrollContentStackViewSpacing
         stackView.directionalLayoutMargins = NSDirectionalEdgeInsets(
             top: Design.scrollContentStackViewVerticalInset,
-            leading: Design.scrollContentStackViewLeadingInset,
+            leading: Design.scrollContentStackViewHorizontalInset,  // TODO: Leading Constraints 없애기 (실제 AppStore UI처럼)
             bottom: Design.scrollContentStackViewVerticalInset,
             trailing: 0
         )
@@ -71,11 +71,10 @@ final class DetailViewController: UIViewController {
     private let screenshotCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-//        collectionView.isScrollEnabled = false
         return collectionView
     }()
     
-    private let descriptionLabel: UILabel = {  // TODO: Alert로 대체 가능
+    private let descriptionLabel: UILabel = { 
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
@@ -137,21 +136,20 @@ final class DetailViewController: UIViewController {
             scrollContentStackView.bottomAnchor.constraint(equalTo: containerScrollView.bottomAnchor),
             
             upperlineView.heightAnchor.constraint(equalToConstant: 0.5),
-            upperlineView.widthAnchor.constraint(
-                equalToConstant: UIScreen.main.bounds.width - Design.scrollContentStackViewLeadingInset
-            ),
-            upperlineView.trailingAnchor.constraint(equalTo: scrollContentStackView.trailingAnchor),
 
-            screenshotCollectionView.heightAnchor.constraint(equalTo: screenshotCollectionView.widthAnchor, multiplier: 1.2),
+            screenshotCollectionView.heightAnchor.constraint(
+                equalTo: screenshotCollectionView.widthAnchor,
+                multiplier: 1
+            ),
             
         ])
     }
     
     private func configureCollectionView() {
         screenshotCollectionView.register(cellType: ScreenshotCell.self)
-        screenshotCollectionView.collectionViewLayout = createCollectionViewLayout()
         screenshotCollectionView.dataSource = self
         screenshotCollectionView.delegate = self
+        screenshotCollectionView.collectionViewLayout = createCollectionViewLayout()
     }
     
     private func createCollectionViewLayout() -> UICollectionViewLayout {
@@ -170,11 +168,10 @@ final class DetailViewController: UIViewController {
             )
             
             let groupSize = NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(0.7),
+                widthDimension: .fractionalWidth(0.6),
                 heightDimension: .fractionalHeight(1.0)
             )
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
-//            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
             
             let section = NSCollectionLayoutSection(group: group)
             section.orthogonalScrollingBehavior = .groupPaging
@@ -211,13 +208,6 @@ extension DetailViewController {
 //            .subscribe(screenshotCollectionView.itemsSubscriber(cellIdentifier: "ScreenshotCell", cellType: ScreenshotCell.self, cellConfig: { cell, indexPath, model in
 //
 //            }))
-//
-//            .bind(subscriber: screenshotCollectionView.rowsSubscriber(cellIdentifier: "ScreenshotCell", cellType: ScreenshotCell.self, cellConfig: { cell, indexPath, model in
-//
-////                cell.nameLabel.text = model.name
-//              }))
-//            .store(in: &self.cancellableBag)
-//    }
     
     private func configureUIContents(with appItem: AnyPublisher<AppItem, Never>) {
         appItem
@@ -227,8 +217,7 @@ extension DetailViewController {
             })
             .store(in: &self.cancellableBag)
     }
-    
-    // UI 셋업
+
     private func setupUI(_ appItem: AppItem) {
         mainStackView.apply(
             thumbnailURL: appItem.artworkURL100,
@@ -237,20 +226,17 @@ extension DetailViewController {
         )
         
         screenshotURLs = appItem.screenshotURLs
+        screenshotCollectionView.reloadData()  // TODO: Combine binding 사용하여 개선
     }
 }
 
 extension DetailViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return screenshotURLs.count
+        return screenshotURLs.count // setupUI 보다 나중에 불림
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ScreenshotCell", for: indexPath) as? ScreenshotCell
-        else {
-            return UICollectionViewCell()
-        }
+        let cell = collectionView.dequeueReusableCell(withClass: ScreenshotCell.self, for: indexPath) 
         cell.apply(screenshotURL: screenshotURLs[indexPath.row])
         
         return cell
@@ -258,7 +244,6 @@ extension DetailViewController: UICollectionViewDataSource {
 }
 extension DetailViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        guard let selectedCell = collectionView.cellForItem(at: indexPath) as? ScreenshotCell else { return }
         screenshotCellDidTap.send(indexPath)
     }
 }
@@ -266,10 +251,12 @@ extension DetailViewController: UICollectionViewDelegate {
 // MARK: - NameSpaces
 extension DetailViewController {
     private enum Text {
+        static let screenshootDescriptionLabelText: String = "미리보기"
+        static let infoDescriptionLabelText: String = "정보"
     }
     
     private enum Design {
-        static let scrollContentStackViewLeadingInset: CGFloat = 12
+        static let scrollContentStackViewHorizontalInset: CGFloat = 12
         static let scrollContentStackViewVerticalInset: CGFloat = 12
         static let scrollContentStackViewSpacing: CGFloat = 12
         static let upperlineViewBackgroundColor: UIColor = .systemGray3

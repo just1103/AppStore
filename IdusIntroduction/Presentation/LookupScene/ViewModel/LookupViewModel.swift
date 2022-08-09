@@ -38,7 +38,7 @@ final class LookupViewModel: ViewModelProtocol {
     
     private func configureSearchTextDidReturnObserver(by searchText: AnyPublisher<String, Never>) -> AnyPublisher<Bool, Never> {
         return searchText
-            .removeDuplicates()
+//            .removeDuplicates()  // TODO: 사용자가 이전버튼으로 돌아와서 다시 검색하고 싶을 수 있음
             .filter { $0.isEmpty == false }
             .flatMap { [weak self] searchText -> AnyPublisher<Bool, Never> in
                 guard let self = self else { return Just(false).eraseToAnyPublisher() }
