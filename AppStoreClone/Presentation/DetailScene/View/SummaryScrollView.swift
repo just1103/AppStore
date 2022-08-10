@@ -46,15 +46,7 @@ final class SummaryScrollView: UIScrollView {
         label.textColor = Design.contentLabelColor
         return label
     }()
-    private let starRatingStackView: UIStackView = {  // TODO: Custom 타입으로 추가
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
-        stackView.alignment = .leading
-        stackView.distribution = .fillEqually
-        stackView.spacing = 4
-        return stackView
-    }()
+    private var starRatingStackView = StarRatingStackView()
     
     private let advisoryRatingStackView: UIStackView = {
         let stackView = UIStackView()
@@ -231,7 +223,7 @@ final class SummaryScrollView: UIScrollView {
         ratingTitleLabel.text = "\(appItem.userRatingCount)개의 평가"
 //        ratingTitleLabel.text = "\(appItem.userRatingCount.byDigitWrapping)개의 평가" // TODO: 단위별로 끊어 읽기
         ratingContentLabel.text = String(format: "%.1f", appItem.userRatingCount)
-//        starRatingStackView // 점수 전달하여 처리
+        starRatingStackView.apply(rating: appItem.averageUserRating)
         
         advisoryRatingContentLabel.text = "\(appItem.contentAdvisoryRating)"
         
@@ -287,6 +279,8 @@ final class SummaryScrollView: UIScrollView {
             containerStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
             containerStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
             containerStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+//            starRatingStackView.heightAnchor.constraint(equalTo: ratingTitleLabel.heightAnchor)
         ])
     }
 }
@@ -298,8 +292,8 @@ extension SummaryScrollView {
         static let containerStackViewHorizontalInset: CGFloat = 10
         static let contentStackViewSpacing: CGFloat = 5
         static let titleLabelFont: UIFont = .preferredFont(forTextStyle: .caption1)
-        static let contentLabelFont: UIFont = .preferredFont(forTextStyle: .subheadline)
         static let titleLabelColor: UIColor = .systemGray
+        static let contentLabelFont: UIFont = .preferredFont(forTextStyle: .subheadline)
         static let contentLabelColor: UIColor = .systemGray
     }
 }

@@ -33,7 +33,7 @@ final class MainStackView: UIStackView {  // TODO: 공유 버튼 추가 및 Dele
         label.textAlignment = .left
         label.font = .preferredFont(forTextStyle: .title1)
         label.textColor = .label
-        label.numberOfLines = 0  // TODO: 0으로 긴 텍스트에 대응
+        label.numberOfLines = 0  
         label.setContentCompressionResistancePriority(.required, for: .vertical)
         label.setContentHuggingPriority(.required, for: .vertical)
         return label
@@ -81,7 +81,6 @@ final class MainStackView: UIStackView {  // TODO: 공유 버튼 추가 및 Dele
             thumbnailImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.3),
         ])
     }
-
 }
 
 // MARK: - Namespace

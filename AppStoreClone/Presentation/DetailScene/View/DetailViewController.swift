@@ -225,7 +225,7 @@ final class DetailViewController: UIViewController {
             scrollContentStackView.bottomAnchor.constraint(equalTo: containerScrollView.bottomAnchor),
             
             summaryUpperlineView.heightAnchor.constraint(equalToConstant: 0.5),
-            summaryScrollView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.25),
+            summaryScrollView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.22),
             summaryScrollView.contentLayoutGuide.heightAnchor.constraint(equalTo: summaryScrollView.heightAnchor),
             
             screenshotUpperlineView.heightAnchor.constraint(equalToConstant: 0.5),
