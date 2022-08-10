@@ -71,7 +71,7 @@ final class SummaryScrollView: UIScrollView {
         label.textAlignment = .center
         label.font = Design.titleLabelFont
         label.textColor = Design.titleLabelColor
-        label.text = "연령"
+        label.text = Text.advisoryRatingTitleLabelText
         return label
     }()
     private let advisoryRatingContentLabel: UILabel = {
@@ -89,7 +89,7 @@ final class SummaryScrollView: UIScrollView {
         label.textAlignment = .center
         label.font = Design.descriptionFont
         label.textColor = Design.descriptionColor
-        label.text = "세"
+        label.text = Text.advisoryRatingSuffixLabelText
         return label
     }()
     private let categoryStackView: UIStackView = {
@@ -113,10 +113,10 @@ final class SummaryScrollView: UIScrollView {
         label.textAlignment = .center
         label.font = Design.titleLabelFont
         label.textColor = Design.titleLabelColor
-        label.text = "카테고리"
+        label.text = Text.categoryTitleLabelText
         return label
     }()
-    private let categoryImageView: UIImageView = {  // TODO: 크기 조정
+    private let categoryImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.tintColor = Design.contentLabelColor
@@ -152,11 +152,11 @@ final class SummaryScrollView: UIScrollView {
         label.textAlignment = .center
         label.font = Design.titleLabelFont
         label.textColor = Design.titleLabelColor
-        label.text = "개발자"
+        label.text = Text.developerTitleLabelText
         return label
     }()
     private let developerImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(systemName: "person.crop.square"))
+        let imageView = UIImageView(image: UIImage(systemName: Text.developerImageSystemName))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.tintColor = Design.contentLabelColor
         return imageView
@@ -191,7 +191,7 @@ final class SummaryScrollView: UIScrollView {
         label.textAlignment = .center
         label.font = Design.titleLabelFont
         label.textColor = Design.titleLabelColor
-        label.text = "언어"
+        label.text = Text.languageTitleLabelText
         return label
     }()
     private let languageSymbolLabel: UILabel = {
@@ -232,7 +232,7 @@ final class SummaryScrollView: UIScrollView {
         
         advisoryRatingContentLabel.text = "\(appItem.contentAdvisoryRating)"
         
-        categoryImageView.image = UIImage(systemName: "cart")  // TODO: 카테고리에 따라 이미지 처리
+        categoryImageView.image = UIImage(systemName: Text.shoppingCategoryImageSystemName) // TODO: 카테고리에 따라 이미지 처리
         categoryDescriptionLabel.text = appItem.primaryGenreName  // TODO: Localization 적용
         
         developerNameLabel.text = appItem.artistName
@@ -297,6 +297,16 @@ final class SummaryScrollView: UIScrollView {
 
 // MARK: - NameSpace
 extension SummaryScrollView {
+    private enum Text {
+        static let advisoryRatingTitleLabelText: String = "연령"
+        static let advisoryRatingSuffixLabelText: String = "세"
+        static let categoryTitleLabelText: String = "카테고리"
+        static let developerTitleLabelText: String = "개발자"
+        static let languageTitleLabelText: String = "언어"
+        static let developerImageSystemName: String = "person.crop.square"
+        static let shoppingCategoryImageSystemName: String = "cart"
+    }
+    
     private enum Design {
         static let innerStackViewVerticalInset: CGFloat = 0
         static let innerStackViewHorizontalInset: CGFloat = 10

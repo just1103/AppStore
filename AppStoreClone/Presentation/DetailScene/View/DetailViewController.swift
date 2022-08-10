@@ -15,14 +15,10 @@ final class DetailViewController: UIViewController {
         
         var title: String? { // TODO: 활용하도록 개선
             switch self {
-            case .main:
-                return nil
-            case .summary:
+            case .main, .summary, .description:
                 return nil
             case .screenshot:
                 return "미리보기"
-            case .description:
-                return nil
             case .info:
                 return "정보"
             }
@@ -90,7 +86,7 @@ final class DetailViewController: UIViewController {
         label.textAlignment = .left
         label.font = .preferredFont(forTextStyle: .title2)
         label.textColor = .label
-        label.text = Text.screenshotDescriptionLabelText // SectionKind.description.title ?? ""  // TODO: lazy 안붙여도 되는지 확인
+        label.text = Text.screenshotDescriptionLabelText
         return label
     }()
     private let screenshotCollectionView: UICollectionView = {
@@ -107,7 +103,7 @@ final class DetailViewController: UIViewController {
         view.backgroundColor = Design.upperlineViewBackgroundColor
         return view
     }()
-    private let descriptionLabel: UILabel = {  // FIXME: trailingAnchor 재조정
+    private let descriptionLabel: UILabel = {  
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
@@ -337,9 +333,8 @@ extension DetailViewController {
         infoTableView.reloadData()  // TODO: Combine DataSources 사용하여 개선 가능
     }
     
-    // TODO: Binding 메서드 매개변수 통일
-    private func toggleDescriptionLabelHeight(with isDescriptionLabelUnfolded: AnyPublisher<Bool, Never>) {
-        isDescriptionLabelUnfolded
+    private func toggleDescriptionLabelHeight(with outputPublisher: AnyPublisher<Bool, Never>) {
+        outputPublisher
             .sink { [weak self] isDescriptionLabelUnfolded in
                 if isDescriptionLabelUnfolded {
                     self?.unfoldButton.setTitle(Text.unfoldButtonTitleForFolding, for: .normal)

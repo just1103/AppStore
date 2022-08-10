@@ -33,8 +33,7 @@ final class InfoCell: UITableViewCell {
     
     // MARK: - Initializers
     convenience init() {
-        let reuseIdentifier = "InfoCell"
-        self.init(style: .default, reuseIdentifier: reuseIdentifier)
+        self.init(style: .default, reuseIdentifier: Text.cellReuseIdentifier)
         configureUI()
     }
     
@@ -65,5 +64,12 @@ final class InfoCell: UITableViewCell {
             contentLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             contentLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12)
         ])
+    }
+}
+
+// MARK: - Namespaces
+extension InfoCell {
+    private enum Text {
+        static let cellReuseIdentifier: String = "InfoCell"
     }
 }
