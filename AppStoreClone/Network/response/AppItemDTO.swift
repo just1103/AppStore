@@ -12,7 +12,7 @@ struct AppItemDTO: Decodable {
     let trackName: String
     let primaryGenreName: String
     let averageUserRating: Double
-    let userRatingCount: Int  // TODO: 52313값 확인
+    let userRatingCount: Int  
     let screenshotURLs: [String]
     let version: String
     let currentVersionReleaseDate: String

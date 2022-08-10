@@ -10,8 +10,10 @@ import UIKit
 extension UIStackView {
     func addVerticalSeparators(color: UIColor = .systemGray3, heightRatio: CGFloat = 0.5) {
         let separatorCount = arrangedSubviews.count - 1
+        
         (0..<separatorCount).forEach { index in
             guard let subview = subviews[safe: index] else { return }
+            
             let separatorView = createVerticalSeparatorView(color: color)
             addSubview(separatorView)
             

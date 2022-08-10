@@ -10,8 +10,10 @@ import XCTest
 
 class JSONDecodingTests: XCTestCase {
     func test_SearchResultDTO타입_decode했을때_Parsing되는지_테스트() {
-        guard let path = Bundle(for: type(of: self)).path(forResource: "MockIdusSearchResult", ofType: "json"),
-              let jsonString = try? String(contentsOfFile: path) else {
+        guard
+            let path = Bundle(for: type(of: self)).path(forResource: "MockIdusSearchResult", ofType: "json"),
+            let jsonString = try? String(contentsOfFile: path)
+        else {
             XCTFail()
             return
         }
@@ -28,8 +30,10 @@ class JSONDecodingTests: XCTestCase {
     }
     
     func test_AppItemDTO타입_decode했을때_Parsing되는지_테스트() {
-        guard let path = Bundle(for: type(of: self)).path(forResource: "MockIdusAppItem", ofType: "json"),
-              let jsonString = try? String(contentsOfFile: path) else {
+        guard
+            let path = Bundle(for: type(of: self)).path(forResource: "MockIdusAppItem", ofType: "json"),
+            let jsonString = try? String(contentsOfFile: path)
+        else {
             XCTFail()
             return
         }

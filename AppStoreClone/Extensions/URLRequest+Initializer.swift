@@ -15,7 +15,5 @@ extension URLRequest {
         
         self.init(url: url)
         self.httpMethod = api.method.description
-//        api.headers.forEach { self.addValue($1, forHTTPHeaderField: $0) }
-//        self.httpBody = api.body
     }
 }
