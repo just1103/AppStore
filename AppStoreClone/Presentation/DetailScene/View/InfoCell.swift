@@ -34,7 +34,7 @@ final class InfoCell: UITableViewCell {
     // MARK: - Initializers
     convenience init() {
         let reuseIdentifier = "InfoCell"
-        self.init(style: .default, reuseIdentifier: reuseIdentifier) // TODO: 확인
+        self.init(style: .default, reuseIdentifier: reuseIdentifier)
         configureUI()
     }
     
@@ -57,12 +57,12 @@ final class InfoCell: UITableViewCell {
 
         NSLayoutConstraint.activate([
             categoryLabel.topAnchor.constraint(equalTo: topAnchor, constant: 12),
-            categoryLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 18),
+            categoryLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             categoryLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12),
             
             contentLabel.topAnchor.constraint(equalTo: topAnchor, constant: 12),
             contentLabel.leadingAnchor.constraint(equalTo: categoryLabel.trailingAnchor, constant: 5),
-            contentLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
+            contentLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             contentLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12)
         ])
     }

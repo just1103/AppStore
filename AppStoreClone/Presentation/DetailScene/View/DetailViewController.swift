@@ -149,6 +149,8 @@ final class DetailViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.isScrollEnabled = false
         tableView.isUserInteractionEnabled = false
+        tableView.separatorStyle = .singleLine
+        tableView.separatorInset.left = 0
         return tableView
     }()
     
