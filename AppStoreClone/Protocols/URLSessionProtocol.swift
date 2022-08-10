@@ -17,6 +17,7 @@ extension URLSession: URLSessionProtocol {
         return dataTaskPublisher(for: urlRequest)
             .tryMap { data, response -> Data in
                 let successStatusCode = 200..<300
+                
                 guard
                     let httpResponse = response as? HTTPURLResponse,
                     successStatusCode.contains(httpResponse.statusCode)
@@ -31,6 +32,7 @@ extension URLSession: URLSessionProtocol {
                 if let error = error as? NetworkError {
                     return error
                 }
+                
                 return .unknownError(message: error.localizedDescription)
             }
             .eraseToAnyPublisher()

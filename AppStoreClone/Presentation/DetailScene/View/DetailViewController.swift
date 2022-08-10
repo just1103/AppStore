@@ -12,17 +12,6 @@ final class DetailViewController: UIViewController {
     // MARK: - Nested Types
     enum SectionKind {
         case main, summary, screenshot, description, info
-        
-        var title: String? { // TODO: 활용하도록 개선
-            switch self {
-            case .main, .summary, .description:
-                return nil
-            case .screenshot:
-                return "미리보기"
-            case .info:
-                return "정보"
-            }
-        }
     }
     
     enum InfoComponents: CaseIterable {
@@ -61,7 +50,7 @@ final class DetailViewController: UIViewController {
             top: Design.scrollContentStackViewVerticalInset,
             leading: Design.scrollContentStackViewHorizontalInset,
             bottom: Design.scrollContentStackViewVerticalInset,
-            trailing: Design.scrollContentStackViewHorizontalInset  // TODO: trailing Constraints 없애기 (실제 AppStore UI처럼)
+            trailing: Design.scrollContentStackViewHorizontalInset
         )
         stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
