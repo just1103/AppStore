@@ -12,23 +12,24 @@ final class SummaryScrollView: UIScrollView {
     private let containerStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
         stackView.distribution = .fillEqually
-        stackView.alignment = .fill
+        stackView.alignment = .center
+        stackView.spacing = 0
         return stackView
     }()
-    
     private let ratingStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.distribution = .equalSpacing
+        stackView.distribution = .fillProportionally
         stackView.alignment = .center
         stackView.directionalLayoutMargins = NSDirectionalEdgeInsets(
-            top: Design.containerStackViewVerticalInset,
-            leading: Design.containerStackViewHorizontalInset,
-            bottom: Design.containerStackViewVerticalInset,
-            trailing: Design.containerStackViewHorizontalInset
+            top: Design.innerStackViewVerticalInset,
+            leading: Design.innerStackViewHorizontalInset,
+            bottom: Design.innerStackViewVerticalInset,
+            trailing: Design.innerStackViewHorizontalInset
         )
-        stackView.spacing = Design.contentStackViewSpacing
+        stackView.spacing = Design.innerStackViewSpacing
         stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
     }()
@@ -47,19 +48,18 @@ final class SummaryScrollView: UIScrollView {
         return label
     }()
     private var starRatingStackView = StarRatingStackView()
-    
     private let advisoryRatingStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.distribution = .equalSpacing
+        stackView.distribution = .fillProportionally
         stackView.alignment = .center
         stackView.directionalLayoutMargins = NSDirectionalEdgeInsets(
-            top: Design.containerStackViewVerticalInset,
-            leading: Design.containerStackViewHorizontalInset,
-            bottom: Design.containerStackViewVerticalInset,
-            trailing: Design.containerStackViewHorizontalInset
+            top: Design.innerStackViewVerticalInset,
+            leading: Design.innerStackViewHorizontalInset,
+            bottom: Design.innerStackViewVerticalInset,
+            trailing: Design.innerStackViewHorizontalInset
         )
-        stackView.spacing = Design.contentStackViewSpacing
+        stackView.spacing = Design.innerStackViewSpacing
         stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
     }()
@@ -84,24 +84,23 @@ final class SummaryScrollView: UIScrollView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.font = Design.contentLabelFont
-        label.textColor = Design.contentLabelColor
+        label.font = Design.descriptionFont
+        label.textColor = Design.descriptionColor
         label.text = "세"
         return label
     }()
-    
     private let categoryStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.distribution = .equalSpacing  // TODO: 가운데 요소의 크기가 크도록 재조정
+        stackView.distribution = .fillProportionally  // TODO: 가운데 요소의 크기가 크도록 재조정
         stackView.alignment = .center
         stackView.directionalLayoutMargins = NSDirectionalEdgeInsets(
-            top: Design.containerStackViewVerticalInset,
-            leading: Design.containerStackViewHorizontalInset,
-            bottom: Design.containerStackViewVerticalInset,
-            trailing: Design.containerStackViewHorizontalInset
+            top: Design.innerStackViewVerticalInset,
+            leading: Design.innerStackViewHorizontalInset,
+            bottom: Design.innerStackViewVerticalInset,
+            trailing: Design.innerStackViewHorizontalInset
         )
-        stackView.spacing = Design.contentStackViewSpacing
+        stackView.spacing = Design.innerStackViewSpacing
         stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
     }()
@@ -114,33 +113,32 @@ final class SummaryScrollView: UIScrollView {
         label.text = "카테고리"
         return label
     }()
-    private let categoryImageView: UIImageView = {
+    private let categoryImageView: UIImageView = {  // TODO: 크기 조정
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.tintColor = .systemGray3
+        imageView.tintColor = Design.contentLabelColor
         return imageView
     }()
     private let categoryDescriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.font = Design.contentLabelFont
-        label.textColor = Design.contentLabelColor
+        label.font = Design.descriptionFont
+        label.textColor = Design.descriptionColor
         return label
     }()
-    
     private let developerStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.distribution = .equalSpacing
+        stackView.distribution = .fillProportionally
         stackView.alignment = .center
         stackView.directionalLayoutMargins = NSDirectionalEdgeInsets(
-            top: Design.containerStackViewVerticalInset,
-            leading: Design.containerStackViewHorizontalInset,
-            bottom: Design.containerStackViewVerticalInset,
-            trailing: Design.containerStackViewHorizontalInset
+            top: Design.innerStackViewVerticalInset,
+            leading: Design.innerStackViewHorizontalInset,
+            bottom: Design.innerStackViewVerticalInset,
+            trailing: Design.innerStackViewHorizontalInset
         )
-        stackView.spacing = Design.contentStackViewSpacing
+        stackView.spacing = Design.innerStackViewSpacing
         stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
     }()
@@ -156,30 +154,29 @@ final class SummaryScrollView: UIScrollView {
     private let developerImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(systemName: "person.crop.square"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.tintColor = .systemGray3
+        imageView.tintColor = Design.contentLabelColor
         return imageView
     }()
     private let developerNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.font = Design.contentLabelFont
-        label.textColor = Design.contentLabelColor
+        label.font = Design.descriptionFont
+        label.textColor = Design.descriptionColor
         return label
     }()
-    
     private let languageStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.distribution = .equalSpacing
+        stackView.distribution = .fillProportionally
         stackView.alignment = .center
         stackView.directionalLayoutMargins = NSDirectionalEdgeInsets(
-            top: Design.containerStackViewVerticalInset,
-            leading: Design.containerStackViewHorizontalInset,
-            bottom: Design.containerStackViewVerticalInset,
-            trailing: Design.containerStackViewHorizontalInset
+            top: Design.innerStackViewVerticalInset,
+            leading: Design.innerStackViewHorizontalInset,
+            bottom: Design.innerStackViewVerticalInset,
+            trailing: Design.innerStackViewHorizontalInset
         )
-        stackView.spacing = Design.contentStackViewSpacing
+        stackView.spacing = Design.innerStackViewSpacing
         stackView.isLayoutMarginsRelativeArrangement = true
         return stackView
     }()
@@ -204,8 +201,8 @@ final class SummaryScrollView: UIScrollView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.font = Design.contentLabelFont
-        label.textColor = Design.contentLabelColor
+        label.font = Design.descriptionFont
+        label.textColor = Design.descriptionColor
         return label
     }()
     
@@ -222,12 +219,14 @@ final class SummaryScrollView: UIScrollView {
         guard let mainLanguage = appItem.languageCodesISO2A[safe: 0] else { return }
         ratingTitleLabel.text = "\(appItem.userRatingCount)개의 평가"
 //        ratingTitleLabel.text = "\(appItem.userRatingCount.byDigitWrapping)개의 평가" // TODO: 단위별로 끊어 읽기
-        ratingContentLabel.text = String(format: "%.1f", appItem.userRatingCount)
+        
+        let flooredRating = floor(appItem.averageUserRating * 10) / 10  // 4.75인 경우 4.7로 표시됨
+        ratingContentLabel.text = String(format: "%.1f", flooredRating)
         starRatingStackView.apply(rating: appItem.averageUserRating)
         
         advisoryRatingContentLabel.text = "\(appItem.contentAdvisoryRating)"
         
-        categoryImageView.image = UIImage(systemName: "cart")  // TODO: 종류에 따라 처리
+        categoryImageView.image = UIImage(systemName: "cart")  // TODO: 카테고리에 따라 이미지 처리
         categoryDescriptionLabel.text = appItem.primaryGenreName  // TODO: Localization 적용
         
         developerNameLabel.text = appItem.artistName
@@ -247,7 +246,7 @@ final class SummaryScrollView: UIScrollView {
     }
     
     private func configureHierarchy() {
-        addSubview(containerStackView)  // TODO: Separator 추가
+        addSubview(containerStackView)
         containerStackView.addArrangedSubview(ratingStackView)
         containerStackView.addArrangedSubview(advisoryRatingStackView)
         containerStackView.addArrangedSubview(categoryStackView)
@@ -274,13 +273,18 @@ final class SummaryScrollView: UIScrollView {
         languageStackView.addArrangedSubview(languageSymbolLabel)
         languageStackView.addArrangedSubview(languageDescriptionLabel)
         
+        containerStackView.addVerticalSeparators()
+        
         NSLayoutConstraint.activate([
             containerStackView.topAnchor.constraint(equalTo: topAnchor),
             containerStackView.leadingAnchor.constraint(equalTo: leadingAnchor),
             containerStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
             containerStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-//            starRatingStackView.heightAnchor.constraint(equalTo: ratingTitleLabel.heightAnchor)
+            starRatingStackView.heightAnchor.constraint(equalTo: advisoryRatingSuffixLabel.heightAnchor),
+            ratingContentLabel.heightAnchor.constraint(equalTo: ratingContentLabel.heightAnchor),
+            categoryImageView.heightAnchor.constraint(equalTo: ratingContentLabel.heightAnchor),
+            developerImageView.heightAnchor.constraint(equalTo: ratingContentLabel.heightAnchor),
         ])
     }
 }
@@ -288,12 +292,14 @@ final class SummaryScrollView: UIScrollView {
 // MARK: - NameSpace
 extension SummaryScrollView {
     private enum Design {
-        static let containerStackViewVerticalInset: CGFloat = 10
-        static let containerStackViewHorizontalInset: CGFloat = 10
-        static let contentStackViewSpacing: CGFloat = 5
-        static let titleLabelFont: UIFont = .preferredFont(forTextStyle: .caption1)
-        static let titleLabelColor: UIColor = .systemGray
-        static let contentLabelFont: UIFont = .preferredFont(forTextStyle: .subheadline)
+        static let innerStackViewVerticalInset: CGFloat = 0
+        static let innerStackViewHorizontalInset: CGFloat = 8
+        static let innerStackViewSpacing: CGFloat = 8
+        static let titleLabelFont: UIFont = .preferredFont(forTextStyle: .caption2)
+        static let titleLabelColor: UIColor = .systemGray2
+        static let contentLabelFont: UIFont = .preferredFont(forTextStyle: .title3)
         static let contentLabelColor: UIColor = .systemGray
+        static let descriptionFont: UIFont = .preferredFont(forTextStyle: .footnote)
+        static let descriptionColor: UIColor = .systemGray
     }
 }

@@ -115,7 +115,6 @@ final class DetailViewController: UIViewController {
         label.font = .preferredFont(forTextStyle: .body)
         label.numberOfLines = 2
         label.lineBreakMode = .byWordWrapping
-//        label.lineBreakMode = .byTruncatingTail
         return label
     }()
     private let unfoldButton: UIButton = {
@@ -123,8 +122,8 @@ final class DetailViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("펼치기", for: .normal)
         button.titleLabel?.font = .preferredFont(forTextStyle: .body)
-        button.setTitleColor(.systemBlue, for: .normal)
-        button.backgroundColor = .systemGray3
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .systemBlue
         button.layer.cornerRadius = 8
         button.clipsToBounds = true
         return button
@@ -227,7 +226,7 @@ final class DetailViewController: UIViewController {
             scrollContentStackView.bottomAnchor.constraint(equalTo: containerScrollView.bottomAnchor),
             
             summaryUpperlineView.heightAnchor.constraint(equalToConstant: 0.5),
-            summaryScrollView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.22),
+            summaryScrollView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.18),
             summaryScrollView.contentLayoutGuide.heightAnchor.constraint(equalTo: summaryScrollView.heightAnchor),
             
             screenshotUpperlineView.heightAnchor.constraint(equalToConstant: 0.5),
