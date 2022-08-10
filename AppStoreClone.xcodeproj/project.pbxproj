@@ -28,6 +28,7 @@
 		36DAE52F28A2A11A0073322E /* ScreenshotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DAE52E28A2A11A0073322E /* ScreenshotViewModel.swift */; };
 		36DCB9C128A36812005F71B9 /* StarRatingStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DCB9C028A36812005F71B9 /* StarRatingStackView.swift */; };
 		36DCB9C328A385B4005F71B9 /* UIStackView+VerticalSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DCB9C228A385B4005F71B9 /* UIStackView+VerticalSeparator.swift */; };
+		36DCB9C728A3A11F005F71B9 /* Int+DigitWrapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DCB9C628A3A11F005F71B9 /* Int+DigitWrapping.swift */; };
 		36EBE0D8289FF2BE00B92BB4 /* ItunesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0D7289FF2BE00B92BB4 /* ItunesAPI.swift */; };
 		36EBE0DA289FF32300B92BB4 /* APIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0D9289FF32300B92BB4 /* APIProtocol.swift */; };
 		36EBE0DF289FF52600B92BB4 /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0DE289FF52600B92BB4 /* URLSessionProtocol.swift */; };
@@ -87,6 +88,7 @@
 		36DAE52E28A2A11A0073322E /* ScreenshotViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotViewModel.swift; sourceTree = "<group>"; };
 		36DCB9C028A36812005F71B9 /* StarRatingStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatingStackView.swift; sourceTree = "<group>"; };
 		36DCB9C228A385B4005F71B9 /* UIStackView+VerticalSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+VerticalSeparator.swift"; sourceTree = "<group>"; };
+		36DCB9C628A3A11F005F71B9 /* Int+DigitWrapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+DigitWrapping.swift"; sourceTree = "<group>"; };
 		36EBE0D7289FF2BE00B92BB4 /* ItunesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesAPI.swift; sourceTree = "<group>"; };
 		36EBE0D9289FF32300B92BB4 /* APIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIProtocol.swift; sourceTree = "<group>"; };
 		36EBE0DE289FF52600B92BB4 /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 				36DAE52528A27B540073322E /* UITableViewCell+Identifier.swift */,
 				36DAE52328A27B0E0073322E /* UITableView+CellReuse.swift */,
 				36DCB9C228A385B4005F71B9 /* UIStackView+VerticalSeparator.swift */,
+				36DCB9C628A3A11F005F71B9 /* Int+DigitWrapping.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -472,6 +475,7 @@
 				36DCB9C328A385B4005F71B9 /* UIStackView+VerticalSeparator.swift in Sources */,
 				361A993D289B74CF00C16D00 /* AppItemDTO.swift in Sources */,
 				36DAE52F28A2A11A0073322E /* ScreenshotViewModel.swift in Sources */,
+				36DCB9C728A3A11F005F71B9 /* Int+DigitWrapping.swift in Sources */,
 				36EBE0FE28A219C400B92BB4 /* StarImageView.swift in Sources */,
 				361A992B289B6F2200C16D00 /* AppCoordinator.swift in Sources */,
 				36EBE0DA289FF32300B92BB4 /* APIProtocol.swift in Sources */,

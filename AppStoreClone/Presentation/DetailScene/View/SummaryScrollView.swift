@@ -217,10 +217,9 @@ final class SummaryScrollView: UIScrollView {
     func apply(_ appItem: AppItem) {
         let languages = appItem.languageCodesISO2A
         guard let mainLanguage = appItem.languageCodesISO2A[safe: 0] else { return }
-        ratingTitleLabel.text = "\(appItem.userRatingCount)개의 평가"
-//        ratingTitleLabel.text = "\(appItem.userRatingCount.byDigitWrapping)개의 평가" // TODO: 단위별로 끊어 읽기
+        ratingTitleLabel.text = "\(appItem.userRatingCount.byDigitWrapping)개의 평가"
         
-        let flooredRating = floor(appItem.averageUserRating * 10) / 10  // 4.75인 경우 4.7로 표시됨
+        let flooredRating = floor(appItem.averageUserRating * 10) / 10  // 실제 앱에서 4.75인 경우 4.7로 표시됨
         ratingContentLabel.text = String(format: "%.1f", flooredRating)
         starRatingStackView.apply(rating: appItem.averageUserRating)
         
