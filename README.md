@@ -149,7 +149,10 @@ Section의 orthogonalScrollingBehavior는 각각 `groupPaging`, `groupPagingCent
 |<img src="https://user-images.githubusercontent.com/70856586/183929888-ea834416-dda6-4071-8c75-61d69c4831fe.gif" width="200">|<img src="https://user-images.githubusercontent.com/70856586/183929947-a44d6eff-9f8d-4407-9a03-5c449a0a133f.gif" width="200">|<img src="https://user-images.githubusercontent.com/70856586/183930026-de70eedc-2e5f-4fa5-a9d7-9bfad8cfe5ba.gif" width="200">|<img src="https://user-images.githubusercontent.com/70856586/183930057-3347736f-1e5e-4b6e-83e5-a0d9ee6a05ed.gif" width="200">|
 
 # 보완할 점
-- SummaryScrollView에서 카테고리 종류에 따라 ImageView를 변경하는 기능을 추가 구현할 예정입니다.
-- Localization을 추가 구현할 예정입니다. (SummaryScrollView의 언어, 카테고리명, InfoTableView의 언어 항목 등)
-- Quick/Numble을 활용하여 ViewModel 테스트 코드를 진행할 예정입니다.
+- 추가 구현할 내용을 주석으로 남겨두었습니다.
+    - SummaryScrollView에서 카테고리 종류에 따라 ImageView를 변경하는 기능을 구현할 예정입니다. 
+    - Localization을 구현할 예정입니다. (SummaryScrollView의 언어, 카테고리명, InfoTableView의 언어 항목 등)
+    - 공유 버튼을 구현할 예정입니다.
+    - 상세화면의 스크린샷에서 탭한 항목을 스크린샷 확대 화면에서 나타나도록 구현할 예정입니다.
+    - Quick/Numble을 활용하여 ViewModel 테스트 코드를 진행할 예정입니다.
 - 리뷰 노트 : Lookup API 특성상 서버 데이터 중 평가 개수 (userRatingCount), 앱 크기 (fileSize) 등이 실제 AppStore에서 확인되는 값과 일치하지 않는 경우가 있습니다.
