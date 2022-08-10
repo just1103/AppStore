@@ -45,7 +45,7 @@ final class ScreenshotViewController: UIViewController {
     }
     
     private func configureNavigationBar() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = false
         navigationItem.hidesBackButton = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(

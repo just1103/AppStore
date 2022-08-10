@@ -59,7 +59,7 @@ final class LookupViewController: UIViewController {
     }
     
     private func configureNavigationBar() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = Text.navigationTitle
         navigationItem.backButtonTitle = Design.backButtonTitle

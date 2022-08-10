@@ -180,7 +180,7 @@ final class DetailViewController: UIViewController {
     }
     
     private func configureNavigationBar() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = false
     }
     

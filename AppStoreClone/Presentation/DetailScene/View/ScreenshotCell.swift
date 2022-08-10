@@ -59,6 +59,6 @@ extension ScreenshotCell {
     private enum Design {
         static let imageViewCornerRadius: CGFloat = 15
         static let imageViewBorderWidth: CGFloat = 1
-        static let imageViewBorderColor = UIColor.systemGray4.cgColor
+        static let imageViewBorderColor = UIColor.systemGray3.cgColor
     }
 }

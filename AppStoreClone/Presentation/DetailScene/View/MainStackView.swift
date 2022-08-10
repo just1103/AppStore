@@ -87,7 +87,7 @@ final class MainStackView: UIStackView {  // TODO: 공유 버튼 추가 및 Dele
 extension MainStackView {
     private enum Design {
         static let thumbnailImageViewCornerRadius: CGFloat = 12
-        static let thumbnailImageViewBorderWidth: CGFloat = 1
-        static let thumbnailImageViewBorderColor: CGColor = UIColor.systemGray3.cgColor
+        static let thumbnailImageViewBorderWidth: CGFloat = 0.5
+        static let thumbnailImageViewBorderColor: CGColor = UIColor.systemGray.cgColor
     }
 }
