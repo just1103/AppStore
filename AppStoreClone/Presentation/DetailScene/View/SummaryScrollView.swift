@@ -38,6 +38,7 @@ final class SummaryScrollView: UIScrollView {
         label.textAlignment = .center
         label.font = Design.titleLabelFont
         label.textColor = Design.titleLabelColor
+        label.numberOfLines = 1
         return label
     }()
     private let ratingContentLabel: UILabel = {
@@ -45,6 +46,7 @@ final class SummaryScrollView: UIScrollView {
         label.textAlignment = .center
         label.font = Design.contentLabelFont
         label.textColor = Design.contentLabelColor
+        label.numberOfLines = 1
         return label
     }()
     private var starRatingStackView = StarRatingStackView()
@@ -78,6 +80,7 @@ final class SummaryScrollView: UIScrollView {
         label.textAlignment = .center
         label.font = Design.contentLabelFont
         label.textColor = Design.contentLabelColor
+        label.numberOfLines = 1
         return label
     }()
     private let advisoryRatingSuffixLabel: UILabel = {
@@ -125,6 +128,7 @@ final class SummaryScrollView: UIScrollView {
         label.textAlignment = .center
         label.font = Design.descriptionFont
         label.textColor = Design.descriptionColor
+        label.numberOfLines = 1
         return label
     }()
     private let developerStackView: UIStackView = {
@@ -163,6 +167,7 @@ final class SummaryScrollView: UIScrollView {
         label.textAlignment = .center
         label.font = Design.descriptionFont
         label.textColor = Design.descriptionColor
+        label.numberOfLines = 1
         return label
     }()
     private let languageStackView: UIStackView = {
@@ -195,6 +200,7 @@ final class SummaryScrollView: UIScrollView {
         label.textAlignment = .center
         label.font = Design.contentLabelFont
         label.textColor = Design.contentLabelColor
+        label.numberOfLines = 1
         return label
     }()
     private let languageDescriptionLabel: UILabel = {
@@ -203,6 +209,7 @@ final class SummaryScrollView: UIScrollView {
         label.textAlignment = .center
         label.font = Design.descriptionFont
         label.textColor = Design.descriptionColor
+        label.numberOfLines = 1
         return label
     }()
     
@@ -292,7 +299,7 @@ final class SummaryScrollView: UIScrollView {
 extension SummaryScrollView {
     private enum Design {
         static let innerStackViewVerticalInset: CGFloat = 0
-        static let innerStackViewHorizontalInset: CGFloat = 8
+        static let innerStackViewHorizontalInset: CGFloat = 10
         static let innerStackViewSpacing: CGFloat = 8
         static let titleLabelFont: UIFont = .preferredFont(forTextStyle: .caption2)
         static let titleLabelColor: UIColor = .systemGray2

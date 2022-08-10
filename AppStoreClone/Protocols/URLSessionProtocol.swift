@@ -5,8 +5,8 @@
 //  Created by Hyoju Son on 2022/08/07.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 protocol URLSessionProtocol {
     func request<T: Decodable>(urlRequest: URLRequest) -> AnyPublisher<T, NetworkError>

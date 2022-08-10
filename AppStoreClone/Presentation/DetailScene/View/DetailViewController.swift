@@ -5,8 +5,8 @@
 //  Created by Hyoju Son on 2022/08/08.
 //
 
-import UIKit
 import Combine
+import UIKit
 
 final class DetailViewController: UIViewController {
     // MARK: - Nested Types
@@ -120,7 +120,7 @@ final class DetailViewController: UIViewController {
     private let unfoldButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("펼치기", for: .normal)
+        button.setTitle(Text.unfoldButtonTitleForUnfolding, for: .normal)
         button.titleLabel?.font = .preferredFont(forTextStyle: .body)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .systemBlue
@@ -301,23 +301,11 @@ extension DetailViewController {
         guard let output = viewModel?.transform(input) else { return }
 
         configureUIContents(with: output.appItem)
-//        configureCollectionView(with: output.appItem)
         toggleDescriptionLabelHeight(with: output.isDescriptionLabelUnfolded)
     }
     
-//    private func configureCollectionView(with appItem: AnyPublisher<AppItem, Never>) {
-//        appItem
-//            .receive(on: DispatchQueue.main)  // FIXME: Stream 갈라지도록 구성
-//            .map { [weak self] appItem -> [String] in
-//                return appItem.screenshotURLs
-//            }
-//            .eraseToAnyPublisher()
-//            .subscribe(screenshotCollectionView.itemsSubscriber(cellIdentifier: "ScreenshotCell", cellType: ScreenshotCell.self, cellConfig: { cell, indexPath, model in
-//
-//            }))
-    
-    private func configureUIContents(with appItem: AnyPublisher<AppItem, Never>) {
-        appItem
+    private func configureUIContents(with outputPublisher: AnyPublisher<AppItem, Never>) {
+        outputPublisher
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] appItem in
                 self?.setupUI(appItem)
@@ -335,18 +323,18 @@ extension DetailViewController {
         summaryScrollView.apply(appItem)
         
         screenshotURLs = appItem.screenshotURLs
-        screenshotCollectionView.reloadData()  // TODO: Combine binding 사용하여 개선
+        screenshotCollectionView.reloadData()  // TODO: Combine DataSources 사용하여 개선 가능
         
         descriptionLabel.text = appItem.appDescription
         
         let fileSizeMegaBytes = (Double(appItem.fileSizeBytes) ?? 0) / Double(1024 * 1024)
         let fileSizeText = String(format: "%.1f", fileSizeMegaBytes) + "MB"
-        let languageDescription = appItem.languageCodesISO2A.joined(separator: " & ")
+        let languageDescription = appItem.languageCodesISO2A.joined(separator: " & ")  // TODO: Localization
         let appItemInfoContents = [
             appItem.artistName, fileSizeText, languageDescription, appItem.contentAdvisoryRating, appItem.formattedPrice
         ]
         infoContents.append(contentsOf: appItemInfoContents)
-        infoTableView.reloadData()  // TODO: Combine binding 사용하여 개선
+        infoTableView.reloadData()  // TODO: Combine DataSources 사용하여 개선 가능
     }
     
     // TODO: Binding 메서드 매개변수 통일

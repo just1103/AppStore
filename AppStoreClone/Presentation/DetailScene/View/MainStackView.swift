@@ -43,7 +43,7 @@ final class MainStackView: UIStackView {  // TODO: 공유 버튼 추가 및 Dele
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
         label.font = .preferredFont(forTextStyle: .body)
-        label.textColor = .systemGray3
+        label.textColor = .systemGray
         label.numberOfLines = 1
         return label
     }()

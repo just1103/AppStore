@@ -5,8 +5,8 @@
 //  Created by Hyoju Son on 2022/08/08.
 //
 
-import XCTest
 import Combine
+import XCTest
 @testable import AppStoreClone
 
 class MockURLSessionTests: XCTestCase {

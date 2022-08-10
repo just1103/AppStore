@@ -5,8 +5,8 @@
 //  Created by Hyoju Son on 2022/08/07.
 //
 
-import Foundation
 import Combine
+import Foundation
 @testable import AppStoreClone
 
 final class MockURLSession: URLSessionProtocol {

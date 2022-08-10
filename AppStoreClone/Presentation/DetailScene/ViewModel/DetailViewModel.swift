@@ -5,8 +5,8 @@
 //  Created by Hyoju Son on 2022/08/08.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 final class DetailViewModel: ViewModelProtocol {
     // MARK: - Nested Types

@@ -5,8 +5,8 @@
 //  Created by Hyoju Son on 2022/08/09.
 //
 
-import UIKit
 import Combine
+import UIKit
 
 final class ScreenshotViewController: UIViewController {
     // MARK: - Properties
@@ -118,21 +118,17 @@ extension ScreenshotViewController {
 
         guard let output = viewModel?.transform(input) else { return }
 
-        configureUIContents(with: output.screenshotURLs)
+        configureCollectionView(with: output.screenshotURLs)
     }
     
-    private func configureUIContents(with screenshotURLs: AnyPublisher<[String], Never>) {
-        screenshotURLs
+    private func configureCollectionView(with outputPublisher: AnyPublisher<[String], Never>) {
+        outputPublisher
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] screenshotURLs in
-                self?.setupUI(screenshotURLs)
+                self?.screenshotURLs = screenshotURLs
+                self?.screenshotCollectionView.reloadData()  // TODO: Combine DataSources 사용하여 개선
             })
             .store(in: &cancellableBag)
-    }
-    
-    private func setupUI(_ screenshotURLs: [String]) {
-        self.screenshotURLs = screenshotURLs
-        screenshotCollectionView.reloadData()  // TODO: Combine binding 사용하여 개선
     }
 }
 

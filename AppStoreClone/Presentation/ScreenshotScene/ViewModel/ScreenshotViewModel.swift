@@ -5,8 +5,8 @@
 //  Created by Hyoju Son on 2022/08/09.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 final class ScreenshotViewModel: ViewModelProtocol {
     // MARK: - Nested Types

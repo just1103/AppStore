@@ -5,8 +5,8 @@
 //  Created by Hyoju Son on 2022/08/04.
 //
 
-import UIKit
 import Combine
+import UIKit
 
 final class LookupViewController: UIViewController {
     // MARK: - Properties
@@ -19,7 +19,7 @@ final class LookupViewController: UIViewController {
         textField.clearButtonMode = .always
         return textField
     }()
-    private let descriptionLabel: UILabel = {  // TODO: Alert로 대체 가능
+    private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
@@ -99,10 +99,8 @@ extension LookupViewController {
         configureSearchTextViewAndLabel(with: output.isAPIResponseValid)
     }
     
-    private func configureSearchTextViewAndLabel(
-        with isAPIResponseValid: AnyPublisher<Bool, Never>
-    ) {
-        isAPIResponseValid
+    private func configureSearchTextViewAndLabel(with outputPublisher: AnyPublisher<Bool, Never>) {
+        outputPublisher
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] isAPIResponseValid in
                 if isAPIResponseValid == false {
