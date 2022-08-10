@@ -210,8 +210,8 @@
 		361A992C289B6F2500C16D00 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				361A992D289B6F3A00C16D00 /* CoordinatorProtocol.swift */,
 				36EBE0D9289FF32300B92BB4 /* APIProtocol.swift */,
+				361A992D289B6F3A00C16D00 /* CoordinatorProtocol.swift */,
 				36EBE0DE289FF52600B92BB4 /* URLSessionProtocol.swift */,
 				36EBE0F528A11A9A00B92BB4 /* ViewModelProtocol.swift */,
 			);
@@ -284,15 +284,15 @@
 		36EBE0E0289FF6C100B92BB4 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				36EBE0E1289FF6D500B92BB4 /* URLRequest+Initializer.swift */,
-				36EBE10428A2200B00B92BB4 /* UIImageView+Load+Cache.swift */,
 				36EBE10628A2202D00B92BB4 /* Array+Subscript.swift */,
-				36EBE10E28A23E2000B92BB4 /* UICollectionViewCell+Identifier.swift */,
-				36EBE10C28A22BAD00B92BB4 /* UICollectionView+CellRegister+Reuse.swift */,
-				36DAE52528A27B540073322E /* UITableViewCell+Identifier.swift */,
-				36DAE52328A27B0E0073322E /* UITableView+CellRegister+Reuse.swift */,
-				36DCB9C228A385B4005F71B9 /* UIStackView+VerticalSeparator.swift */,
 				36DCB9C628A3A11F005F71B9 /* Int+DigitWrapping.swift */,
+				36EBE10C28A22BAD00B92BB4 /* UICollectionView+CellRegister+Reuse.swift */,
+				36EBE10E28A23E2000B92BB4 /* UICollectionViewCell+Identifier.swift */,
+				36EBE10428A2200B00B92BB4 /* UIImageView+Load+Cache.swift */,
+				36DCB9C228A385B4005F71B9 /* UIStackView+VerticalSeparator.swift */,
+				36DAE52328A27B0E0073322E /* UITableView+CellRegister+Reuse.swift */,
+				36DAE52528A27B540073322E /* UITableViewCell+Identifier.swift */,
+				36EBE0E1289FF6D500B92BB4 /* URLRequest+Initializer.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
