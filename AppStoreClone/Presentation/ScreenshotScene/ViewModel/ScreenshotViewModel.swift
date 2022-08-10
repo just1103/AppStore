@@ -39,7 +39,7 @@ final class ScreenshotViewModel: ViewModelProtocol {
     // MARK: - Methods
     func transform(_ input: Input) -> Output {
         let screenshotURLs = configureScreenshot()
-        configureRightBarButtonDidTapObserver(by: input.rightBarButtonDidTap)
+        configureRightBarButtonDidTapSubscriber(for: input.rightBarButtonDidTap)
         
         let output = Output(
             screenshotURLs: screenshotURLs
@@ -52,8 +52,8 @@ final class ScreenshotViewModel: ViewModelProtocol {
         return Just(self.screenshotURLs).eraseToAnyPublisher()
     }
     
-    private func configureRightBarButtonDidTapObserver(by inputObservable: AnyPublisher<Void, Never>) {
-        inputObservable
+    private func configureRightBarButtonDidTapSubscriber(for inputPublisher: AnyPublisher<Void, Never>) {
+        inputPublisher
             .sink(receiveValue: { [weak self] _ in
                 self?.coordinator.popCurrentPage()
             })

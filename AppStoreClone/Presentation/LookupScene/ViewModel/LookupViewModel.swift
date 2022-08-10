@@ -29,15 +29,17 @@ final class LookupViewModel: ViewModelProtocol {
     
     // MARK: - Methods
     func transform(_ input: Input) -> Output {
-        let isAPIResponseValid = configureSearchTextDidReturnObserver(by: input.searchTextDidReturn)
+        let isAPIResponseValid = configureSearchTextDidReturnSubscriber(for: input.searchTextDidReturn)
         
         let output = Output(isAPIResponseValid: isAPIResponseValid)
         
         return output
     }
     
-    private func configureSearchTextDidReturnObserver(by searchText: AnyPublisher<String, Never>) -> AnyPublisher<Bool, Never> {
-        return searchText
+    private func configureSearchTextDidReturnSubscriber(
+        for inputPublisher: AnyPublisher<String, Never>
+    ) -> AnyPublisher<Bool, Never> {
+        return inputPublisher
             .filter { $0.isEmpty == false }
             .flatMap { [weak self] searchText -> AnyPublisher<Bool, Never> in
                 guard let self = self else { return Just(false).eraseToAnyPublisher() }

@@ -40,9 +40,9 @@ final class DetailViewModel: ViewModelProtocol {
     // MARK: - Methods
     func transform(_ input: Input) -> Output {
         let appItem = configureBookItem()
-        configureLeftBarButtonDidTapObserver(by: input.leftBarButtonDidTap)
-        configureScreenshotCellDidSelectObserver(by: input.screenshotCellDidSelect)
-        let isDescriptionLabelUnfolded = configureUnfoldButtonDidTapObserver(by: input.unfoldButtonDidTap)
+        configureLeftBarButtonDidTapSubscriber(for: input.leftBarButtonDidTap)
+        configureScreenshotCellDidSelectSubscriber(for: input.screenshotCellDidSelect)
+        let isDescriptionLabelUnfolded = configureUnfoldButtonDidTapSubscriber(for: input.unfoldButtonDidTap)
         
         let output = Output(
             appItem: appItem,
@@ -56,16 +56,16 @@ final class DetailViewModel: ViewModelProtocol {
         return Just(self.appItem).eraseToAnyPublisher()
     }
     
-    private func configureLeftBarButtonDidTapObserver(by inputObservable: AnyPublisher<Void, Never>) {
-        inputObservable
+    private func configureLeftBarButtonDidTapSubscriber(for inputPublisher: AnyPublisher<Void, Never>) {
+        inputPublisher
             .sink(receiveValue: { [weak self] _ in
                 self?.coordinator.popCurrentPage()
             })
             .store(in: &cancellableBag)
     }
     
-    private func configureScreenshotCellDidSelectObserver(by inputObservable: AnyPublisher<Int, Never>) {
-        inputObservable
+    private func configureScreenshotCellDidSelectSubscriber(for inputPublisher: AnyPublisher<Int, Never>) {
+        inputPublisher
             .sink(receiveValue: { [weak self] indexPath in
                 guard let self = self else { return }
                 DispatchQueue.main.async { 
@@ -75,8 +75,10 @@ final class DetailViewModel: ViewModelProtocol {
             .store(in: &cancellableBag)
     }
     
-    private func configureUnfoldButtonDidTapObserver(by inputObservable: AnyPublisher<Void, Never>) -> AnyPublisher<Bool, Never> {
-        inputObservable
+    private func configureUnfoldButtonDidTapSubscriber(
+        for inputPublisher: AnyPublisher<Void, Never>
+    ) -> AnyPublisher<Bool, Never> {
+        inputPublisher
             .map { [weak self] _ -> Bool in
                 guard let self = self else { return false }
                 self.isCurrentDescriptionLabelUnfolded.toggle()
