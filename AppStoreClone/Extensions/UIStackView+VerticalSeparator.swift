@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIStackView {
-    func addVerticalSeparators(color: UIColor = .systemGray3, heightRatio: CGFloat = 0.5) {
+    func addVerticalSeparators(color: UIColor = .systemGray3, heightRatio: CGFloat = 0.5, spacing: CGFloat = 0) {
         let separatorCount = arrangedSubviews.count - 1
         
         (0..<separatorCount).forEach { index in
@@ -19,7 +19,7 @@ extension UIStackView {
             
             NSLayoutConstraint.activate([
                 separatorView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: heightRatio),
-                separatorView.trailingAnchor.constraint(equalTo: subview.trailingAnchor),
+                separatorView.trailingAnchor.constraint(equalTo: subview.trailingAnchor, constant: spacing),
                 separatorView.centerYAnchor.constraint(equalTo: centerYAnchor)
             ])
         }
