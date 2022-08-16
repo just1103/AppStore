@@ -122,15 +122,23 @@ extension ScreenshotViewController {
 
         guard let output = viewModel?.transform(input) else { return }
 
-        configureCollectionView(with: output.screenshotURLs)
+        configureCollectionView(with: output.screenshotURLsAndIndex)
     }
     
-    private func configureCollectionView(with outputPublisher: AnyPublisher<[String], Never>) {
+    private func configureCollectionView(with outputPublisher: AnyPublisher<([String], Int), Never>) {
         outputPublisher
             .receive(on: DispatchQueue.main)
-            .sink(receiveValue: { [weak self] screenshotURLs in
+            .sink(receiveValue: { [weak self] screenshotURLsAndIndex in
+                let (screenshotURLs, currentIndex) = screenshotURLsAndIndex
                 self?.screenshotURLs = screenshotURLs
-                self?.screenshotCollectionView.reloadData()  // TODO: Combine DataSources 사용하여 개선
+                let currentSection = 0
+                
+                self?.screenshotCollectionView.reloadData()
+                self?.screenshotCollectionView.scrollToItem(
+                    at: IndexPath(item: currentIndex, section: currentSection),
+                    at: .centeredVertically,
+                    animated: false
+                )
             })
             .store(in: &cancellableBag)
     }

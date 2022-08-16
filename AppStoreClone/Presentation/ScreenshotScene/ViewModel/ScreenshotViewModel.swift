@@ -12,11 +12,10 @@ final class ScreenshotViewModel: ViewModelProtocol {
     // MARK: - Nested Types
     struct Input {
         let rightBarButtonDidTap: AnyPublisher<Void, Never>
-//        let cellDidScroll: AnyPublisher<Void, Never>  // TODO: 추가 구현
     }
     
     struct Output {
-        let screenshotURLs: AnyPublisher<[String], Never>
+        let screenshotURLsAndIndex: AnyPublisher<([String], Int), Never>
     }
     
     // MARK: - Properties
@@ -38,18 +37,18 @@ final class ScreenshotViewModel: ViewModelProtocol {
     
     // MARK: - Methods
     func transform(_ input: Input) -> Output {
-        let screenshotURLs = configureScreenshot()
+        let screenshotURLsAndIndex = configureScreenshotAndIndex()
         configureRightBarButtonDidTapSubscriber(for: input.rightBarButtonDidTap)
         
         let output = Output(
-            screenshotURLs: screenshotURLs
+            screenshotURLsAndIndex: screenshotURLsAndIndex
         )
         
         return output
     }
                             
-    private func configureScreenshot() -> AnyPublisher<[String], Never> {
-        return Just(self.screenshotURLs).eraseToAnyPublisher()
+    private func configureScreenshotAndIndex() -> AnyPublisher<([String], Int), Never> {
+        return Just((self.screenshotURLs, currentIndex)).eraseToAnyPublisher()
     }
     
     private func configureRightBarButtonDidTapSubscriber(for inputPublisher: AnyPublisher<Void, Never>) {
