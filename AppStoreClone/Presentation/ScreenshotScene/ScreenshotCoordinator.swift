@@ -32,8 +32,8 @@ final class ScreenshotCoordinator: CoordinatorProtocol {
         delegate.removeFromChildCoordinators(coordinator: self)
     }
     
-    func popCurrentPage() {
-        navigationController?.popViewController(animated: true)
+    func dismissCurrentPage() {
+        navigationController?.dismiss(animated: true)
     }
     
     private func showScreenshotPage(with screenshotURLs: [String], selectedIndex: Int) {
@@ -44,7 +44,9 @@ final class ScreenshotCoordinator: CoordinatorProtocol {
             selectedIndex: selectedIndex
         )
         let screenshotViewController = ScreenshotViewController(viewModel: screenshotViewModel)
-
-        navigationController.pushViewController(screenshotViewController, animated: false)
+        let innerNavigationController = UINavigationController(rootViewController: screenshotViewController)
+        
+        innerNavigationController.modalPresentationStyle = .fullScreen
+        navigationController.present(innerNavigationController, animated: true)
     }
 }

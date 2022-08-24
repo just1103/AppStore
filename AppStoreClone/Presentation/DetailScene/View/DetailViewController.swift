@@ -142,6 +142,7 @@ final class DetailViewController: UIViewController {
     private var screenshotURLs = [String]()
     private var infoContents = [String]()
     private let leftBarButtonDidTap = PassthroughSubject<Void, Never>()
+    private let shareButtonDidtap = PassthroughSubject<Void, Never>()
     private let screenshotCellDidSelect = PassthroughSubject<Int, Never>()
     private let unfoldButtonDidTap = PassthroughSubject<Void, Never>()
     private var cancellableBag = Set<AnyCancellable>()
@@ -183,6 +184,8 @@ final class DetailViewController: UIViewController {
     }
     
     private func configureHierarchy() {
+        mainStackView.delegate = self
+        
         view.addSubview(containerScrollView)
         containerScrollView.addSubview(scrollContentStackView)
         scrollContentStackView.addArrangedSubview(mainStackView)
@@ -210,6 +213,7 @@ final class DetailViewController: UIViewController {
             scrollContentStackView.trailingAnchor.constraint(equalTo: containerScrollView.trailingAnchor),
             scrollContentStackView.bottomAnchor.constraint(equalTo: containerScrollView.bottomAnchor),
             
+            // FIXME: iPad에서 ScrollView 너비가 화면에 꽉차게 수정
             summaryUpperlineView.heightAnchor.constraint(equalToConstant: 0.5),
             summaryScrollView.heightAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.18),
             summaryScrollView.contentLayoutGuide.heightAnchor.constraint(equalTo: summaryScrollView.heightAnchor),
@@ -279,6 +283,7 @@ extension DetailViewController {
     private func bind() {
         let input = DetailViewModel.Input(
             leftBarButtonDidTap: leftBarButtonDidTap.eraseToAnyPublisher(),
+            sharebuttonDidTap: shareButtonDidtap.eraseToAnyPublisher(),
             screenshotCellDidSelect: screenshotCellDidSelect.eraseToAnyPublisher(),
             unfoldButtonDidTap: unfoldButtonDidTap.eraseToAnyPublisher()
         )
@@ -286,6 +291,7 @@ extension DetailViewController {
         guard let output = viewModel?.transform(input) else { return }
 
         configureUIContents(with: output.appItem)
+        configureActivityViewController(with: output.appShareActivityItems)
         toggleDescriptionLabelHeight(with: output.isDescriptionLabelUnfolded)
     }
     
@@ -300,7 +306,7 @@ extension DetailViewController {
 
     private func setupUI(_ appItem: AppItem) {
         mainStackView.apply(
-            thumbnailURL: appItem.artworkURL100,
+            appIconURL: appItem.artworkURL100,
             title: appItem.trackName,
             genre: appItem.primaryGenreName
         )
@@ -322,6 +328,33 @@ extension DetailViewController {
         infoTableView.reloadData()  // TODO: Combine DataSources 사용하여 개선 가능
     }
     
+    private func configureActivityViewController(with outputPublisher: AnyPublisher<[String], Never>) {
+        outputPublisher
+            .receive(on: DispatchQueue.main)
+            .sink(receiveValue: { [weak self] appShareActivityItems in
+                guard
+                    let appIconURL = appShareActivityItems[safe: 0],
+                    let trackName = appShareActivityItems[safe: 1],
+                    let genreName = appShareActivityItems[safe: 2],
+                    let trackViewURL = appShareActivityItems[safe: 3]
+                else { return }
+                
+                let items = [AppShareActivityItemSource(
+                    appIconURL: appIconURL, 
+                    trackName: trackName,
+                    genreName: genreName,
+                    trackViewURL: trackViewURL
+                )]
+                
+                let activityViewController = UIActivityViewController(activityItems: items, applicationActivities: nil)
+                activityViewController.popoverPresentationController?.sourceView = self?.mainStackView.shareButton
+                activityViewController.popoverPresentationController?.sourceRect = self?.mainStackView.shareButton.bounds ?? CGRect()
+                activityViewController.popoverPresentationController?.permittedArrowDirections = .up
+                self?.present(activityViewController, animated: true)
+            })
+            .store(in: &cancellableBag)
+    }
+    
     private func toggleDescriptionLabelHeight(with outputPublisher: AnyPublisher<Bool, Never>) {
         outputPublisher
             .sink { [weak self] isDescriptionLabelUnfolded in
@@ -340,7 +373,7 @@ extension DetailViewController {
 // MARK: - CollectionView DataSource
 extension DetailViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return screenshotURLs.count // setupUI 보다 나중에 불림
+        return screenshotURLs.count 
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -375,6 +408,13 @@ extension DetailViewController: UITableViewDataSource {
         )
         
         return cell
+    }
+}
+
+// MARK: - AppShareActivityViewPresenterDelegate
+extension DetailViewController: AppShareActivityViewPresenterDelegate {
+    func shareButtonDidTap() {
+        shareButtonDidtap.send(())
     }
 }
 

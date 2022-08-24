@@ -21,7 +21,7 @@ final class ScreenshotViewModel: ViewModelProtocol {
     // MARK: - Properties
     private weak var coordinator: ScreenshotCoordinator!
     private let screenshotURLs: [String]
-    private var currentIndex = 0  // TODO: 활용
+    private var currentIndex = 0  
     private var cancellableBag = Set<AnyCancellable>()
     
     // MARK: - Initializers
@@ -54,7 +54,7 @@ final class ScreenshotViewModel: ViewModelProtocol {
     private func configureRightBarButtonDidTapSubscriber(for inputPublisher: AnyPublisher<Void, Never>) {
         inputPublisher
             .sink(receiveValue: { [weak self] _ in
-                self?.coordinator.popCurrentPage()
+                self?.coordinator.dismissCurrentPage()
             })
             .store(in: &cancellableBag)
     }

@@ -7,14 +7,18 @@
 
 import UIKit
 
-final class MainStackView: UIView {  // TODO: 공유 버튼 추가 및 Delegate 적용
+protocol AppShareActivityViewPresenterDelegate: AnyObject {
+    func shareButtonDidTap()
+}
+
+final class MainStackView: UIStackView {
     // MARK: - Properties
-    private let thumbnailImageView: UIImageView = {
+    private let appIconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.layer.cornerRadius = Design.thumbnailImageViewCornerRadius
-        imageView.layer.borderWidth = Design.thumbnailImageViewBorderWidth
-        imageView.layer.borderColor = Design.thumbnailImageViewBorderColor
+        imageView.layer.cornerRadius = Design.appIconImageViewCornerRadius
+        imageView.layer.borderWidth = Design.appIconImageViewBorderWidth
+        imageView.layer.borderColor = Design.appIconImageViewBorderColor
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -24,7 +28,7 @@ final class MainStackView: UIView {  // TODO: 공유 버튼 추가 및 Delegate 
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.distribution = .fill
-        stackView.spacing = 8
+        stackView.spacing = 5
         return stackView
     }()
     private let titleLabel: UILabel = {
@@ -38,7 +42,7 @@ final class MainStackView: UIView {  // TODO: 공유 버튼 추가 및 Delegate 
         label.setContentHuggingPriority(.required, for: .vertical)
         return label
     }()
-    private let genreLabel: UILabel = {  // TODO: 하단에 공유 버튼 추가하고 정렬 조정
+    private let genreLabel: UILabel = {  
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
@@ -47,59 +51,72 @@ final class MainStackView: UIView {  // TODO: 공유 버튼 추가 및 Delegate 
         label.numberOfLines = 1
         return label
     }()
-    private let shareButton: UIButton = {
+    private(set) var shareButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(Content.shareButtonImage, for: .normal)
+        button.setImage(UIImage(systemName: Text.shareButtonImageSystemName), for: .normal)
         return button
     }()
+    
+    weak var delegate: AppShareActivityViewPresenterDelegate?
     
     // MARK: - Initializers
     convenience init() {
         self.init(frame: .zero)
         configureView()
+        configureShareButton()
         configureHierarchy()
     }
     
     // MARK: - Methods
-    func apply(thumbnailURL: String, title: String, genre: String) {
-        thumbnailImageView.loadCachedImage(of: thumbnailURL)
+    func apply(appIconURL: String, title: String, genre: String) {
+        appIconImageView.loadCachedImage(of: appIconURL)
         titleLabel.text = title
         genreLabel.text = genre
     }
     
     private func configureView() {
         translatesAutoresizingMaskIntoConstraints = false
-//        axis = .horizontal
-//        alignment = .fill
-//        distribution = .fill
-//        spacing = 12
+        axis = .horizontal
+        alignment = .top
+        distribution = .fill
+        spacing = 12
+    }
+    
+    private func configureShareButton() {
+        shareButton.addTarget(delegate, action: #selector(shareButtonDidTap), for: .touchUpInside)
+    }
+    
+    @objc
+    private func shareButtonDidTap() {
+        delegate?.shareButtonDidTap()
     }
     
     private func configureHierarchy() {
-        addSubview(<#T##view: UIView##UIView#>)
-        addArrangedSubview(thumbnailImageView)
+        addArrangedSubview(appIconImageView)
         addArrangedSubview(titleDescriptionStackView)
         titleDescriptionStackView.addArrangedSubview(titleLabel)
         titleDescriptionStackView.addArrangedSubview(genreLabel)
-        addArrangedSubview(shareButton)
+        addSubview(shareButton)
         
         NSLayoutConstraint.activate([
-            thumbnailImageView.heightAnchor.constraint(equalTo: thumbnailImageView.widthAnchor),
-            thumbnailImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.3),
+            appIconImageView.heightAnchor.constraint(equalTo: appIconImageView.widthAnchor),
+            appIconImageView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.3),
+            shareButton.bottomAnchor.constraint(equalTo: appIconImageView.bottomAnchor),
+            shareButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
         ])
     }
 }
 
 // MARK: - Namespace
 extension MainStackView {
-    private enum Design {
-        static let thumbnailImageViewCornerRadius: CGFloat = 12
-        static let thumbnailImageViewBorderWidth: CGFloat = 0.5
-        static let thumbnailImageViewBorderColor: CGColor = UIColor.systemGray.cgColor
+    private enum Text {
+        static let shareButtonImageSystemName = "square.and.arrow.up"
     }
-    
-    private enum Content {
-        static let shareButtonImage = UIImage(systemName: "square.and.arrow.up")
+
+    private enum Design {
+        static let appIconImageViewCornerRadius: CGFloat = 12
+        static let appIconImageViewBorderWidth: CGFloat = 0.5
+        static let appIconImageViewBorderColor: CGColor = UIColor.systemGray.cgColor
     }
 }

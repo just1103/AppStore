@@ -11,6 +11,7 @@ struct AppItem {
     let artworkURL100: String
     let trackName: String
     let primaryGenreName: String
+    let trackViewURL: String
     let averageUserRating: Double
     let userRatingCount: Int
     let screenshotURLs: [String]
@@ -29,6 +30,7 @@ struct AppItem {
             artworkURL100: appItemDTO.artworkURL100,
             trackName: appItemDTO.trackName,
             primaryGenreName: appItemDTO.primaryGenreName,
+            trackViewURL: appItemDTO.trackViewURL,
             averageUserRating: appItemDTO.averageUserRating,
             userRatingCount: appItemDTO.userRatingCount,
             screenshotURLs: appItemDTO.screenshotURLs,

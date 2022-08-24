@@ -46,7 +46,8 @@ final class AppShareActivityItemSource: NSObject, UIActivityItemSource {
         let metadata = LPLinkMetadata()
         
         if let cachedImage = ImageCacheManager.getObject(forKey: appIconURL) {
-            metadata.iconProvider = NSItemProvider(object: cachedImage)  // FIXME: AppIcon 넣으면 모서리 둥글게 안나옴
+            // FIXME: AppIcon 모서리가 둥글게 안나옴 (iPad는 둥글게 나옴)
+            metadata.iconProvider = NSItemProvider(object: cachedImage)
         }
         metadata.title = trackName
         metadata.originalURL = URL(fileURLWithPath: genreName)

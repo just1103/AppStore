@@ -11,6 +11,7 @@ struct AppItemDTO: Decodable {
     let artworkURL100: String
     let trackName: String
     let primaryGenreName: String
+    let trackViewURL: String
     let averageUserRating: Double
     let userRatingCount: Int  
     let screenshotURLs: [String]
@@ -27,6 +28,7 @@ struct AppItemDTO: Decodable {
     enum CodingKeys: String, CodingKey {
         case artworkURL100 = "artworkUrl100"
         case trackName, primaryGenreName, averageUserRating, userRatingCount
+        case trackViewURL = "trackViewUrl"
         case screenshotURLs = "screenshotUrls"
         case version, currentVersionReleaseDate, releaseNotes
         case appDescription = "description"

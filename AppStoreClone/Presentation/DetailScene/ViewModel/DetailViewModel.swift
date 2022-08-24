@@ -12,12 +12,14 @@ final class DetailViewModel: ViewModelProtocol {
     // MARK: - Nested Types
     struct Input {
         let leftBarButtonDidTap: AnyPublisher<Void, Never>
+        let sharebuttonDidTap: AnyPublisher<Void, Never>
         let screenshotCellDidSelect: AnyPublisher<Int, Never>
         let unfoldButtonDidTap: AnyPublisher<Void, Never>
     }
     
     struct Output {
         let appItem: AnyPublisher<AppItem, Never>
+        let appShareActivityItems: AnyPublisher<[String], Never>
         let isDescriptionLabelUnfolded: AnyPublisher<Bool, Never>
     }
     
@@ -41,11 +43,13 @@ final class DetailViewModel: ViewModelProtocol {
     func transform(_ input: Input) -> Output {
         let appItem = configureBookItem()
         configureLeftBarButtonDidTapSubscriber(for: input.leftBarButtonDidTap)
+        let appShareActivityItems = configureSharebuttonDidTapSubscriber(for: input.sharebuttonDidTap)
         configureScreenshotCellDidSelectSubscriber(for: input.screenshotCellDidSelect)
         let isDescriptionLabelUnfolded = configureUnfoldButtonDidTapSubscriber(for: input.unfoldButtonDidTap)
         
         let output = Output(
             appItem: appItem,
+            appShareActivityItems: appShareActivityItems,
             isDescriptionLabelUnfolded: isDescriptionLabelUnfolded
         )
         
@@ -62,6 +66,25 @@ final class DetailViewModel: ViewModelProtocol {
                 self?.coordinator.popCurrentPage()
             })
             .store(in: &cancellableBag)
+    }
+    
+    private func configureSharebuttonDidTapSubscriber(
+        for inputPublisher: AnyPublisher<Void, Never>
+    ) -> AnyPublisher<[String], Never> {
+        inputPublisher
+            .map { [weak self] _ -> [String] in
+                guard let self = self else {
+                    return [Text.emptyString]
+                }
+                
+                let appIconURL = self.appItem.artworkURL100
+                let trackName = self.appItem.trackName
+                let genreName = self.appItem.primaryGenreName
+                let trackViewURL = self.appItem.trackViewURL
+
+                return [appIconURL, trackName, genreName, trackViewURL]
+            }
+            .eraseToAnyPublisher()
     }
     
     private func configureScreenshotCellDidSelectSubscriber(for inputPublisher: AnyPublisher<Int, Never>) {
@@ -85,5 +108,12 @@ final class DetailViewModel: ViewModelProtocol {
                 return self.isCurrentDescriptionLabelUnfolded
             }
             .eraseToAnyPublisher()
+    }
+}
+
+// MARK: - NameSpaces
+extension DetailViewModel {
+    private enum Text {
+        static let emptyString = ""
     }
 }

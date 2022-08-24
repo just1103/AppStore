@@ -9,8 +9,7 @@ import UIKit
 
 extension UIImageView {
     func loadCachedImage(of key: String) {
-        let cacheKey = NSString(string: key)
-        if let cachedImage = ImageCacheManager.shared.object(forKey: cacheKey) {
+        if let cachedImage = ImageCacheManager.getObject(forKey: key) {
             self.image = cachedImage
             return
         }
@@ -29,7 +28,7 @@ extension UIImageView {
                 let loadedImage = UIImage(data: imageData)
             else { return }
             
-            ImageCacheManager.shared.setObject(loadedImage, forKey: cacheKey)
+            ImageCacheManager.setObject(image: loadedImage, forKey: key)
             
             DispatchQueue.main.async { [weak self] in
                 self?.image = loadedImage
