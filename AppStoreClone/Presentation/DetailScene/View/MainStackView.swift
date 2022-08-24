@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MainStackView: UIStackView {  // TODO: 공유 버튼 추가 및 Delegate 적용
+final class MainStackView: UIView {  // TODO: 공유 버튼 추가 및 Delegate 적용
     // MARK: - Properties
     private let thumbnailImageView: UIImageView = {
         let imageView = UIImageView()
@@ -47,11 +47,17 @@ final class MainStackView: UIStackView {  // TODO: 공유 버튼 추가 및 Dele
         label.numberOfLines = 1
         return label
     }()
+    private let shareButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(Content.shareButtonImage, for: .normal)
+        return button
+    }()
     
     // MARK: - Initializers
     convenience init() {
         self.init(frame: .zero)
-        configureStackView()
+        configureView()
         configureHierarchy()
     }
     
@@ -62,19 +68,21 @@ final class MainStackView: UIStackView {  // TODO: 공유 버튼 추가 및 Dele
         genreLabel.text = genre
     }
     
-    private func configureStackView() {
+    private func configureView() {
         translatesAutoresizingMaskIntoConstraints = false
-        axis = .horizontal
-        alignment = .fill
-        distribution = .fill
-        spacing = 12
+//        axis = .horizontal
+//        alignment = .fill
+//        distribution = .fill
+//        spacing = 12
     }
     
     private func configureHierarchy() {
+        addSubview(<#T##view: UIView##UIView#>)
         addArrangedSubview(thumbnailImageView)
         addArrangedSubview(titleDescriptionStackView)
         titleDescriptionStackView.addArrangedSubview(titleLabel)
         titleDescriptionStackView.addArrangedSubview(genreLabel)
+        addArrangedSubview(shareButton)
         
         NSLayoutConstraint.activate([
             thumbnailImageView.heightAnchor.constraint(equalTo: thumbnailImageView.widthAnchor),
@@ -89,5 +97,9 @@ extension MainStackView {
         static let thumbnailImageViewCornerRadius: CGFloat = 12
         static let thumbnailImageViewBorderWidth: CGFloat = 0.5
         static let thumbnailImageViewBorderColor: CGColor = UIColor.systemGray.cgColor
+    }
+    
+    private enum Content {
+        static let shareButtonImage = UIImage(systemName: "square.and.arrow.up")
     }
 }

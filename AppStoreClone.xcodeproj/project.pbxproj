@@ -20,6 +20,7 @@
 		361A993D289B74CF00C16D00 /* AppItemDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A993C289B74CF00C16D00 /* AppItemDTO.swift */; };
 		361A9941289B762200C16D00 /* MockIdusAppItem.json in Resources */ = {isa = PBXBuildFile; fileRef = 361A9940289B762200C16D00 /* MockIdusAppItem.json */; };
 		361A9948289BC61A00C16D00 /* AppItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A9947289BC61A00C16D00 /* AppItem.swift */; };
+		36D9D15828AC4E1E008FBA39 /* AppShareActivityItemSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D9D15728AC4E1E008FBA39 /* AppShareActivityItemSource.swift */; };
 		36DAE52028A25FB90073322E /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DAE51F28A25FB90073322E /* InfoCell.swift */; };
 		36DAE52428A27B0E0073322E /* UITableView+CellRegister+Reuse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DAE52328A27B0E0073322E /* UITableView+CellRegister+Reuse.swift */; };
 		36DAE52628A27B540073322E /* UITableViewCell+Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DAE52528A27B540073322E /* UITableViewCell+Identifier.swift */; };
@@ -81,6 +82,7 @@
 		361A993C289B74CF00C16D00 /* AppItemDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppItemDTO.swift; sourceTree = "<group>"; };
 		361A9940289B762200C16D00 /* MockIdusAppItem.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockIdusAppItem.json; sourceTree = "<group>"; };
 		361A9947289BC61A00C16D00 /* AppItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppItem.swift; sourceTree = "<group>"; };
+		36D9D15728AC4E1E008FBA39 /* AppShareActivityItemSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppShareActivityItemSource.swift; sourceTree = "<group>"; };
 		36DAE51F28A25FB90073322E /* InfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCell.swift; sourceTree = "<group>"; };
 		36DAE52328A27B0E0073322E /* UITableView+CellRegister+Reuse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+CellRegister+Reuse.swift"; sourceTree = "<group>"; };
 		36DAE52528A27B540073322E /* UITableViewCell+Identifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Identifier.swift"; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 			children = (
 				36EBE0FB28A154E400B92BB4 /* DetailViewController.swift */,
 				36EBE0FF28A21C8200B92BB4 /* MainStackView.swift */,
+				36D9D15728AC4E1E008FBA39 /* AppShareActivityItemSource.swift */,
 				36EBE10828A2253D00B92BB4 /* SummaryScrollView.swift */,
 				36DCB9C028A36812005F71B9 /* StarRatingStackView.swift */,
 				36EBE0FD28A219C400B92BB4 /* StarImageView.swift */,
@@ -487,6 +490,7 @@
 				36EBE10328A21E9200B92BB4 /* ImageCacheManager.swift in Sources */,
 				361A98F2289B6A6600C16D00 /* LookupViewController.swift in Sources */,
 				361A9948289BC61A00C16D00 /* AppItem.swift in Sources */,
+				36D9D15828AC4E1E008FBA39 /* AppShareActivityItemSource.swift in Sources */,
 				36EBE10D28A22BAD00B92BB4 /* UICollectionView+CellRegister+Reuse.swift in Sources */,
 				361A992E289B6F3A00C16D00 /* CoordinatorProtocol.swift in Sources */,
 				36DAE52628A27B540073322E /* UITableViewCell+Identifier.swift in Sources */,
