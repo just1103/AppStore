@@ -47,9 +47,8 @@ final class LookupViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateDescriptionLabel()
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.largeTitleDisplayMode = .always
+        clearDescriptionLabel()
+        updateNavigationTitleDisplayMode()
     }
 
     // MARK: - Methods
@@ -63,6 +62,7 @@ final class LookupViewController: UIViewController {
         view.backgroundColor = .systemBackground
         navigationItem.title = Text.navigationTitle
         navigationItem.backButtonTitle = Design.backButtonTitle
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     private func configureSearchTextField() {
@@ -84,8 +84,12 @@ final class LookupViewController: UIViewController {
         ])
     }
     
-    private func updateDescriptionLabel() {
+    private func clearDescriptionLabel() {
         descriptionLabel.text = Text.emptyString
+    }
+    
+    private func updateNavigationTitleDisplayMode() {
+        navigationItem.largeTitleDisplayMode = .always
     }
 }
 
