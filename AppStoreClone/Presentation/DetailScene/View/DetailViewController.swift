@@ -171,7 +171,7 @@ final class DetailViewController: UIViewController {
     
     private func configureNavigationBar() {
         view.backgroundColor = .systemBackground
-        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.largeTitleDisplayMode = .never
     }
     
     private func configureButtons() {

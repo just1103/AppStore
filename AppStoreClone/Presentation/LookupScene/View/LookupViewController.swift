@@ -49,6 +49,7 @@ final class LookupViewController: UIViewController {
         super.viewWillAppear(animated)
         updateDescriptionLabel()
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .always
     }
 
     // MARK: - Methods
@@ -60,7 +61,6 @@ final class LookupViewController: UIViewController {
     
     private func configureNavigationBar() {
         view.backgroundColor = .systemBackground
-        navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = Text.navigationTitle
         navigationItem.backButtonTitle = Design.backButtonTitle
     }
@@ -126,7 +126,7 @@ extension LookupViewController: UITextFieldDelegate {
 // MARK: - NameSpaces
 extension LookupViewController {
     private enum Text {
-        static let navigationTitle = "App Lookup"
+        static let navigationTitle = "검색"
         static let searchTextFieldPlaceHolder = "앱 ID를 입력해주세요."
         static let descriptionLabelTextIfRequestFail = "앱 ID를 다시 확인해주세요."
         static let emptyString = ""

@@ -49,7 +49,7 @@ final class DetailCoordinator: CoordinatorProtocol {
         let detailViewModel = DetailViewModel(coordinator: self, appItem: appItem)
         let detailViewController = DetailViewController(viewModel: detailViewModel)
         
-        navigationController.pushViewController(detailViewController, animated: false)
+        navigationController.pushViewController(detailViewController, animated: true)
     }
 }
 
