@@ -23,6 +23,7 @@
 		366F187128BE4EBF0042317C /* MockIdusSearchResult.json in Resources */ = {isa = PBXBuildFile; fileRef = 366F187028BE4EBF0042317C /* MockIdusSearchResult.json */; };
 		366F187328BF9FFA0042317C /* AppSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366F187228BF9FFA0042317C /* AppSearch.swift */; };
 		366F187628BFA0860042317C /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366F187528BFA0860042317C /* NetworkError.swift */; };
+		366F187828BFB7690042317C /* AppSearchAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366F187728BFB7690042317C /* AppSearchAPITests.swift */; };
 		36D9D15828AC4E1E008FBA39 /* AppShareActivityItemSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D9D15728AC4E1E008FBA39 /* AppShareActivityItemSource.swift */; };
 		36DAE52028A25FB90073322E /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DAE51F28A25FB90073322E /* InfoCell.swift */; };
 		36DAE52428A27B0E0073322E /* UITableView+CellRegister+Reuse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DAE52328A27B0E0073322E /* UITableView+CellRegister+Reuse.swift */; };
@@ -87,6 +88,7 @@
 		366F187028BE4EBF0042317C /* MockIdusSearchResult.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockIdusSearchResult.json; sourceTree = "<group>"; };
 		366F187228BF9FFA0042317C /* AppSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSearch.swift; sourceTree = "<group>"; };
 		366F187528BFA0860042317C /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		366F187728BFB7690042317C /* AppSearchAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSearchAPITests.swift; sourceTree = "<group>"; };
 		36D9D15728AC4E1E008FBA39 /* AppShareActivityItemSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppShareActivityItemSource.swift; sourceTree = "<group>"; };
 		36DAE51F28A25FB90073322E /* InfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCell.swift; sourceTree = "<group>"; };
 		36DAE52328A27B0E0073322E /* UITableView+CellRegister+Reuse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+CellRegister+Reuse.swift"; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				361A992F289B71EB00C16D00 /* Mock */,
 				361A9904289B6A6700C16D00 /* JSONDecodingTests.swift */,
 				36EBE0E328A0014300B92BB4 /* AppLookupAPITests.swift */,
+				366F187728BFB7690042317C /* AppSearchAPITests.swift */,
 				36EBE0EA28A00CE700B92BB4 /* MockURLSessionTests.swift */,
 			);
 			path = AppStoreCloneTests;
@@ -226,8 +229,8 @@
 			isa = PBXGroup;
 			children = (
 				361A9930289B722100C16D00 /* MockIdusLookupResult.json */,
-				361A9940289B762200C16D00 /* MockIdusAppItem.json */,
 				366F187028BE4EBF0042317C /* MockIdusSearchResult.json */,
+				361A9940289B762200C16D00 /* MockIdusAppItem.json */,
 				36EBE0E828A00A5300B92BB4 /* MockURLSession.swift */,
 			);
 			path = Mock;
@@ -531,6 +534,7 @@
 			files = (
 				36EBE0E928A00A5300B92BB4 /* MockURLSession.swift in Sources */,
 				361A9905289B6A6700C16D00 /* JSONDecodingTests.swift in Sources */,
+				366F187828BFB7690042317C /* AppSearchAPITests.swift in Sources */,
 				36EBE0E428A0014300B92BB4 /* AppLookupAPITests.swift in Sources */,
 				36EBE0EB28A00CE700B92BB4 /* MockURLSessionTests.swift in Sources */,
 			);

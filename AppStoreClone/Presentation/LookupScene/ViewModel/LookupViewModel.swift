@@ -70,5 +70,6 @@ final class LookupViewModel: ViewModelProtocol {
     
     private func fetchData(with searchText: String) -> AnyPublisher<SearchResultDTO, NetworkError> {
         return ItunesAPI.AppLookup(appID: searchText).fetchData()
+//        return ItunesAPI.AppSearch(searchQuery: searchText).fetchData()  // AppStore 앱과 동일한 기능
     }
 }
