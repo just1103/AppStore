@@ -1,3 +1,8 @@
+![iOS 13.0](https://img.shields.io/badge/iOS-13.0-lightgrey?style=flat&color=181717)
+[![Swift 5.6](https://img.shields.io/badge/Swift-5.6-F05138.svg?style=flat&color=F05138)](https://swift.org/download/)
+[![Xcode 13.4](https://img.shields.io/badge/Xcode-13.4-147EFB.svg?style=flat&color=147EFB)](https://apps.apple.com/kr/app/xcode/id497799835?mt=12)
+[![Run Test](https://github.com/just1103/AppStore_Clone/actions/workflows/test_on_main.yml/badge.svg)](https://github.com/just1103/AppStore_Clone/actions/workflows/test_on_main.yml)
+
 # AppStore Clone 프로젝트 
 > [iTunes Search API](https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/iTuneSearchAPI/index.html#//apple_ref/doc/uid/TP40017632-CH3-SW1)를 통해 `앱 ID` 검색 결과를 상세 화면에 나타냅니다.
 
