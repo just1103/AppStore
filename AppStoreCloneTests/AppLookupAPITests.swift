@@ -27,6 +27,7 @@ class AppLookupAPITests: XCTestCase {
     }
     
     func test_Idus_AppID로_AppLookupAPI가_정상작동_하는지() {
+        // URL : http://itunes.apple.com/lookup?media=software&country=kr&id=872469884
         let expectation = XCTestExpectation(description: "AppLookupAPI 비동기 테스트")
 
         let publisher = sut.fetchData()
@@ -52,6 +53,7 @@ class AppLookupAPITests: XCTestCase {
     }
     
     func test_KakaoTalk_AppID로_AppLookupAPI가_정상작동_하는지() {
+        // URL : http://itunes.apple.com/lookup?country=kr&media=software&id=362057947
         let expectation = XCTestExpectation(description: "AppLookupAPI 비동기 테스트")
 
         let kakaoTalkAppID = "362057947"
@@ -68,7 +70,7 @@ class AppLookupAPITests: XCTestCase {
 
             let appItemDTO = searchResultDTO.results.first!
             let appItem = AppItem.convert(appItemDTO: appItemDTO)
-            XCTAssertEqual(appItem.trackName, "KakaoTalk")
+            XCTAssertEqual(appItem.trackName, "카카오톡 KakaoTalk")
             XCTAssertEqual(appItem.artistName, "Kakao Corp.")
 
             expectation.fulfill()

@@ -15,11 +15,14 @@
 		361A9905289B6A6700C16D00 /* JSONDecodingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A9904289B6A6700C16D00 /* JSONDecodingTests.swift */; };
 		361A992B289B6F2200C16D00 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A992A289B6F2200C16D00 /* AppCoordinator.swift */; };
 		361A992E289B6F3A00C16D00 /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A992D289B6F3A00C16D00 /* CoordinatorProtocol.swift */; };
-		361A9931289B722100C16D00 /* MockIdusSearchResult.json in Resources */ = {isa = PBXBuildFile; fileRef = 361A9930289B722100C16D00 /* MockIdusSearchResult.json */; };
+		361A9931289B722100C16D00 /* MockIdusLookupResult.json in Resources */ = {isa = PBXBuildFile; fileRef = 361A9930289B722100C16D00 /* MockIdusLookupResult.json */; };
 		361A993A289B73B800C16D00 /* SearchResultDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A9939289B73B800C16D00 /* SearchResultDTO.swift */; };
 		361A993D289B74CF00C16D00 /* AppItemDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A993C289B74CF00C16D00 /* AppItemDTO.swift */; };
 		361A9941289B762200C16D00 /* MockIdusAppItem.json in Resources */ = {isa = PBXBuildFile; fileRef = 361A9940289B762200C16D00 /* MockIdusAppItem.json */; };
 		361A9948289BC61A00C16D00 /* AppItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361A9947289BC61A00C16D00 /* AppItem.swift */; };
+		366F187128BE4EBF0042317C /* MockIdusSearchResult.json in Resources */ = {isa = PBXBuildFile; fileRef = 366F187028BE4EBF0042317C /* MockIdusSearchResult.json */; };
+		366F187328BF9FFA0042317C /* AppSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366F187228BF9FFA0042317C /* AppSearch.swift */; };
+		366F187628BFA0860042317C /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366F187528BFA0860042317C /* NetworkError.swift */; };
 		36D9D15828AC4E1E008FBA39 /* AppShareActivityItemSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D9D15728AC4E1E008FBA39 /* AppShareActivityItemSource.swift */; };
 		36DAE52028A25FB90073322E /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DAE51F28A25FB90073322E /* InfoCell.swift */; };
 		36DAE52428A27B0E0073322E /* UITableView+CellRegister+Reuse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DAE52328A27B0E0073322E /* UITableView+CellRegister+Reuse.swift */; };
@@ -33,8 +36,7 @@
 		36DCB9C928A3C9ED005F71B9 /* AppLookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DCB9C828A3C9ED005F71B9 /* AppLookup.swift */; };
 		36EBE0D8289FF2BE00B92BB4 /* ItunesAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0D7289FF2BE00B92BB4 /* ItunesAPI.swift */; };
 		36EBE0DA289FF32300B92BB4 /* APIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0D9289FF32300B92BB4 /* APIProtocol.swift */; };
-		36EBE0DF289FF52600B92BB4 /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0DE289FF52600B92BB4 /* URLSessionProtocol.swift */; };
-		36EBE0E2289FF6D500B92BB4 /* URLRequest+Initializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0E1289FF6D500B92BB4 /* URLRequest+Initializer.swift */; };
+		36EBE0DF289FF52600B92BB4 /* URLSession+Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0DE289FF52600B92BB4 /* URLSession+Request.swift */; };
 		36EBE0E428A0014300B92BB4 /* AppLookupAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0E328A0014300B92BB4 /* AppLookupAPITests.swift */; };
 		36EBE0E728A0073800B92BB4 /* DetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0E628A0073800B92BB4 /* DetailCoordinator.swift */; };
 		36EBE0E928A00A5300B92BB4 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EBE0E828A00A5300B92BB4 /* MockURLSession.swift */; };
@@ -77,11 +79,14 @@
 		361A9904289B6A6700C16D00 /* JSONDecodingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecodingTests.swift; sourceTree = "<group>"; };
 		361A992A289B6F2200C16D00 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		361A992D289B6F3A00C16D00 /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
-		361A9930289B722100C16D00 /* MockIdusSearchResult.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockIdusSearchResult.json; sourceTree = "<group>"; };
+		361A9930289B722100C16D00 /* MockIdusLookupResult.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockIdusLookupResult.json; sourceTree = "<group>"; };
 		361A9939289B73B800C16D00 /* SearchResultDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultDTO.swift; sourceTree = "<group>"; };
 		361A993C289B74CF00C16D00 /* AppItemDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppItemDTO.swift; sourceTree = "<group>"; };
 		361A9940289B762200C16D00 /* MockIdusAppItem.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockIdusAppItem.json; sourceTree = "<group>"; };
 		361A9947289BC61A00C16D00 /* AppItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppItem.swift; sourceTree = "<group>"; };
+		366F187028BE4EBF0042317C /* MockIdusSearchResult.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockIdusSearchResult.json; sourceTree = "<group>"; };
+		366F187228BF9FFA0042317C /* AppSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSearch.swift; sourceTree = "<group>"; };
+		366F187528BFA0860042317C /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		36D9D15728AC4E1E008FBA39 /* AppShareActivityItemSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppShareActivityItemSource.swift; sourceTree = "<group>"; };
 		36DAE51F28A25FB90073322E /* InfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCell.swift; sourceTree = "<group>"; };
 		36DAE52328A27B0E0073322E /* UITableView+CellRegister+Reuse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+CellRegister+Reuse.swift"; sourceTree = "<group>"; };
@@ -95,8 +100,7 @@
 		36DCB9C828A3C9ED005F71B9 /* AppLookup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLookup.swift; sourceTree = "<group>"; };
 		36EBE0D7289FF2BE00B92BB4 /* ItunesAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItunesAPI.swift; sourceTree = "<group>"; };
 		36EBE0D9289FF32300B92BB4 /* APIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIProtocol.swift; sourceTree = "<group>"; };
-		36EBE0DE289FF52600B92BB4 /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
-		36EBE0E1289FF6D500B92BB4 /* URLRequest+Initializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Initializer.swift"; sourceTree = "<group>"; };
+		36EBE0DE289FF52600B92BB4 /* URLSession+Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Request.swift"; sourceTree = "<group>"; };
 		36EBE0E328A0014300B92BB4 /* AppLookupAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLookupAPITests.swift; sourceTree = "<group>"; };
 		36EBE0E628A0073800B92BB4 /* DetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCoordinator.swift; sourceTree = "<group>"; };
 		36EBE0E828A00A5300B92BB4 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
@@ -212,9 +216,7 @@
 		361A992C289B6F2500C16D00 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				36EBE0D9289FF32300B92BB4 /* APIProtocol.swift */,
 				361A992D289B6F3A00C16D00 /* CoordinatorProtocol.swift */,
-				36EBE0DE289FF52600B92BB4 /* URLSessionProtocol.swift */,
 				36EBE0F528A11A9A00B92BB4 /* ViewModelProtocol.swift */,
 			);
 			path = Protocols;
@@ -223,8 +225,9 @@
 		361A992F289B71EB00C16D00 /* Mock */ = {
 			isa = PBXGroup;
 			children = (
-				361A9930289B722100C16D00 /* MockIdusSearchResult.json */,
+				361A9930289B722100C16D00 /* MockIdusLookupResult.json */,
 				361A9940289B762200C16D00 /* MockIdusAppItem.json */,
+				366F187028BE4EBF0042317C /* MockIdusSearchResult.json */,
 				36EBE0E828A00A5300B92BB4 /* MockURLSession.swift */,
 			);
 			path = Mock;
@@ -233,9 +236,10 @@
 		361A9942289BC5B500C16D00 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				36EBE0D7289FF2BE00B92BB4 /* ItunesAPI.swift */,
-				36DCB9C828A3C9ED005F71B9 /* AppLookup.swift */,
-				361A9943289BC5C100C16D00 /* response */,
+				36EBE0D9289FF32300B92BB4 /* APIProtocol.swift */,
+				36EBE0DE289FF52600B92BB4 /* URLSession+Request.swift */,
+				366F187528BFA0860042317C /* NetworkError.swift */,
+				366F187428BFA05B0042317C /* ItunesAPI */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -255,6 +259,17 @@
 				361A9947289BC61A00C16D00 /* AppItem.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		366F187428BFA05B0042317C /* ItunesAPI */ = {
+			isa = PBXGroup;
+			children = (
+				36EBE0D7289FF2BE00B92BB4 /* ItunesAPI.swift */,
+				36DCB9C828A3C9ED005F71B9 /* AppLookup.swift */,
+				366F187228BF9FFA0042317C /* AppSearch.swift */,
+				361A9943289BC5C100C16D00 /* response */,
+			);
+			path = ItunesAPI;
 			sourceTree = "<group>";
 		};
 		36DAE52728A29E090073322E /* ScreenshotScene */ = {
@@ -294,7 +309,6 @@
 				36DCB9C228A385B4005F71B9 /* UIStackView+VerticalSeparator.swift */,
 				36DAE52328A27B0E0073322E /* UITableView+CellRegister+Reuse.swift */,
 				36DAE52528A27B540073322E /* UITableViewCell+Identifier.swift */,
-				36EBE0E1289FF6D500B92BB4 /* URLRequest+Initializer.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -457,7 +471,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				361A9941289B762200C16D00 /* MockIdusAppItem.json in Resources */,
-				361A9931289B722100C16D00 /* MockIdusSearchResult.json in Resources */,
+				361A9931289B722100C16D00 /* MockIdusLookupResult.json in Resources */,
+				366F187128BE4EBF0042317C /* MockIdusSearchResult.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,6 +492,7 @@
 				36EBE0F628A11A9A00B92BB4 /* ViewModelProtocol.swift in Sources */,
 				36DAE52028A25FB90073322E /* InfoCell.swift in Sources */,
 				36EBE10528A2200B00B92BB4 /* UIImageView+Load+Cache.swift in Sources */,
+				366F187628BFA0860042317C /* NetworkError.swift in Sources */,
 				36EBE0E728A0073800B92BB4 /* DetailCoordinator.swift in Sources */,
 				36EBE10F28A23E2000B92BB4 /* UICollectionViewCell+Identifier.swift in Sources */,
 				36DCB9C328A385B4005F71B9 /* UIStackView+VerticalSeparator.swift in Sources */,
@@ -485,6 +501,7 @@
 				36DCB9C728A3A11F005F71B9 /* Int+DigitWrapping.swift in Sources */,
 				36EBE0FE28A219C400B92BB4 /* StarImageView.swift in Sources */,
 				361A992B289B6F2200C16D00 /* AppCoordinator.swift in Sources */,
+				366F187328BF9FFA0042317C /* AppSearch.swift in Sources */,
 				36EBE0DA289FF32300B92BB4 /* APIProtocol.swift in Sources */,
 				36EBE10928A2253D00B92BB4 /* SummaryScrollView.swift in Sources */,
 				36EBE10328A21E9200B92BB4 /* ImageCacheManager.swift in Sources */,
@@ -495,7 +512,7 @@
 				361A992E289B6F3A00C16D00 /* CoordinatorProtocol.swift in Sources */,
 				36DAE52628A27B540073322E /* UITableViewCell+Identifier.swift in Sources */,
 				36EBE0FC28A154E400B92BB4 /* DetailViewController.swift in Sources */,
-				36EBE0DF289FF52600B92BB4 /* URLSessionProtocol.swift in Sources */,
+				36EBE0DF289FF52600B92BB4 /* URLSession+Request.swift in Sources */,
 				36DAE52D28A2A10E0073322E /* ScreenshotViewController.swift in Sources */,
 				361A98EE289B6A6600C16D00 /* AppDelegate.swift in Sources */,
 				36EBE0F428A11A7600B92BB4 /* LookupViewModel.swift in Sources */,
@@ -504,7 +521,6 @@
 				361A98F0289B6A6600C16D00 /* SceneDelegate.swift in Sources */,
 				36EBE0F028A1195000B92BB4 /* LookupCoordinator.swift in Sources */,
 				36EBE0D8289FF2BE00B92BB4 /* ItunesAPI.swift in Sources */,
-				36EBE0E2289FF6D500B92BB4 /* URLRequest+Initializer.swift in Sources */,
 				361A993A289B73B800C16D00 /* SearchResultDTO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

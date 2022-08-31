@@ -18,7 +18,7 @@ final class MockURLSession: URLSessionProtocol {
     
     func request<T: Decodable>(urlRequest: URLRequest) -> AnyPublisher<T, NetworkError> {
         guard
-            let path = Bundle(for: type(of: self)).path(forResource: "MockIdusSearchResult", ofType: "json"),
+            let path = Bundle(for: type(of: self)).path(forResource: "MockIdusLookupResult", ofType: "json"),
             let jsonString = try? String(contentsOfFile: path),
             let jsonData = jsonString.data(using: .utf8),
             let searchResult = try? JSONDecoder().decode(SearchResultDTO.self, from: jsonData) as? T
